@@ -43,7 +43,7 @@ object GithubReleases : GithubRepository {
     )
 
     const val APK_USERNAME = "devanshudara0-cpu"
-    const val APK_REPOSITORY = "stleo-repo"
+    const val APK_REPOSITORY = "STxLEO_OTT"
     const val APK_PRERELEASE = "pre-release"
     const val APK_CONTENT_TYPE = "application/vnd.android.package-archive"
 

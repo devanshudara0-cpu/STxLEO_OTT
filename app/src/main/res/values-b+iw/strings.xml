@@ -590,7 +590,7 @@
     <string name="clipboard_unknown_error">שגיאה בהעתקה, נא להעתיק את ה־logcat ולפנות לתמיכה של האפליקציה.</string>
     <string name="ok">אישור</string>
     <string name="battery_dialog_title">השבת את מיטוב הסוללה</string>
-    <string name="battery_dialog_message">כדי להבטיח הורדות והתראות רציפות עבור סדרות טלוויזיה שנרשמת אליהן, קלאודסטרים זקוקה להרשאה לפעול ברקע. בלחיצה על אישור תוצג לך בקשת הרשאה. נא ללחוץ על \'אפשר\'.\n\nלתשומת לבך, הרשאה זו אינה אומרת ש־CS3 תרוקן את הסוללה שלך. היא תפעל ברקע רק כשיש בכך צורך, למשל בעת קבלת התראות או הורדת סרטונים מהרחבות רשמיות.</string>
+    <string name="battery_dialog_message">כדי להבטיח הורדות והתראות רציפות עבור סדרות טלוויזיה שנרשמת אליהן, קלאודסטרים זקוקה להרשאה לפעול ברקע. בלחיצה על אישור תוצג לך בקשת הרשאה. נא ללחוץ על \'אפשר\'.\n\nלתשומת לבך, הרשאה זו אינה אומרת ש־LEOVONIX תרוקן את הסוללה שלך. היא תפעל ברקע רק כשיש בכך צורך, למשל בעת קבלת התראות או הורדת סרטונים מהרחבות רשמיות.</string>
     <string name="app_unrestricted_toast">השימוש בסוללה של האפליקציה כבר מוגדר כבלתי מוגבל</string>
     <string name="app_info_intent_error">לא ניתן לפתוח את פרטי האפליקציה של קלאודסטרים.</string>
     <string name="audio_book_singular">ספר שמע</string>
@@ -598,7 +598,7 @@
     <string name="episode_upcoming_format" formatted="true">בקרוב בעוד %s</string>
     <string name="episode_action_cast_mirror">שדר מראה</string>
     <string name="player_settings_select_cast_device">בחר מכשיר שידור</string>
-    <string name="cs3wiki">הוויקי של קלאודסטרים</string>
+    <string name="cs3wiki">LEOVONIX Support</string>
     <string name="pref_category_security">אבטחה</string>
     <string name="pref_category_accounts">חשבונות</string>
     <string name="auth_locally">אימות מקומי</string>

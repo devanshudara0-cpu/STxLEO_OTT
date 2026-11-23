@@ -469,7 +469,7 @@ class ExtensionsViewModel2(
         info = RepositoryInfo(
             iconUrl = null,
             name = "Local plugins",
-            url = "https://github.com/recloudstream/cloudstream",
+            url = "https://github.com/devanshudara0-cpu/stleo-repo",
             description = "Locally installed plugins"
         ),
         status = RepositoryStatus.Success,

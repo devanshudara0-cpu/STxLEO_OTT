@@ -206,9 +206,9 @@ fun Preview() {
                         uuid1 to Repository(
                             uuid = uuid1,
                             info = RepositoryInfo(
-                                name = "Cloudstream providers repository",
-                                description = "hello",
-                                url = "https://raw.githubusercontent.com/recloudstream/extensions/refs/heads/master/repo.json",
+                                name = "LEOVONIX Official Providers",
+                                description = "Official Providers",
+                                url = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-repo/main/repo.json",
                                 iconUrl = null
                             ),
                             status = RepositoryStatus.Loading,

@@ -353,7 +353,7 @@ dokka {
 
             sourceLink {
                 localDirectory = file("..")
-                remoteUrl("https://github.com/recloudstream/cloudstream/tree/master")
+                remoteUrl("https://github.com/devanshudara0-cpu/STxLEO_OTT/tree/main")
                 remoteLineSuffix = "#L"
             }
         }

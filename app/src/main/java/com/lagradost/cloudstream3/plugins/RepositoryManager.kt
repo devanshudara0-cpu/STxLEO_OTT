@@ -100,7 +100,7 @@ object RepositoryManager {
     val PREBUILT_REPOSITORIES: Array<RepositoryData> by lazy {
         val custom = getKey<Array<RepositoryData>>("PREBUILT_REPOSITORIES") ?: emptyArray()
         val defaultRepo = RepositoryData(
-            name = "ST×LEO OTT Official Providers",
+            name = "LEOVONIX Official Providers",
             url = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-repo/main/repo.json",
             iconUrl = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-repo/main/icon.png"
         )
