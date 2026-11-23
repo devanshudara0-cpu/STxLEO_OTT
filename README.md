@@ -36,5 +36,3 @@ cd STxLEO_OTT
 - **Lead Developer:** Devanshu
 - **Telegram Channel & Support:** [@Dara_OG](https://t.me/Dara_OG)
 
----
-*Based on open-source CloudStream architecture (GPLv3).*
