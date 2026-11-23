@@ -26,7 +26,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stleo.ott.plugins.PluginManager
-import com.stleo.ott.CloudStreamApp.Companion.getActivity
+import com.stleo.ott.LeoApp.Companion.getActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
@@ -892,7 +892,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                         homeLoadingError.isVisible = true
                         homeMasterRecycler.isInvisible = true
 
-                        // Based on https://github.com/recloudstream/cloudstream/pull/1438
+                        // Based on https://github.com/releovonix/leovonix/pull/1438
                         val hasNoNetworkConnection = context?.isNetworkAvailable() == false
                         val isNetworkError = data.isNetworkError
 

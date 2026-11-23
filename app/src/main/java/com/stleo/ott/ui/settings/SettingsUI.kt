@@ -6,7 +6,7 @@ import android.view.View
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import androidx.preference.SeekBarPreference
-import com.stleo.ott.CloudStreamApp.Companion.getActivity
+import com.stleo.ott.LeoApp.Companion.getActivity
 import com.stleo.ott.MainActivity
 import com.stleo.ott.R
 import com.stleo.ott.SearchQuality

@@ -55,7 +55,7 @@ import com.google.android.gms.common.wrappers.Wrappers
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.stleo.ott.APIHolder.apis
 import com.stleo.ott.AllLanguagesName
-import com.stleo.ott.CloudStreamApp.Companion.getActivity
+import com.stleo.ott.LeoApp.Companion.getActivity
 import com.stleo.ott.CommonActivity.activity
 import com.stleo.ott.CommonActivity.showToast
 import com.stleo.ott.DubStatus
@@ -86,7 +86,7 @@ import com.stleo.ott.utils.FillerEpisodeCheck.toClassDir
 import com.stleo.ott.utils.JsUnpacker.Companion.load
 import com.stleo.ott.utils.UIHelper.navigate
 import com.stleo.ott.utils.downloader.DownloadObjects
-import com.lagradost.cloudstream4.AppSettings
+import com.stleo.ui.AppSettings
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import okhttp3.Cache

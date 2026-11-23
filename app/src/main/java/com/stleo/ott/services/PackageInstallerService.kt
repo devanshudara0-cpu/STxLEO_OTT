@@ -64,7 +64,7 @@ class PackageInstallerService : Service() {
 
             // Delete all old updates
             ioSafe {
-                val appUpdateName = "CloudStream"
+                val appUpdateName = "LEOVONIX"
                 val appUpdateSuffix = "apk"
 
                 this@PackageInstallerService.cacheDir.listFiles()?.filter {
@@ -173,7 +173,7 @@ class PackageInstallerService : Service() {
     companion object {
         private const val EXTRA_URL = "EXTRA_URL"
 
-        const val UPDATE_CHANNEL_ID = "cloudstream3.updates"
+        const val UPDATE_CHANNEL_ID = "leovonix3.updates"
         const val UPDATE_CHANNEL_NAME = "App Updates"
         const val UPDATE_CHANNEL_DESCRIPTION = "App updates notification channel"
         const val UPDATE_NOTIFICATION_ID = -68454136 // Random unique

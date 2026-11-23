@@ -56,20 +56,20 @@ import com.stleo.ott.ui.settings.logcat.toHumanReadable
 import com.stleo.ott.utils.TestingUtils
 import com.stleo.ott.utils.UIHelper.clipboardHelper
 import com.stleo.ott.utils.txt
-import com.lagradost.cloudstream4.compose.BlackButton
-import com.lagradost.cloudstream4.compose.LogBoxBlack
-import com.lagradost.cloudstream4.compose.LogBoxWhite
-import com.lagradost.cloudstream4.compose.LogText
-import com.lagradost.cloudstream4.compose.PHONE
-import com.lagradost.cloudstream4.compose.Screen
-import com.lagradost.cloudstream4.compose.WhiteButton
-import com.lagradost.cloudstream4.compose.WhiteFilterChip
-import com.lagradost.cloudstream4.compose.isLayout
-import com.lagradost.cloudstream4.state.LogItem
-import com.lagradost.cloudstream4.state.LogLevel
-import com.lagradost.cloudstream4.state.SearchableDataState
-import com.lagradost.cloudstream4.state.SortByName
-import com.lagradost.cloudstream4.theme.CloudStreamPreviewTheme
+import com.stleo.ui.compose.BlackButton
+import com.stleo.ui.compose.LogBoxBlack
+import com.stleo.ui.compose.LogBoxWhite
+import com.stleo.ui.compose.LogText
+import com.stleo.ui.compose.PHONE
+import com.stleo.ui.compose.Screen
+import com.stleo.ui.compose.WhiteButton
+import com.stleo.ui.compose.WhiteFilterChip
+import com.stleo.ui.compose.isLayout
+import com.stleo.ui.state.LogItem
+import com.stleo.ui.state.LogLevel
+import com.stleo.ui.state.SearchableDataState
+import com.stleo.ui.state.SortByName
+import com.stleo.ui.theme.LeoPreviewTheme
 import com.mihon.material.AppBar
 import com.mihon.material.Scaffold
 import com.mihon.material.padding
@@ -86,7 +86,7 @@ import kotlin.uuid.Uuid
 fun Preview() {
     val uuid1 = Uuid.random()
     val uuid2 = Uuid.random()
-    CloudStreamPreviewTheme {
+    LeoPreviewTheme {
         TestScreen.Content(
             state = TestState(
                 items = SearchableDataState.from(

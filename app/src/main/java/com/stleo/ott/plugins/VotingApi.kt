@@ -3,9 +3,9 @@ package com.stleo.ott.plugins
 import android.util.Log
 import android.widget.Toast
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.stleo.ott.CloudStreamApp.Companion.context
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.context
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.R
 import java.security.MessageDigest
 import com.stleo.ott.app
@@ -53,7 +53,7 @@ object VotingApi {
         }
 
     fun hasVoted(pluginUrl: String): Boolean =
-        getKey<Boolean>("cs3-votes/${transformUrl(pluginUrl)}") ?: false
+        getKey<Boolean>("leo-votes/${transformUrl(pluginUrl)}") ?: false
 
     fun canVote(pluginUrl: String): Boolean =
         PluginManager.urlPlugins.contains(pluginUrl)
@@ -85,7 +85,7 @@ object VotingApi {
             }
 
             if (writeVote(pluginUrl)) {
-                setKey("cs3-votes/${transformUrl(pluginUrl)}", true)
+                setKey("leo-votes/${transformUrl(pluginUrl)}", true)
                 votesCache[pluginUrl] = votesCache[pluginUrl]?.plus(1) ?: 1
             }
 

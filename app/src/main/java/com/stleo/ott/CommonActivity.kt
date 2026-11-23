@@ -32,8 +32,8 @@ import androidx.preference.PreferenceManager
 import com.google.android.gms.cast.framework.CastSession
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.navigationrail.NavigationRailView
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.removeKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.removeKey
 import com.stleo.ott.actions.OpenInAppAction
 import com.stleo.ott.actions.VideoClickActionHolder
 import com.stleo.ott.databinding.ToastBinding

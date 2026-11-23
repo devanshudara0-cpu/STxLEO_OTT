@@ -4,7 +4,7 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import android.content.Context
 import android.content.DialogInterface
 import android.content.pm.ActivityInfo
@@ -1324,7 +1324,7 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
             }
 
             // netflix capture back and hide ~monke
-            // This is removed due to inconsistent behavior on A36 vs A22, see https://github.com/recloudstream/cloudstream/issues/1804
+            // This is removed due to inconsistent behavior on A36 vs A22, see https://github.com/releovonix/leovonix/issues/1804
             /*KeyEvent.KEYCODE_BACK -> {
                 if (isShowing && isLayout(TV or EMULATOR)) {
                     onClickChange()

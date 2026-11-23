@@ -9,7 +9,7 @@ plugins {
 kotlin {
     android {
         // Must be unique
-        namespace = "com.lagradost.cloudstream4"
+        namespace = "com.stleo.ui"
         compileSdk = libs.versions.compileSdk.get().toInt()
         minSdk = libs.versions.minSdk.get().toInt()
 
@@ -61,6 +61,6 @@ dependencies {
 
 compose.resources {
     publicResClass = true
-    packageOfResClass = "com.lagradost.cloudstream4.generated.resources"
+    packageOfResClass = "com.stleo.ui.generated.resources"
     generateResClass = auto
 }

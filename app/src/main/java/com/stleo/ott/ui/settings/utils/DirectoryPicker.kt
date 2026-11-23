@@ -4,7 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import com.stleo.ott.CloudStreamApp
+import com.stleo.ott.LeoApp
 import com.stleo.ott.mvvm.logError
 import com.lagradost.safefile.SafeFile
 
@@ -15,7 +15,7 @@ fun Fragment.getChooseFolderLauncher(dirSelected: (uri: Uri?, path: String?) -> 
             dirSelected(null, null)
             return@registerForActivityResult
         }
-        val context = context ?: CloudStreamApp.context ?: return@registerForActivityResult
+        val context = context ?: LeoApp.context ?: return@registerForActivityResult
         // RW perms for the path
         val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or
                 Intent.FLAG_GRANT_WRITE_URI_PERMISSION

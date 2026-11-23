@@ -13,8 +13,8 @@ import com.stleo.ott.ui.settings.Globals.TV
 import com.stleo.ott.ui.settings.Globals.isLandscape
 import com.stleo.ott.ui.settings.Globals.isLayout
 import com.stleo.ott.utils.UIHelper.fixSystemBarsPadding
-import com.lagradost.cloudstream4.compose.Screen
-import com.lagradost.cloudstream4.compose.createComposeView
+import com.stleo.ui.compose.Screen
+import com.stleo.ui.compose.createComposeView
 
 abstract class BaseComposeFragment : Fragment(), Screen {
     override fun onCreateView(

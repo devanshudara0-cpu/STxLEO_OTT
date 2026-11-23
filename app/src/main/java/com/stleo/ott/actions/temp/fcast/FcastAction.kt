@@ -1,7 +1,7 @@
 package com.stleo.ott.actions.temp.fcast
 
 import android.content.Context
-import com.stleo.ott.CloudStreamApp.Companion.getActivity
+import com.stleo.ott.LeoApp.Companion.getActivity
 import com.stleo.ott.R
 import com.stleo.ott.USER_AGENT
 import com.stleo.ott.actions.VideoClickAction

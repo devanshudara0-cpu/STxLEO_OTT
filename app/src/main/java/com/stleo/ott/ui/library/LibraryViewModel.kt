@@ -4,8 +4,8 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.MainActivity
 import com.stleo.ott.R
 import com.stleo.ott.mvvm.Resource

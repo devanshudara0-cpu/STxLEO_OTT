@@ -62,28 +62,28 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import coil3.compose.AsyncImage
-import com.stleo.ott.CloudStreamApp
+import com.stleo.ott.LeoApp
 import com.stleo.ott.R
 import com.stleo.ott.mvvm.logError
 import com.stleo.ott.utils.DataStoreHelper
 import com.stleo.ott.utils.DataStoreHelper.Account
-import com.lagradost.cloudstream4.compose.ActionDialog
-import com.lagradost.cloudstream4.compose.BlackButton
-import com.lagradost.cloudstream4.compose.BlackTextField
-import com.lagradost.cloudstream4.compose.EMULATOR
-import com.lagradost.cloudstream4.compose.PHONE
-import com.lagradost.cloudstream4.compose.RoundedShape
-import com.lagradost.cloudstream4.compose.TV
-import com.lagradost.cloudstream4.compose.WhiteButton
-import com.lagradost.cloudstream4.compose.circle
-import com.lagradost.cloudstream4.compose.circleBorder
-import com.lagradost.cloudstream4.compose.focusOutline
-import com.lagradost.cloudstream4.compose.isLayout
-import com.lagradost.cloudstream4.compose.rounded
-import com.lagradost.cloudstream4.compose.whiteOutline
-import com.lagradost.cloudstream4.state.SearchableData
-import com.lagradost.cloudstream4.state.sortByInt
-import com.lagradost.cloudstream4.theme.CloudStreamPreviewTheme
+import com.stleo.ui.compose.ActionDialog
+import com.stleo.ui.compose.BlackButton
+import com.stleo.ui.compose.BlackTextField
+import com.stleo.ui.compose.EMULATOR
+import com.stleo.ui.compose.PHONE
+import com.stleo.ui.compose.RoundedShape
+import com.stleo.ui.compose.TV
+import com.stleo.ui.compose.WhiteButton
+import com.stleo.ui.compose.circle
+import com.stleo.ui.compose.circleBorder
+import com.stleo.ui.compose.focusOutline
+import com.stleo.ui.compose.isLayout
+import com.stleo.ui.compose.rounded
+import com.stleo.ui.compose.whiteOutline
+import com.stleo.ui.state.SearchableData
+import com.stleo.ui.state.sortByInt
+import com.stleo.ui.theme.LeoPreviewTheme
 import com.mihon.material.padding
 import com.mihon.presentation.settings.widget.SwitchPreferenceWidget
 import com.mihon.presentation.settings.widget.TextPreferenceWidget
@@ -92,7 +92,7 @@ import kotlinx.collections.immutable.toPersistentMap
 @PreviewLightDark
 @Composable
 fun Preview() {
-    CloudStreamPreviewTheme {
+    LeoPreviewTheme {
         AccountScreen.Content(
             state = AccountState(
                 canEditAccount = false,
@@ -295,7 +295,7 @@ object AccountScreen {
             rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
                 // It lies, it can be null if file manager quits.
                 if (uri == null) return@rememberLauncherForActivityResult
-                val context = CloudStreamApp.context ?: return@rememberLauncherForActivityResult
+                val context = LeoApp.context ?: return@rememberLauncherForActivityResult
 
                 try {
                     context.contentResolver.takePersistableUriPermission(

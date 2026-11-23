@@ -793,7 +793,7 @@ constructor(
 
     /**
      * Old constructor without isDash, allows for backwards compatibility with extensions.
-     * Should be removed after all extensions have updated their cloudstream.jar
+     * Should be removed after all extensions have updated their leovonix.jar
      **/
     @Suppress("DEPRECATION_ERROR")
     @Deprecated("Use newExtractorLink", level = DeprecationLevel.ERROR)

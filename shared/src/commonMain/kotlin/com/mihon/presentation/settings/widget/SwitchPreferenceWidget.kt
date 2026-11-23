@@ -8,9 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.lagradost.cloudstream4.generated.resources.Res
-import com.lagradost.cloudstream4.generated.resources.preview
-import com.lagradost.cloudstream4.theme.CloudStreamPreviewTheme
+import com.stleo.ui.generated.resources.Res
+import com.stleo.ui.generated.resources.preview
+import com.stleo.ui.theme.LeoPreviewTheme
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
@@ -41,7 +41,7 @@ fun SwitchPreferenceWidget(
 @PreviewLightDark
 @Composable
 private fun SwitchPreferenceWidgetPreview() {
-    CloudStreamPreviewTheme {
+    LeoPreviewTheme {
         Surface {
             Column {
                 SwitchPreferenceWidget(

@@ -26,7 +26,7 @@ import com.stleo.ott.utils.downloader.DownloadUtils.getImageBitmapFromUrl
 import kotlinx.coroutines.withTimeoutOrNull
 import java.util.concurrent.TimeUnit
 
-const val SUBSCRIPTION_CHANNEL_ID = "cloudstream3.subscriptions"
+const val SUBSCRIPTION_CHANNEL_ID = "leovonix3.subscriptions"
 const val SUBSCRIPTION_WORK_NAME = "work_subscription"
 const val SUBSCRIPTION_CHANNEL_NAME = "Subscriptions"
 const val SUBSCRIPTION_CHANNEL_DESCRIPTION = "Notifications for new episodes on subscribed shows"
@@ -85,7 +85,7 @@ class SubscriptionWorkManager(val context: Context, workerParams: WorkerParamete
             .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setColor(context.colorFromAttribute(R.attr.colorPrimary))
-            .setSmallIcon(R.drawable.ic_cloudstream_monochrome_big)
+            .setSmallIcon(R.drawable.ic_launcher_monochrome_big)
 
     private val notificationManager: NotificationManager =
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

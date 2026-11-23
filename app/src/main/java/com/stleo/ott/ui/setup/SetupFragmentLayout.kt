@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter
 import androidx.core.content.edit
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.R
 import com.stleo.ott.databinding.FragmentSetupLayoutBinding
 import com.stleo.ott.mvvm.safe

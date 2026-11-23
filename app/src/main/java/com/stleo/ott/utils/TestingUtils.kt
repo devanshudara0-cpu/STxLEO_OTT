@@ -10,8 +10,8 @@ import com.stleo.ott.TvSeriesLoadResponse
 import com.stleo.ott.TvType
 import com.stleo.ott.mvvm.getStackTracePretty
 import com.stleo.ott.mvvm.logError
-import com.lagradost.cloudstream4.state.Log
-import com.lagradost.cloudstream4.state.LogItem
+import com.stleo.ui.state.Log
+import com.stleo.ui.state.LogItem
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.CancellationException

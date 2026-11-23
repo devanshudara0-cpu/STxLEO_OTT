@@ -28,13 +28,13 @@ import com.stleo.ott.ui.home.ParentItemAdapter
 import com.stleo.ott.ui.search.SearchAdapter
 import com.stleo.ott.ui.settings.Globals.updateTv
 import com.stleo.ott.utils.UIHelper.toPx
-import com.lagradost.cloudstream4.compose.TV
-import com.lagradost.cloudstream4.compose.isLayout
-import com.lagradost.cloudstream4.rememberAppSettings
-import com.lagradost.cloudstream4.theme.CloudStreamPrimaryColor
-import com.lagradost.cloudstream4.theme.modeToTheme
-import com.lagradost.cloudstream4.theme.perfToColor
-import com.lagradost.cloudstream4.theme.perfToMode
+import com.stleo.ui.compose.TV
+import com.stleo.ui.compose.isLayout
+import com.stleo.ui.rememberAppSettings
+import com.stleo.ui.theme.LeoPrimaryColor
+import com.stleo.ui.theme.modeToTheme
+import com.stleo.ui.theme.perfToColor
+import com.stleo.ui.theme.perfToMode
 import com.mihon.presentation.settings.Preference
 import com.mihon.presentation.settings.SearchableSettings
 import kotlinx.collections.immutable.mutate
@@ -121,7 +121,7 @@ object SettingsUIScreen : SearchableSettings {
                             }
                         },
                         iconProvider = { k, _ ->
-                            val theme = modeToTheme(perfToMode(k), CloudStreamPrimaryColor.NORMAL)
+                            val theme = modeToTheme(perfToMode(k), LeoPrimaryColor.NORMAL)
                             RoundColor(theme.background)
                         },
                         onValueChanged = { newValue ->

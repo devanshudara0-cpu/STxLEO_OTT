@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import com.stleo.ott.CloudStreamApp.Companion.removeKey
+import com.stleo.ott.LeoApp.Companion.removeKey
 import com.stleo.ott.R
 import com.stleo.ott.mvvm.logError
 import com.stleo.ott.services.DownloadQueueService.Companion.downloadInstances

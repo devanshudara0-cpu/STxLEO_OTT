@@ -11,7 +11,7 @@ import android.content.pm.PackageInstaller
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
-import com.stleo.ott.CloudStreamApp.Companion.context
+import com.stleo.ott.LeoApp.Companion.context
 import com.stleo.ott.R
 import com.stleo.ott.mvvm.logError
 import com.stleo.ott.services.PackageInstallerService

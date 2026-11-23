@@ -4,8 +4,8 @@ import android.content.DialogInterface
 import android.net.Uri
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.getKeys
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.getKeys
 import com.stleo.ott.CommonActivity.activity
 import com.stleo.ott.R
 import com.stleo.ott.mvvm.logError

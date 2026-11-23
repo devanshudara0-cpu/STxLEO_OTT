@@ -18,8 +18,8 @@ import com.stleo.ott.APIHolder.unixTime
 import com.stleo.ott.APIHolder.unixTimeMS
 import com.stleo.ott.ActorData
 import com.stleo.ott.AnimeLoadResponse
-import com.stleo.ott.CloudStreamApp.Companion.context
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.context
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.CommonActivity.activity
 import com.stleo.ott.CommonActivity.getCastSession
 import com.stleo.ott.CommonActivity.showToast
@@ -1231,7 +1231,7 @@ class ResultViewModel2 : ViewModel() {
         // TODO Add skip loading here
         loadLinks(result, isVisible = true, sourceTypes, isCasting = isCasting) { links ->
             // Could not find a better way to do this
-            //val context = CloudStreamApp.context
+            //val context = LeoApp.context
             postPopup(
                 text,
                 links.links.map { txt("${it.name} ${Qualities.getStringByInt(it.quality)}") }

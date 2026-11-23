@@ -25,9 +25,9 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.stleo.ott.APIHolder
 import com.stleo.ott.APIHolder.allProviders
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.openBrowser
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.openBrowser
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.MainActivity
 import com.stleo.ott.R
 import com.stleo.ott.SearchResponse

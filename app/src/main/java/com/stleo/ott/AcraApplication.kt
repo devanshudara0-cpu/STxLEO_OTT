@@ -1,78 +1,78 @@
 package com.stleo.ott
 
 /**
- * Deprecated alias for CloudStreamApp for backwards compatibility with plugins.
- * Use CloudStreamApp instead.
+ * Deprecated alias for LeoApp for backwards compatibility with plugins.
+ * Use LeoApp instead.
  */
 @Deprecated(
-    message = "AcraApplication is deprecated, use CloudStreamApp instead",
-    replaceWith = ReplaceWith("com.stleo.ott.CloudStreamApp"),
+    message = "AcraApplication is deprecated, use LeoApp instead",
+    replaceWith = ReplaceWith("com.stleo.ott.LeoApp"),
     level = DeprecationLevel.ERROR
 )
 class AcraApplication {
 	companion object {
 
 		@Deprecated(
-		    message = "AcraApplication is deprecated, use CloudStreamApp instead",
-		    replaceWith = ReplaceWith("com.stleo.ott.CloudStreamApp.context"),
+		    message = "AcraApplication is deprecated, use LeoApp instead",
+		    replaceWith = ReplaceWith("com.stleo.ott.LeoApp.context"),
 		    level = DeprecationLevel.ERROR
 		)
-		val context get() = CloudStreamApp.context
+		val context get() = LeoApp.context
 
 		@Deprecated(
-		    message = "AcraApplication is deprecated, use CloudStreamApp instead",
-		    replaceWith = ReplaceWith("com.stleo.ott.CloudStreamApp.removeKeys(folder)"),
+		    message = "AcraApplication is deprecated, use LeoApp instead",
+		    replaceWith = ReplaceWith("com.stleo.ott.LeoApp.removeKeys(folder)"),
 		    level = DeprecationLevel.ERROR
 		)
 		fun removeKeys(folder: String): Int? =
-		    CloudStreamApp.removeKeys(folder)
+		    LeoApp.removeKeys(folder)
 
 		@Deprecated(
-		    message = "AcraApplication is deprecated, use CloudStreamApp instead",
-		    replaceWith = ReplaceWith("com.stleo.ott.CloudStreamApp.setKey(path, value)"),
+		    message = "AcraApplication is deprecated, use LeoApp instead",
+		    replaceWith = ReplaceWith("com.stleo.ott.LeoApp.setKey(path, value)"),
 		    level = DeprecationLevel.ERROR
 		)
 		fun <T> setKey(path: String, value: T) =
-			CloudStreamApp.setKey(path, value)
+			LeoApp.setKey(path, value)
 
 		@Deprecated(
-		    message = "AcraApplication is deprecated, use CloudStreamApp instead",
-		    replaceWith = ReplaceWith("com.stleo.ott.CloudStreamApp.setKey(folder, path, value)"),
+		    message = "AcraApplication is deprecated, use LeoApp instead",
+		    replaceWith = ReplaceWith("com.stleo.ott.LeoApp.setKey(folder, path, value)"),
 		    level = DeprecationLevel.ERROR
 		)
 		fun <T> setKey(folder: String, path: String, value: T) =
-			CloudStreamApp.setKey(folder, path, value)
+			LeoApp.setKey(folder, path, value)
 
 		@Deprecated(
-		    message = "AcraApplication is deprecated, use CloudStreamApp instead",
-		    replaceWith = ReplaceWith("com.stleo.ott.CloudStreamApp.getKey(path, defVal)"),
+		    message = "AcraApplication is deprecated, use LeoApp instead",
+		    replaceWith = ReplaceWith("com.stleo.ott.LeoApp.getKey(path, defVal)"),
 		    level = DeprecationLevel.ERROR
 		)
 		inline fun <reified T : Any> getKey(path: String, defVal: T?): T? =
-			CloudStreamApp.getKey(path, defVal)
+			LeoApp.getKey(path, defVal)
 
 		@Deprecated(
-		    message = "AcraApplication is deprecated, use CloudStreamApp instead",
-		    replaceWith = ReplaceWith("com.stleo.ott.CloudStreamApp.getKey(path)"),
+		    message = "AcraApplication is deprecated, use LeoApp instead",
+		    replaceWith = ReplaceWith("com.stleo.ott.LeoApp.getKey(path)"),
 		    level = DeprecationLevel.ERROR
 		)
 		inline fun <reified T : Any> getKey(path: String): T? =
-			CloudStreamApp.getKey(path)
+			LeoApp.getKey(path)
 
 		@Deprecated(
-		    message = "AcraApplication is deprecated, use CloudStreamApp instead",
-		    replaceWith = ReplaceWith("com.stleo.ott.CloudStreamApp.getKey(folder, path)"),
+		    message = "AcraApplication is deprecated, use LeoApp instead",
+		    replaceWith = ReplaceWith("com.stleo.ott.LeoApp.getKey(folder, path)"),
 		    level = DeprecationLevel.ERROR
 		)
 		inline fun <reified T : Any> getKey(folder: String, path: String): T? =
-		    CloudStreamApp.getKey(folder, path)
+		    LeoApp.getKey(folder, path)
 
 		@Deprecated(
-		    message = "AcraApplication is deprecated, use CloudStreamApp instead",
-		    replaceWith = ReplaceWith("com.stleo.ott.CloudStreamApp.getKey(folder, path, defVal)"),
+		    message = "AcraApplication is deprecated, use LeoApp instead",
+		    replaceWith = ReplaceWith("com.stleo.ott.LeoApp.getKey(folder, path, defVal)"),
 		    level = DeprecationLevel.ERROR
 		)
 		inline fun <reified T : Any> getKey(folder: String, path: String, defVal: T?): T? =
-			CloudStreamApp.getKey(folder, path, defVal)
+			LeoApp.getKey(folder, path, defVal)
 	}
 }

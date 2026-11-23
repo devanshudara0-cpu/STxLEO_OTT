@@ -30,11 +30,11 @@ import com.stleo.ott.mvvm.logError
 import com.stleo.ott.utils.UIHelper.clipboardHelper
 import com.stleo.ott.utils.downloader.VideoDownloadManager
 import com.stleo.ott.utils.txt
-import com.lagradost.cloudstream4.compose.BlackButton
-import com.lagradost.cloudstream4.compose.LogBoxBlack
-import com.lagradost.cloudstream4.compose.LogBoxWhite
-import com.lagradost.cloudstream4.compose.LogText
-import com.lagradost.cloudstream4.compose.WhiteButton
+import com.stleo.ui.compose.BlackButton
+import com.stleo.ui.compose.LogBoxBlack
+import com.stleo.ui.compose.LogBoxWhite
+import com.stleo.ui.compose.LogText
+import com.stleo.ui.compose.WhiteButton
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.Dispatchers

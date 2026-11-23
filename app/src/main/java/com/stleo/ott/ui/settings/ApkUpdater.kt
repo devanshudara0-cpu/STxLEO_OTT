@@ -15,9 +15,9 @@ import com.stleo.ott.MainActivity.Companion.deleteFileOnExit
 import com.stleo.ott.app
 import com.stleo.ott.mvvm.safe
 import com.stleo.ott.receivers.PackageInstallerStatusReceiver
-import com.lagradost.cloudstream4.AppSettings
-import com.lagradost.cloudstream4.viewmodels.AppUpdater
-import com.lagradost.cloudstream4.viewmodels.DigestPair
+import com.stleo.ui.AppSettings
+import com.stleo.ui.viewmodels.AppUpdater
+import com.stleo.ui.viewmodels.DigestPair
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive

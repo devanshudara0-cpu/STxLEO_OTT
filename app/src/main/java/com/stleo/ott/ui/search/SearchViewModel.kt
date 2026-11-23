@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.stleo.ott.APIHolder.apis
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.getKeys
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.getKeys
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.HomePageList
 import com.stleo.ott.SearchResponse
 import com.stleo.ott.amap

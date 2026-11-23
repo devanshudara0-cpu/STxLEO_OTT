@@ -9,7 +9,7 @@ import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.core.graphics.scale
 import androidx.preference.PreferenceManager
-import com.stleo.ott.CloudStreamApp
+import com.stleo.ott.LeoApp
 import com.stleo.ott.R
 import com.stleo.ott.mvvm.logError
 import com.stleo.ott.ui.settings.Globals.TV
@@ -65,7 +65,7 @@ interface IPreviewGenerator {
 
     companion object {
         fun new(): IPreviewGenerator {
-            val userDisabled = CloudStreamApp.context?.let { ctx ->
+            val userDisabled = LeoApp.context?.let { ctx ->
                 PreferenceManager.getDefaultSharedPreferences(ctx)?.getBoolean(
                     ctx.getString(R.string.preview_seekbar_key), true
                 ) == false

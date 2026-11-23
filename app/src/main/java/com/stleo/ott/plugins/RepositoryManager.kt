@@ -3,9 +3,9 @@ package com.stleo.ott.plugins
 import android.content.Context
 import androidx.annotation.WorkerThread
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.stleo.ott.CloudStreamApp.Companion.context
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.context
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.R
 import com.stleo.ott.amap
 import com.stleo.ott.app
@@ -143,8 +143,8 @@ object RepositoryManager {
         val fixedUrl = url.trim()
         return if (fixedUrl.contains("^https?://".toRegex())) {
             fixedUrl
-        } else if (fixedUrl.contains("^(cloudstreamrepo://)|(https://cs\\.repo/\\??)".toRegex())) {
-            fixedUrl.replace("^(cloudstreamrepo://)|(https://cs\\.repo/\\??)".toRegex(), "").let {
+        } else if (fixedUrl.contains("^(leovonixrepo://)|(https://cs\\.repo/\\??)".toRegex())) {
+            fixedUrl.replace("^(leovonixrepo://)|(https://cs\\.repo/\\??)".toRegex(), "").let {
                 return@let if (!it.contains("^https?://".toRegex()))
                     "https://${it}"
                 else fixedUrl

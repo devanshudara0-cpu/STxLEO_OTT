@@ -1,6 +1,6 @@
 package com.stleo.ott.ui.settings.extensions
 
-import com.stleo.ott.CloudStreamApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.getKey
 import com.stleo.ott.CommonActivity
 import com.stleo.ott.ErrorLoadingException
 import com.stleo.ott.InternalAPI
@@ -22,13 +22,13 @@ import com.stleo.ott.plugins.RepositoryManager.removeRepository
 import com.stleo.ott.plugins.SitePlugin
 import com.stleo.ott.ui.settings.ApkUpdater
 import com.stleo.ott.ui.settings.ApkUpdater.isFileDigest
-import com.lagradost.cloudstream4.viewmodels.DigestPair
-import com.lagradost.cloudstream4.viewmodels.Plugin
-import com.lagradost.cloudstream4.viewmodels.PluginDownloadSource
-import com.lagradost.cloudstream4.viewmodels.PluginInfo
-import com.lagradost.cloudstream4.viewmodels.PluginStatus
-import com.lagradost.cloudstream4.viewmodels.RepositoryInfo
-import com.lagradost.cloudstream4.viewmodels.RepositoryManager
+import com.stleo.ui.viewmodels.DigestPair
+import com.stleo.ui.viewmodels.Plugin
+import com.stleo.ui.viewmodels.PluginDownloadSource
+import com.stleo.ui.viewmodels.PluginInfo
+import com.stleo.ui.viewmodels.PluginStatus
+import com.stleo.ui.viewmodels.RepositoryInfo
+import com.stleo.ui.viewmodels.RepositoryManager
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.Dispatchers

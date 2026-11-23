@@ -22,7 +22,7 @@ import com.google.android.gms.cast.TextTrackStyle.EDGE_TYPE_NONE
 import com.google.android.gms.cast.TextTrackStyle.EDGE_TYPE_OUTLINE
 import com.google.android.gms.cast.TextTrackStyle.EDGE_TYPE_RAISED
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
-import com.stleo.ott.CloudStreamApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.getKey
 import com.stleo.ott.CommonActivity.onColorSelectedEvent
 import com.stleo.ott.CommonActivity.onDialogDismissedEvent
 import com.stleo.ott.CommonActivity.showToast

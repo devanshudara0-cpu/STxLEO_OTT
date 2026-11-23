@@ -14,7 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import com.stleo.ott.BuildConfig
-import com.stleo.ott.CloudStreamApp
+import com.stleo.ott.LeoApp
 import com.stleo.ott.CommonActivity.activity
 import com.stleo.ott.MainActivityScreen
 import com.stleo.ott.R
@@ -24,9 +24,9 @@ import com.stleo.ott.utils.BackupUtils
 import com.stleo.ott.utils.BackupUtils.restorePrompt
 import com.stleo.ott.utils.InAppUpdater.installPreReleaseIfNeeded
 import com.stleo.ott.utils.UIHelper.navigate
-import com.lagradost.cloudstream4.AppSettings
-import com.lagradost.cloudstream4.rememberAppSettings
-import com.lagradost.cloudstream4.viewmodels.GithubAction
+import com.stleo.ui.AppSettings
+import com.stleo.ui.rememberAppSettings
+import com.stleo.ui.viewmodels.GithubAction
 import com.lagradost.safefile.SafeFile
 import com.mihon.presentation.settings.Preference
 import com.mihon.presentation.settings.SearchableSettings
@@ -46,7 +46,7 @@ object SettingsUpdatesScreen : SearchableSettings {
             rememberLauncherForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->
                 // It lies, it can be null if file manager quits.
                 if (uri == null) return@rememberLauncherForActivityResult
-                val context = CloudStreamApp.context ?: return@rememberLauncherForActivityResult
+                val context = LeoApp.context ?: return@rememberLauncherForActivityResult
 
                 try {
                     val settings = AppSettings(context)
@@ -148,7 +148,7 @@ object SettingsUpdatesScreen : SearchableSettings {
                         preference = settings.backup.frequency,
                         onValueChanged = { value ->
                             BackupWorkManager.enqueuePeriodicWork(
-                                CloudStreamApp.context,
+                                LeoApp.context,
                                 value.toLong()
                             )
                             return@ListPreference true

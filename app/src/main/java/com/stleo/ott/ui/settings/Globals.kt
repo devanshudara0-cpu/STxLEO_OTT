@@ -5,7 +5,7 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import androidx.preference.PreferenceManager
 import com.stleo.ott.R
-import com.lagradost.cloudstream4.compose.DeviceLayout.Companion.isAutoTv
+import com.stleo.ui.compose.DeviceLayout.Companion.isAutoTv
 
 object Globals {
     var beneneCount = 0

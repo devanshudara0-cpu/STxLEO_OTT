@@ -31,10 +31,10 @@ tasks.withType<JavaExec> {
 
 compose.desktop {
     application {
-        mainClass = "com.lagradost.cloudstream4.MainKt"
+        mainClass = "com.stleo.ui.MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "CloudStream"
+            packageName = "LEOVONIX"
             packageVersion = "1.0.0"
 
             val iconsRoot = project.file("desktop-icons")

@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.net.toUri
 import com.stleo.api.Log
-import com.stleo.ott.CloudStreamApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.getKey
 import com.stleo.ott.actions.OpenInAppAction
 import com.stleo.ott.actions.makeTempM3U8Intent
 import com.stleo.ott.actions.updateDurationAndPosition

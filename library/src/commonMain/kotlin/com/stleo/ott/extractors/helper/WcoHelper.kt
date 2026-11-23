@@ -26,7 +26,7 @@ class WcoHelper {
         private var newKeys: NewExternalKeys? = null
         private suspend fun getKeys() {
             keys = keys
-                ?: app.get("https://raw.githubusercontent.com/reduplicated/Cloudstream/master/docs/keys.json")
+                ?: app.get("https://raw.githubusercontent.com/devanshudara0-cpu/STxLEO_OTT/main/docs/keys.json")
                     .parsedSafe<ExternalKeys>()
         }
 

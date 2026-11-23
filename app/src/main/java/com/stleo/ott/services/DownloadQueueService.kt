@@ -12,7 +12,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.PendingIntentCompat
-import com.stleo.ott.CloudStreamApp.Companion.removeKey
+import com.stleo.ott.LeoApp.Companion.removeKey
 import com.stleo.ott.MainActivity
 import com.stleo.ott.MainActivity.Companion.lastError
 import com.stleo.ott.MainActivity.Companion.setLastError
@@ -48,7 +48,7 @@ import kotlin.time.Duration.Companion.seconds
 class DownloadQueueService : Service() {
     companion object {
         const val TAG = "DownloadQueueService"
-        const val DOWNLOAD_QUEUE_CHANNEL_ID = "cloudstream3.download.queue"
+        const val DOWNLOAD_QUEUE_CHANNEL_ID = "leovonix3.download.queue"
         const val DOWNLOAD_QUEUE_CHANNEL_NAME = "Download queue service"
         const val DOWNLOAD_QUEUE_CHANNEL_DESCRIPTION = "App download queue notification."
         const val DOWNLOAD_QUEUE_NOTIFICATION_ID = 917194232 // Random unique

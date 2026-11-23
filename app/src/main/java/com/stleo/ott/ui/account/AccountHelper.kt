@@ -21,7 +21,7 @@ import coil3.ImageLoader
 import coil3.request.ImageRequest
 import coil3.request.allowHardware
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.stleo.ott.CloudStreamApp.Companion.getActivity
+import com.stleo.ott.LeoApp.Companion.getActivity
 import com.stleo.ott.CommonActivity.showToast
 import com.stleo.ott.MainActivity
 import com.stleo.ott.R

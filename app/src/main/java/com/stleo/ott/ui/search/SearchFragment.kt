@@ -30,8 +30,8 @@ import com.google.android.material.button.MaterialButton
 import com.stleo.ott.APIHolder.getApiFromNameNull
 import com.stleo.ott.AllLanguagesName
 import com.stleo.ott.AnimeSearchResponse
-import com.stleo.ott.CloudStreamApp.Companion.removeKey
-import com.stleo.ott.CloudStreamApp.Companion.removeKeys
+import com.stleo.ott.LeoApp.Companion.removeKey
+import com.stleo.ott.LeoApp.Companion.removeKeys
 import com.stleo.ott.CommonActivity.showToast
 import com.stleo.ott.HomePageList
 import com.stleo.ott.MainAPI

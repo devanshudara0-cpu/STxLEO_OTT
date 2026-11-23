@@ -7,10 +7,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.window.DialogProperties
-import com.lagradost.cloudstream4.compose.MultiSelectDialog
-import com.lagradost.cloudstream4.generated.resources.Res
-import com.lagradost.cloudstream4.generated.resources.cancel
-import com.lagradost.cloudstream4.generated.resources.ok
+import com.stleo.ui.compose.MultiSelectDialog
+import com.stleo.ui.generated.resources.Res
+import com.stleo.ui.generated.resources.cancel
+import com.stleo.ui.generated.resources.ok
 import org.jetbrains.compose.resources.stringResource
 
 @Composable

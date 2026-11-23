@@ -17,7 +17,7 @@ import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import androidx.preference.SwitchPreference
 import androidx.recyclerview.widget.RecyclerView
-import com.stleo.ott.CloudStreamApp.Companion.openBrowser
+import com.stleo.ott.LeoApp.Companion.openBrowser
 import com.stleo.ott.CommonActivity.onDialogDismissedEvent
 import com.stleo.ott.CommonActivity.showToast
 import com.stleo.ott.ErrorLoadingException

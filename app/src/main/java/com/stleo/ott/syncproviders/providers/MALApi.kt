@@ -4,8 +4,8 @@ import androidx.annotation.StringRes
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.stleo.ott.APIHolder
 import com.stleo.ott.BuildConfig
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.R
 import com.stleo.ott.Score
 import com.stleo.ott.ShowStatus

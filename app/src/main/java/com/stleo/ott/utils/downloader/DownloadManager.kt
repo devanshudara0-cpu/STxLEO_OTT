@@ -21,10 +21,10 @@ import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
 import com.stleo.ott.APIHolder.getApiFromNameNull
 import com.stleo.ott.BuildConfig
-import com.stleo.ott.CloudStreamApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.getKey
 import com.stleo.ott.CommonActivity.showToast
-import com.stleo.ott.CloudStreamApp.Companion.removeKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.removeKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.IDownloadableMinimum
 import com.stleo.ott.MainActivity
 import com.stleo.ott.R
@@ -106,7 +106,7 @@ import java.io.Closeable
 import java.io.IOException
 import java.io.OutputStream
 
-const val DOWNLOAD_CHANNEL_ID = "cloudstream3.general"
+const val DOWNLOAD_CHANNEL_ID = "leovonix3.general"
 const val DOWNLOAD_CHANNEL_NAME = "Downloads"
 const val DOWNLOAD_CHANNEL_DESCRIPT = "The download notification channel"
 

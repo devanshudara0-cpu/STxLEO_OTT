@@ -71,7 +71,7 @@ import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.progressindicator.CircularProgressIndicatorSpec
 import com.google.android.material.progressindicator.IndeterminateDrawable
-import com.stleo.ott.CloudStreamApp.Companion.context
+import com.stleo.ott.LeoApp.Companion.context
 import com.stleo.ott.CommonActivity.activity
 import com.stleo.ott.CommonActivity.showToast
 import com.stleo.ott.R

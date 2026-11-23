@@ -64,9 +64,9 @@ import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import com.stleo.ott.APIHolder.allProviders
 import com.stleo.ott.APIHolder.apis
 import com.stleo.ott.APIHolder.initAll
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.removeKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.removeKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.CommonActivity.loadThemes
 import com.stleo.ott.CommonActivity.onColorSelectedEvent
 import com.stleo.ott.CommonActivity.onDialogDismissedEvent
@@ -179,8 +179,8 @@ import com.stleo.ott.utils.downloader.DownloadQueueManager
 import com.stleo.ott.utils.setText
 import com.stleo.ott.utils.setTextHtml
 import com.stleo.ott.utils.txt
-import com.lagradost.cloudstream4.compose.CloudStreamThemeAppSettings
-import com.lagradost.cloudstream4.theme.CloudStreamTheme
+import com.stleo.ui.compose.LeoThemeAppSettings
+import com.stleo.ui.theme.LeoTheme
 import com.lagradost.safefile.SafeFile
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
@@ -293,7 +293,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                 fun safeURI(uri: String) = safe { URI(uri) }
 
                 if (str != null && this != null) {
-                    if (str.startsWith("https://cs.repo")) {
+                    if (str.startsWith("https://stleo.repo")) {
                         val realUrl = "https://" + str.substringAfter("?")
                         println("Repository url: $realUrl")
                         loadRepository(realUrl)
@@ -328,7 +328,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                             }
                         }
                         // This specific intent is used for the gradle deployWithAdb
-                        // https://github.com/recloudstream/gradle/blob/master/src/main/kotlin/com/stleo/ott/gradle/tasks/DeployWithAdbTask.kt#L46
+                        // https://github.com/releovonix/gradle/blob/master/src/main/kotlin/com/stleo/ott/gradle/tasks/DeployWithAdbTask.kt#L46
                         if (str == "$APP_STRING:") {
                             ioSafe {
                                 PluginManager.___DO_NOT_CALL_FROM_A_PLUGIN_hotReloadAllLocalPlugins(
@@ -1302,7 +1302,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
 
             composeView.apply {
                 setContent {
-                    CloudStreamThemeAppSettings {
+                    LeoThemeAppSettings {
                         MainActivityScreen.Content()
                     }
                 }
@@ -1630,7 +1630,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
 
 //        ioSafe {
 //            val plugins =
-//                RepositoryParser.getRepoPlugins("https://raw.githubusercontent.com/recloudstream/TestPlugin/master/repo.json")
+//                RepositoryParser.getRepoPlugins("https://raw.githubusercontent.com/releovonix/TestPlugin/master/repo.json")
 //                    ?: emptyList()
 //            plugins.map {
 //                println("Load plugin: ${it.name} ${it.url}")
@@ -1948,7 +1948,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         val castContext = CastContext.getSharedInstance(applicationContext)
          fun buildMediaQueueItem(video: String): MediaQueueItem {
            // val movieMetadata = MediaMetadata(MediaMetadata.MEDIA_TYPE_PHOTO)
-            //movieMetadata.putString(MediaMetadata.KEY_TITLE, "CloudStream")
+            //movieMetadata.putString(MediaMetadata.KEY_TITLE, "LEOVONIX")
             val mediaInfo = MediaInfo.Builder(video.toUri().toString())
                 .setStreamType(MediaInfo.STREAM_TYPE_NONE)
                 .setContentType(MimeTypes.IMAGE_JPEG)

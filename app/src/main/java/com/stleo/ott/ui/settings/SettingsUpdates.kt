@@ -11,7 +11,7 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.stleo.ott.AutoDownloadMode
 import com.stleo.ott.BuildConfig
-import com.stleo.ott.CloudStreamApp
+import com.stleo.ott.LeoApp
 import com.stleo.ott.CommonActivity.showToast
 import com.stleo.ott.R
 import com.stleo.ott.app
@@ -60,7 +60,7 @@ class SettingsUpdates : BasePreferenceFragmentCompat() {
     private val pathPicker = getChooseFolderLauncher { uri, path ->
         if(uri == null) return@getChooseFolderLauncher
 
-        val context = context ?: CloudStreamApp.context ?: return@getChooseFolderLauncher
+        val context = context ?: LeoApp.context ?: return@getChooseFolderLauncher
         (path ?: uri.toString()).let {
             PreferenceManager.getDefaultSharedPreferences(context).edit {
                 putString(getString(R.string.backup_path_key), uri.toString())
@@ -95,7 +95,7 @@ class SettingsUpdates : BasePreferenceFragmentCompat() {
                     putInt(getString(R.string.automatic_backup_key), prefValues[index])
                 }
                 BackupWorkManager.enqueuePeriodicWork(
-                    context ?: CloudStreamApp.context,
+                    context ?: LeoApp.context,
                     prefValues[index].toLong()
                 )
             }
@@ -271,7 +271,7 @@ class SettingsUpdates : BasePreferenceFragmentCompat() {
                 settingsManager.edit {
                     putInt(getString(R.string.auto_download_plugins_key), prefValues[num])
                 }
-                (context ?: CloudStreamApp.context)?.let { ctx -> app.initClient(ctx) }
+                (context ?: LeoApp.context)?.let { ctx -> app.initClient(ctx) }
             }
             return@setOnPreferenceClickListener true
         }

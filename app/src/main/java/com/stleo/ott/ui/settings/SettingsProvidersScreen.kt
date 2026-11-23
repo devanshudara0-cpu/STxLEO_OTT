@@ -12,7 +12,7 @@ import com.stleo.ott.TvType
 import com.stleo.ott.utils.SubtitleHelper.fromTagToLanguageName
 import com.stleo.ott.utils.SubtitleHelper.getNameNextToFlagEmoji
 import com.stleo.ott.utils.UIHelper.navigate
-import com.lagradost.cloudstream4.rememberAppSettings
+import com.stleo.ui.rememberAppSettings
 import com.mihon.presentation.settings.Preference
 import com.mihon.presentation.settings.SearchableSettings
 import kotlinx.collections.immutable.persistentListOf

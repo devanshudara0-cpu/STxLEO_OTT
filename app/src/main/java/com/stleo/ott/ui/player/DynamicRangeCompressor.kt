@@ -5,7 +5,7 @@ import androidx.media3.common.C
 import androidx.media3.common.audio.AudioProcessor
 import androidx.media3.common.audio.AudioProcessor.AudioFormat
 import androidx.media3.common.util.UnstableApi
-import com.stleo.ott.CloudStreamApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.getKey
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import kotlin.math.exp

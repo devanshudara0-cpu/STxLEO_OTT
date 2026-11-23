@@ -7,7 +7,7 @@ import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.stleo.ott.CloudStreamApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.getKey
 import com.stleo.ott.R
 import com.stleo.ott.databinding.DownloadQueueItemBinding
 import com.stleo.ott.ui.BaseAdapter

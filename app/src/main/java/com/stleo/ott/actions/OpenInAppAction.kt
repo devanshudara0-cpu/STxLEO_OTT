@@ -6,8 +6,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.R
 import com.stleo.ott.mvvm.logError
 import com.stleo.ott.ui.result.LinkLoadingResult

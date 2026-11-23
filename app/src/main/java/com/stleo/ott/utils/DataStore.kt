@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
-import com.stleo.ott.CloudStreamApp.Companion.getKeyClass
-import com.stleo.ott.CloudStreamApp.Companion.removeKey
-import com.stleo.ott.CloudStreamApp.Companion.setKeyClass
+import com.stleo.ott.LeoApp.Companion.getKeyClass
+import com.stleo.ott.LeoApp.Companion.removeKey
+import com.stleo.ott.LeoApp.Companion.setKeyClass
 import com.stleo.ott.mvvm.logError
 import com.stleo.ott.utils.AppUtils.parseJson
 import com.stleo.ott.utils.AppUtils.toJsonLiteral

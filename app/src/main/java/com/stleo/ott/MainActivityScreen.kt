@@ -33,19 +33,19 @@ import com.stleo.ott.ui.settings.GithubReleases.APK_REPOSITORY
 import com.stleo.ott.ui.settings.GithubReleases.APK_USERNAME
 import com.stleo.ott.utils.GitInfo.currentCommitHash
 import com.stleo.ott.utils.parseMarkdown
-import com.lagradost.cloudstream4.compose.BlackButton
-import com.lagradost.cloudstream4.compose.Screen
-import com.lagradost.cloudstream4.compose.WhiteButton
-import com.lagradost.cloudstream4.rememberAppSettings
-import com.lagradost.cloudstream4.viewmodels.GithubAction
-import com.lagradost.cloudstream4.viewmodels.GithubAction.AutoSearchForUpdate
-import com.lagradost.cloudstream4.viewmodels.GithubAction.Dismiss
-import com.lagradost.cloudstream4.viewmodels.GithubAction.SearchForUpdate
-import com.lagradost.cloudstream4.viewmodels.GithubAction.SkipUpdate
-import com.lagradost.cloudstream4.viewmodels.GithubAction.Update
-import com.lagradost.cloudstream4.viewmodels.GithubState
-import com.lagradost.cloudstream4.viewmodels.GithubUpdateDialogState
-import com.lagradost.cloudstream4.viewmodels.GithubViewModel
+import com.stleo.ui.compose.BlackButton
+import com.stleo.ui.compose.Screen
+import com.stleo.ui.compose.WhiteButton
+import com.stleo.ui.rememberAppSettings
+import com.stleo.ui.viewmodels.GithubAction
+import com.stleo.ui.viewmodels.GithubAction.AutoSearchForUpdate
+import com.stleo.ui.viewmodels.GithubAction.Dismiss
+import com.stleo.ui.viewmodels.GithubAction.SearchForUpdate
+import com.stleo.ui.viewmodels.GithubAction.SkipUpdate
+import com.stleo.ui.viewmodels.GithubAction.Update
+import com.stleo.ui.viewmodels.GithubState
+import com.stleo.ui.viewmodels.GithubUpdateDialogState
+import com.stleo.ui.viewmodels.GithubViewModel
 import com.mihon.material.padding
 
 object MainActivityScreen : Screen {

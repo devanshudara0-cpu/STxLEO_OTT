@@ -73,7 +73,7 @@ object TvChannelUtils {
             try {
                 val nameBase64 = base64Encode(item.apiName.toByteArray(Charsets.UTF_8))
                 val urlBase64 = base64Encode(item.url.toByteArray(Charsets.UTF_8))
-                val csshareUri = "$APP_STRING_SHARE:$nameBase64?$urlBase64"
+                val leoshareUri = "$APP_STRING_SHARE:$nameBase64?$urlBase64"
                 val poster=item.posterUrl
                 val builder = PreviewProgram.Builder()
                     .setChannelId(channelId)
@@ -86,7 +86,7 @@ object TvChannelUtils {
                     }
                     .setContentId(item.url)
                     .setType(TvContractCompat.PreviewPrograms.TYPE_MOVIE)
-                    .setIntentUri(csshareUri.toUri())
+                    .setIntentUri(leoshareUri.toUri())
                     .setPosterArtAspectRatio(TvContractCompat.PreviewPrograms.ASPECT_RATIO_2_3)
 
                 // Validate poster URL before setting
@@ -144,7 +144,7 @@ object TvChannelUtils {
             .setAppLinkIconUri(iconUri)
             .setDisplayName(context.getString(R.string.app_name))
             .setAppLinkIntent(Intent(Intent.ACTION_VIEW).apply {
-                data = "cloudstreamapp://open".toUri()
+                data = "leovonixapp://open".toUri()
             })
             .setInputId(inputId)
             .build()

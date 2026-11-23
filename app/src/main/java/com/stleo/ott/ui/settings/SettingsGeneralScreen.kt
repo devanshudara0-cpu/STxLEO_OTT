@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.stleo.ott.APIHolder
 import com.stleo.ott.AllLanguagesName
-import com.stleo.ott.CloudStreamApp
+import com.stleo.ott.LeoApp
 import com.stleo.ott.CommonActivity.activity
 import com.stleo.ott.CommonActivity.showToast
 import com.stleo.ott.R
@@ -32,12 +32,12 @@ import com.stleo.ott.utils.BatteryOptimizationChecker.isAppRestricted
 import com.stleo.ott.utils.BatteryOptimizationChecker.showRequestIgnoreBatteryOptDialog
 import com.stleo.ott.utils.SubtitleHelper.fromTagToLanguageName
 import com.stleo.ott.utils.SubtitleHelper.getNameNextToFlagEmoji
-import com.lagradost.cloudstream4.AppSettings
-import com.lagradost.cloudstream4.compose.ActionDialog
-import com.lagradost.cloudstream4.compose.PHONE
-import com.lagradost.cloudstream4.compose.isLayout
-import com.lagradost.cloudstream4.rememberAppSettings
-import com.lagradost.cloudstream4.theme.CloudStreamPreviewTheme
+import com.stleo.ui.AppSettings
+import com.stleo.ui.compose.ActionDialog
+import com.stleo.ui.compose.PHONE
+import com.stleo.ui.compose.isLayout
+import com.stleo.ui.rememberAppSettings
+import com.stleo.ui.theme.LeoPreviewTheme
 import com.lagradost.safefile.SafeFile
 import com.mihon.presentation.settings.Preference
 import com.mihon.presentation.settings.SearchableSettings
@@ -58,7 +58,7 @@ object SettingsGeneralScreen : SearchableSettings {
             rememberLauncherForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->
                 // It lies, it can be null if file manager quits.
                 if (uri == null) return@rememberLauncherForActivityResult
-                val context = CloudStreamApp.context ?: return@rememberLauncherForActivityResult
+                val context = LeoApp.context ?: return@rememberLauncherForActivityResult
 
                 try {
                     val settings = AppSettings(context)
@@ -224,7 +224,7 @@ object SettingsGeneralScreen : SearchableSettings {
                         ).toMap(),
                         onValueChanged = { newValue ->
                             settings.general.dns.set(newValue) // Must set the value before initClient is called
-                            (CloudStreamApp.context)?.let { ctx ->
+                            (LeoApp.context)?.let { ctx ->
                                 app.initClient(ctx, ignoreSSL = false)
                                 @OptIn(UnsafeSSL::class)
                                 insecureApp.initClient(ctx, ignoreSSL = true)
@@ -249,7 +249,7 @@ object SettingsGeneralScreen : SearchableSettings {
                         subtitle = "Made by Devanshu",
                         icon = painterResource(R.drawable.ic_telegram),
                         onClick = {
-                            CloudStreamApp.openBrowser("https://t.me/Dara_OG")
+                            LeoApp.openBrowser("https://t.me/Dara_OG")
                         }
                     )
                 )
@@ -262,7 +262,7 @@ object SettingsGeneralScreen : SearchableSettings {
 @PreviewLightDark
 @Composable
 private fun SettingGeneralPreview() {
-    CloudStreamPreviewTheme {
+    LeoPreviewTheme {
         SettingsGeneralScreen.Content()
     }
 }

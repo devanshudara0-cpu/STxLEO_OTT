@@ -20,12 +20,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.lagradost.cloudstream4.compose.WhiteIconButton
-import com.lagradost.cloudstream4.generated.resources.Res
-import com.lagradost.cloudstream4.generated.resources.action_bar_up_description
-import com.lagradost.cloudstream4.generated.resources.arrow_back
-import com.lagradost.cloudstream4.generated.resources.cancel
-import com.lagradost.cloudstream4.generated.resources.close
+import com.stleo.ui.compose.WhiteIconButton
+import com.stleo.ui.generated.resources.Res
+import com.stleo.ui.generated.resources.action_bar_up_description
+import com.stleo.ui.generated.resources.arrow_back
+import com.stleo.ui.generated.resources.cancel
+import com.stleo.ui.generated.resources.close
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 

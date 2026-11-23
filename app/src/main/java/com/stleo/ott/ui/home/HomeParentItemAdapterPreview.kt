@@ -20,7 +20,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.navigation.NavigationBarItemView
-import com.stleo.ott.CloudStreamApp.Companion.getActivity
+import com.stleo.ott.LeoApp.Companion.getActivity
 import com.stleo.ott.CommonActivity.activity
 import com.stleo.ott.HomePageList
 import com.stleo.ott.LoadResponse
@@ -170,7 +170,7 @@ class HomeParentItemAdapterPreview(
                     val context = v.context ?: return@ResumeItemAdapter
                     val builder: AlertDialog.Builder =
                         AlertDialog.Builder(context)
-                    // Copy pasted from https://github.com/recloudstream/cloudstream/pull/1658/files
+                    // Copy pasted from https://github.com/releovonix/leovonix/pull/1658/files
                     builder.apply {
                         setTitle(R.string.clear_history)
                         setMessage(

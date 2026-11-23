@@ -77,12 +77,12 @@ import com.stleo.ott.utils.GitInfo.currentCommitHash
 import com.stleo.ott.utils.UIHelper.clipboardHelper
 import com.stleo.ott.utils.UIHelper.navigate
 import com.stleo.ott.utils.txt
-import com.lagradost.cloudstream4.compose.Screen
-import com.lagradost.cloudstream4.compose.TV
-import com.lagradost.cloudstream4.compose.circleBorder
-import com.lagradost.cloudstream4.compose.focusOutline
-import com.lagradost.cloudstream4.compose.isLayout
-import com.lagradost.cloudstream4.theme.CloudStreamPreviewTheme
+import com.stleo.ui.compose.Screen
+import com.stleo.ui.compose.TV
+import com.stleo.ui.compose.circleBorder
+import com.stleo.ui.compose.focusOutline
+import com.stleo.ui.compose.isLayout
+import com.stleo.ui.theme.LeoPreviewTheme
 import com.mihon.material.padding
 import com.mihon.presentation.settings.SearchableSettings
 import com.mihon.presentation.settings.SettingSearchResults
@@ -416,7 +416,7 @@ object SettingsFragmentScreen : Screen {
 @PreviewLightDark
 @Composable
 fun Preview() {
-    CloudStreamPreviewTheme {
+    LeoPreviewTheme {
         SettingsFragmentScreen.Content()
     }
 }

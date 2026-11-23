@@ -47,7 +47,7 @@ jobs:
           echo "Found built APK: $BUILD_APK"
           
           # Zipalign
-          zipalign -v -p 4 "$BUILD_APK" LEOVONIX_v2.0_aligned.apk
+          zipalign -v -p 4 "$BUILD_APK" LEOVONIX_v2.1_aligned.apk
           
           # Apksigner with Permanent LEOVONIX Keystore
           apksigner sign --ks app/leovonix_release.p12 \
@@ -57,34 +57,35 @@ jobs:
             --v1-signing-enabled true \
             --v2-signing-enabled true \
             --v3-signing-enabled true \
-            --out LEOVONIX_v2.0.apk \
-            LEOVONIX_v2.0_aligned.apk
+            --out LEOVONIX_v2.1.apk \
+            LEOVONIX_v2.1_aligned.apk
             
           # Verify signature
-          apksigner verify --verbose LEOVONIX_v2.0.apk
+          apksigner verify --verbose LEOVONIX_v2.1.apk
 
       - name: Upload APK to Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: LEOVONIX_v2.0
-          path: LEOVONIX_v2.0.apk
+          name: LEOVONIX_v2.1
+          path: LEOVONIX_v2.1.apk
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/master')
         with:
-          tag_name: v2.0
-          name: "LEOVONIX v2.0 Official Release"
+          tag_name: v2.1
+          name: "LEOVONIX v2.1 Official Release"
           body: |
-            ## LEOVONIX v2.0 Official Release (Independent Lock & Key Ecosystem)
+            ## LEOVONIX v2.1 Official Release (Zero-Trace Pure Ecosystem)
             Official Release by Devanshu (@Dara_OG)
             
-            - 100% Independent LEOVONIX Ecosystem (`com.stleo.ott`)
+            - 100% Zero-Trace Pure LEOVONIX Ecosystem (`com.stleo.ott` & `com.stleo.ui`)
             - Proprietary `.leo` Extension Engine (Taala aur Chabi Dono Apna)
+            - All Intent schemes, app classes, and components fully rebranded to LEOVONIX
             - Signed with Permanent Cryptographic Key (Seamless 1-Click Updates)
             - High-Speed 4K/UHD Hindi, South & Multi-Audio Streaming
             - Titanium Geometric Lion VIP Design
             - Clean ExoPlayer & FFmpeg Media3 Backend
-          files: LEOVONIX_v2.0.apk
+          files: LEOVONIX_v2.1.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

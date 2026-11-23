@@ -22,7 +22,7 @@ import com.stleo.ott.utils.Coroutines.runOnMainThread
 import com.stleo.ott.utils.SubtitleHelper.getFlagFromIso
 import com.stleo.ott.utils.TestingUtils
 import com.stleo.ott.utils.TestingUtils.Logger
-import com.lagradost.cloudstream4.state.LogLevel
+import com.stleo.ui.state.LogLevel
 import java.io.File
 
 class TestResultAdapter() :

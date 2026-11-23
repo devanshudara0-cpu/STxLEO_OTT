@@ -1,8 +1,8 @@
 package com.stleo.ott.ui.settings.logcat
 
 import androidx.compose.runtime.Immutable
-import com.lagradost.cloudstream4.state.LogLevel
-import com.lagradost.cloudstream4.state.UniqueItem
+import com.stleo.ui.state.LogLevel
+import com.stleo.ui.state.UniqueItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.io.Buffer

@@ -60,7 +60,7 @@ class AccountSelectActivity : FragmentActivity(), BiometricCallback {
         )
 
         // Sometimes we start this activity when we have already logged in
-        // For example when using cloudstreamsearch://
+        // For example when using leovonixsearch://
         // In those cases we want to just go to the main activity instantly
         if (hasLoggedIn && !isEditingFromMainActivity && !isFromMainActivity) {
             navigateToMainActivity()

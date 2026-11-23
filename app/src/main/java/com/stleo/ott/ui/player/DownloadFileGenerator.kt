@@ -1,7 +1,7 @@
 package com.stleo.ott.ui.player
 
 import android.net.Uri
-import com.stleo.ott.CloudStreamApp.Companion.context
+import com.stleo.ott.LeoApp.Companion.context
 import com.stleo.ott.CommonActivity.activity
 import com.stleo.ott.R
 import com.stleo.ott.ui.player.PlayerSubtitleHelper.Companion.toSubtitleMimeType

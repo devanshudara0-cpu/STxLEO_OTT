@@ -2,8 +2,8 @@ package com.stleo.ott.ui.settings
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.stleo.ott.app
-import com.lagradost.cloudstream4.viewmodels.GithubFile
-import com.lagradost.cloudstream4.viewmodels.GithubRepository
+import com.stleo.ui.viewmodels.GithubFile
+import com.stleo.ui.viewmodels.GithubRepository
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import java.io.FileNotFoundException

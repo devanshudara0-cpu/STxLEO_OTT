@@ -5,7 +5,7 @@ import android.text.format.Formatter.formatFileSize
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
-import com.stleo.ott.CloudStreamApp.Companion.openBrowser
+import com.stleo.ott.LeoApp.Companion.openBrowser
 import com.stleo.ott.databinding.FragmentPluginDetailsBinding
 import com.stleo.ott.plugins.PluginManager
 import com.stleo.ott.plugins.VotingApi.canVote

@@ -33,7 +33,7 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.CaptionStyleCompat
 import androidx.media3.ui.SubtitleView
 import coil3.compose.AsyncImage
-import com.stleo.ott.CloudStreamApp
+import com.stleo.ott.LeoApp
 import com.stleo.ott.R
 import com.stleo.ott.mvvm.logError
 import com.stleo.ott.ui.player.CustomDecoder
@@ -46,7 +46,7 @@ import com.stleo.ott.ui.subtitles.SubtitlesFragment.Companion.subtitleStyleState
 import com.stleo.ott.utils.AppUtils.parseJson
 import com.stleo.ott.utils.AppUtils.toJsonLiteral
 import com.stleo.ott.utils.SubtitleHelper.languages
-import com.lagradost.cloudstream4.compose.ActionDialog
+import com.stleo.ui.compose.ActionDialog
 import com.mihon.common.preference.AndroidPreferenceStore
 import com.mihon.common.preference.DataPreferenceStore
 import com.mihon.common.preference.StatePreferenceStore
@@ -188,7 +188,7 @@ object SubtitlesScreen : SearchableSettings {
             rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
                 // It lies, it can be null if file manager quits.
                 if (uri == null) return@rememberLauncherForActivityResult
-                val context = CloudStreamApp.context ?: return@rememberLauncherForActivityResult
+                val context = LeoApp.context ?: return@rememberLauncherForActivityResult
 
                 try {
                     val localFile = File(context.filesDir, "customfont.ttf")

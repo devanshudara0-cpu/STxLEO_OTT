@@ -14,9 +14,9 @@ import androidx.preference.PreferenceManager
 import com.fasterxml.jackson.annotation.JsonAlias
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.stleo.ott.APIHolder.allProviders
-import com.stleo.ott.CloudStreamApp
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.CommonActivity
 import com.stleo.ott.CommonActivity.activity
 import com.stleo.ott.CommonActivity.showToast
@@ -171,7 +171,7 @@ class SettingsGeneral : BasePreferenceFragmentCompat() {
         fun Fragment.pickDownloadPath(uri: Uri?, path: String?) {
             if (uri == null) return
 
-            val context = context ?: CloudStreamApp.context ?: return
+            val context = context ?: LeoApp.context ?: return
             val visual = path ?: uri.toString()
             PreferenceManager.getDefaultSharedPreferences(context).edit {
                 putString(getString(R.string.download_path_key), uri.toString())
@@ -351,7 +351,7 @@ class SettingsGeneral : BasePreferenceFragmentCompat() {
                 true,
                 {}) {
                 settingsManager.edit { putInt(getString(R.string.dns_key), prefValues[it]) }
-                (context ?: CloudStreamApp.context)?.let { ctx -> app.initClient(ctx) }
+                (context ?: LeoApp.context)?.let { ctx -> app.initClient(ctx) }
             }
             return@setOnPreferenceClickListener true
         }

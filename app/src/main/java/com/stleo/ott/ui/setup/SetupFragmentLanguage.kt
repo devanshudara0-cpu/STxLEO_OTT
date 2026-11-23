@@ -8,7 +8,7 @@ import androidx.core.content.edit
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import com.stleo.ott.BuildConfig
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.CommonActivity
 import com.stleo.ott.databinding.FragmentSetupLanguageBinding
 import com.stleo.ott.mvvm.safe

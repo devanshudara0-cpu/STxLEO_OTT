@@ -23,9 +23,9 @@ import com.stleo.ott.APIHolder
 import com.stleo.ott.APIHolder.removePluginMapping
 import com.stleo.ott.AllLanguagesName
 import com.stleo.ott.AutoDownloadMode
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.removeKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.removeKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.CommonActivity.showToast
 import com.stleo.ott.InternalAPI
 import com.stleo.ott.MainAPI
@@ -70,7 +70,7 @@ import java.io.InputStreamReader
 const val PLUGINS_KEY = "PLUGINS_KEY"
 const val PLUGINS_KEY_LOCAL = "PLUGINS_KEY_LOCAL"
 
-const val EXTENSIONS_CHANNEL_ID = "cloudstream3.extensions"
+const val EXTENSIONS_CHANNEL_ID = "leovonix.extensions"
 const val EXTENSIONS_CHANNEL_NAME = "Extensions"
 const val EXTENSIONS_CHANNEL_DESCRIPT = "Extension notification channel"
 
@@ -183,10 +183,10 @@ object PluginManager {
         return getKey<Array<PluginData>>(PLUGINS_KEY_LOCAL) ?: emptyArray()
     }
 
-    private val CLOUD_STREAM_FOLDER =
-        Environment.getExternalStorageDirectory().absolutePath + "/Cloudstream3/"
+    private val LEOVONIX_FOLDER =
+        Environment.getExternalStorageDirectory().absolutePath + "/LEOVONIX/"
 
-    private val LOCAL_PLUGINS_PATH = CLOUD_STREAM_FOLDER + "plugins"
+    private val LOCAL_PLUGINS_PATH = LEOVONIX_FOLDER + "plugins"
 
     var currentlyLoading: String? = null
 
@@ -578,7 +578,7 @@ object PluginManager {
      **/
     fun checkSafeModeFile(): Boolean {
         return safe {
-            val folder = File(CLOUD_STREAM_FOLDER)
+            val folder = File(LEOVONIX_FOLDER)
             if (!folder.exists()) return@safe false
             val files = folder.listFiles { _, name ->
                 name.equals("safe", ignoreCase = true)

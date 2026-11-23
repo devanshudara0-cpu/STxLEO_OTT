@@ -2,7 +2,7 @@ package com.stleo.ott.ui.player
 
 import android.net.Uri
 import com.stleo.ott.TvType
-import com.stleo.ott.actions.temp.CloudStreamPackage
+import com.stleo.ott.actions.temp.LEOVONIXPackage
 import com.stleo.ott.amap
 import com.stleo.ott.utils.ExtractorLink
 import com.stleo.ott.utils.ExtractorLinkType
@@ -77,8 +77,8 @@ class LinkGenerator(
 }
 
 class MinimalLinkGenerator(
-    private val links: List<CloudStreamPackage.MinimalVideoLink>,
-    private val subs: List<CloudStreamPackage.MinimalSubtitleLink>,
+    private val links: List<LEOVONIXPackage.MinimalVideoLink>,
+    private val subs: List<LEOVONIXPackage.MinimalSubtitleLink>,
     id: Int?
 ) : NoVideoGenerator(id) {
     override suspend fun generateLinks(

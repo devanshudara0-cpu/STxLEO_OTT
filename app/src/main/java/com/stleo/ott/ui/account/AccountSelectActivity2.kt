@@ -25,10 +25,10 @@ import com.stleo.ott.utils.DataStoreHelper.Account
 import com.stleo.ott.utils.UIHelper.enableEdgeToEdgeCompat
 import com.stleo.ott.utils.UIHelper.openActivity
 import com.stleo.ott.utils.UIHelper.setNavigationBarColorCompat
-import com.lagradost.cloudstream4.AppSettings
-import com.lagradost.cloudstream4.compose.CloudStreamThemeAppSettings
-import com.lagradost.cloudstream4.state.SearchableData
-import com.lagradost.cloudstream4.state.sortByInt
+import com.stleo.ui.AppSettings
+import com.stleo.ui.compose.LeoThemeAppSettings
+import com.stleo.ui.state.SearchableData
+import com.stleo.ui.state.sortByInt
 import kotlinx.collections.immutable.persistentMapOf
 
 class AccountSelectActivity2 : FragmentActivity(), BiometricCallback {
@@ -49,7 +49,7 @@ class AccountSelectActivity2 : FragmentActivity(), BiometricCallback {
 
         /**
          * Sometimes we start this activity when we have already logged in
-         * For example when using cloudstreamsearch://
+         * For example when using leovonixsearch://
          *
          * In those cases we want to just go to the main activity instantly
          **/
@@ -156,7 +156,7 @@ class AccountSelectActivity2 : FragmentActivity(), BiometricCallback {
             if (state.loggedInWith != null) {
                 navigateToMainActivity()
             }
-            CloudStreamThemeAppSettings {
+            LeoThemeAppSettings {
                 AccountScreen.Content(state, viewModel::onAction)
             }
         }

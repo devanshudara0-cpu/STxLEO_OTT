@@ -27,7 +27,7 @@ class SerializationClassTester {
 
     @Test
     fun isIdenticalSerialization() {
-        val serializableClasses = findSerializableClasses("com.lagradost")
+        val serializableClasses = findSerializableClasses("com.stleo")
         println("Number of serializable classes: ${serializableClasses.size}")
 
         val failures = mutableListOf<String>()
@@ -68,7 +68,7 @@ class SerializationClassTester {
     @OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
     @Test
     fun isIdenticalDeserialization() {
-        val serializableClasses = findSerializableClasses("com.lagradost")
+        val serializableClasses = findSerializableClasses("com.stleo")
         println("Number of serializable classes: ${serializableClasses.size}")
 
         val failures = mutableListOf<String>()

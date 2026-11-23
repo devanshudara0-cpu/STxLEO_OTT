@@ -47,8 +47,8 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stleo.ott.APIHolder.getApiFromNameNull
-import com.stleo.ott.CloudStreamApp
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.CommonActivity.showToast
 import com.stleo.ott.LoadResponse
 import com.stleo.ott.LoadResponse.Companion.getAniListId
@@ -914,7 +914,7 @@ class GeneratorPlayer : FullScreenPlayer() {
             safe {
                 // It lies, it can be null if file manager quits.
                 if (uri == null) return@safe
-                val ctx = context ?: CloudStreamApp.context ?: return@safe
+                val ctx = context ?: LeoApp.context ?: return@safe
                 // RW perms for the path
                 ctx.contentResolver.takePersistableUriPermission(
                     uri,

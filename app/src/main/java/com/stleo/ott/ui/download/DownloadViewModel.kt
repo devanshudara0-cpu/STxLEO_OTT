@@ -10,7 +10,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.stleo.api.Log
-import com.stleo.ott.CloudStreamApp
+import com.stleo.ott.LeoApp
 import com.stleo.ott.R
 import com.stleo.ott.isEpisodeBased
 import com.stleo.ott.mvvm.Resource
@@ -409,7 +409,7 @@ class DownloadViewModel : ViewModel() {
         // Keep multi-select state consistent: forget the removed id if it was selected.
         updateSelectedItems { it?.minus(id) }
 
-        val context = CloudStreamApp.context ?: return
+        val context = LeoApp.context ?: return
         updateHeaderList(context)
         postChildren(_childCards.success?.filterNot { it.data.id == id })
     }

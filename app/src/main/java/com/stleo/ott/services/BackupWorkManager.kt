@@ -17,7 +17,7 @@ import com.stleo.ott.utils.BackupUtils
 import com.stleo.ott.utils.UIHelper.colorFromAttribute
 import java.util.concurrent.TimeUnit
 
-const val BACKUP_CHANNEL_ID = "cloudstream3.backups"
+const val BACKUP_CHANNEL_ID = "leovonix3.backups"
 const val BACKUP_WORK_NAME = "work_backup"
 const val BACKUP_CHANNEL_NAME = "Backups"
 const val BACKUP_CHANNEL_DESCRIPTION = "Notifications for background backups"
@@ -75,7 +75,7 @@ class BackupWorkManager(val context: Context, workerParams: WorkerParameters) :
             .setContentTitle(context.getString(R.string.pref_category_backup))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setColor(context.colorFromAttribute(R.attr.colorPrimary))
-            .setSmallIcon(R.drawable.ic_cloudstream_monochrome_big)
+            .setSmallIcon(R.drawable.ic_launcher_monochrome_big)
 
     override suspend fun doWork(): Result {
         context.createNotificationChannel(

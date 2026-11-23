@@ -7,8 +7,8 @@ import com.stleo.ott.ActorData
 import com.stleo.ott.ActorRole
 import com.stleo.ott.APIHolder
 import com.stleo.ott.BuildConfig
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.ErrorLoadingException
 import com.stleo.ott.NextAiring
 import com.stleo.ott.R

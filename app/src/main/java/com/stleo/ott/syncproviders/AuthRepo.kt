@@ -1,6 +1,6 @@
 package com.stleo.ott.syncproviders
 
-import com.stleo.ott.CloudStreamApp.Companion.openBrowser
+import com.stleo.ott.LeoApp.Companion.openBrowser
 import com.stleo.ott.CommonActivity.showToast
 import com.stleo.ott.ErrorLoadingException
 import com.stleo.ott.R

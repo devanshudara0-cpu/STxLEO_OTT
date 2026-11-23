@@ -1,10 +1,10 @@
 package com.stleo.ott.ui.player.source_priority
 
 import androidx.annotation.StringRes
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.getKeys
-import com.stleo.ott.CloudStreamApp.Companion.removeKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.getKeys
+import com.stleo.ott.LeoApp.Companion.removeKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.R
 import com.stleo.ott.mvvm.debugAssert
 import com.stleo.ott.utils.UiText

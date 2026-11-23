@@ -1,7 +1,7 @@
 package com.stleo.ott.syncproviders
 
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.LoadResponse
 import com.stleo.ott.syncproviders.providers.Addic7ed
 import com.stleo.ott.syncproviders.providers.AniListApi
@@ -132,17 +132,17 @@ abstract class AccountManager {
             SyncRepo(localListApi)
         )
 
-        const val APP_STRING = "cloudstreamapp"
-        const val APP_STRING_REPO = "cloudstreamrepo"
-        const val APP_STRING_PLAYER = "cloudstreamplayer"
+        const val APP_STRING = "leovonixapp"
+        const val APP_STRING_REPO = "leovonixrepo"
+        const val APP_STRING_PLAYER = "leovonixplayer"
 
         // Instantly start the search given a query
-        const val APP_STRING_SEARCH = "cloudstreamsearch"
+        const val APP_STRING_SEARCH = "leovonixsearch"
 
         // Instantly resume watching a show
-        const val APP_STRING_RESUME_WATCHING = "cloudstreamcontinuewatching"
+        const val APP_STRING_RESUME_WATCHING = "leovonixcontinuewatching"
 
-        const val APP_STRING_SHARE = "csshare"
+        const val APP_STRING_SHARE = "leoshare"
 
         fun secondsToReadable(seconds: Int, completedValue: String): String {
             var secondsLong = seconds.toLong()

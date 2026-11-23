@@ -33,10 +33,10 @@ import com.stleo.ott.utils.BiometricAuthenticator.isAuthEnabled
 import com.stleo.ott.utils.BiometricAuthenticator.promptInfo
 import com.stleo.ott.utils.BiometricAuthenticator.startBiometricAuthentication
 import com.stleo.ott.utils.SingleSelectionHelper.showBottomDialogText
-import com.lagradost.cloudstream4.AppSettings
-import com.lagradost.cloudstream4.compose.PHONE
-import com.lagradost.cloudstream4.compose.isLayout
-import com.lagradost.cloudstream4.rememberAppSettings
+import com.stleo.ui.AppSettings
+import com.stleo.ui.compose.PHONE
+import com.stleo.ui.compose.isLayout
+import com.stleo.ui.rememberAppSettings
 import com.mihon.presentation.settings.Preference
 import com.mihon.presentation.settings.SearchableSettings
 import kotlinx.collections.immutable.persistentListOf

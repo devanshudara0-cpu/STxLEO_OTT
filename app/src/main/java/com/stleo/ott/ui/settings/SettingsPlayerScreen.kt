@@ -21,11 +21,11 @@ import com.stleo.ott.ui.settings.SettingsFragment.Companion.getFolderSize
 import com.stleo.ott.ui.subtitles.ChromecastSubtitlesFragment
 import com.stleo.ott.ui.subtitles.SubtitlesFragment
 import com.stleo.ott.utils.Coroutines.ioSafe
-import com.lagradost.cloudstream4.compose.EMULATOR
-import com.lagradost.cloudstream4.compose.PHONE
-import com.lagradost.cloudstream4.compose.TV
-import com.lagradost.cloudstream4.compose.isLayout
-import com.lagradost.cloudstream4.rememberAppSettings
+import com.stleo.ui.compose.EMULATOR
+import com.stleo.ui.compose.PHONE
+import com.stleo.ui.compose.TV
+import com.stleo.ui.compose.isLayout
+import com.stleo.ui.rememberAppSettings
 import com.mihon.presentation.settings.Preference
 import com.mihon.presentation.settings.SearchableSettings
 import kotlinx.collections.immutable.persistentListOf

@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.stleo.ott.CloudStreamApp.Companion.context
-import com.stleo.ott.CloudStreamApp.Companion.removeKeys
+import com.stleo.ott.LeoApp.Companion.context
+import com.stleo.ott.LeoApp.Companion.removeKeys
 import com.stleo.ott.MainActivity
 import com.stleo.ott.ui.account.AccountHelper.showPinInputDialog
 import com.stleo.ott.utils.DataStoreHelper

@@ -76,8 +76,8 @@ import androidx.media3.ui.SubtitleView
 import androidx.preference.PreferenceManager
 import com.stleo.ott.APIHolder.getApiFromNameNull
 import com.stleo.ott.AudioFile
-import com.stleo.ott.CloudStreamApp.Companion.getKey
-import com.stleo.ott.CloudStreamApp.Companion.setKey
+import com.stleo.ott.LeoApp.Companion.getKey
+import com.stleo.ott.LeoApp.Companion.setKey
 import com.stleo.ott.CommonActivity.activity
 import com.stleo.ott.ErrorLoadingException
 import com.stleo.ott.MainActivity.Companion.deleteFileOnExit
@@ -110,7 +110,7 @@ import com.stleo.ott.utils.PLAYREADY_DRM_UUID
 import com.stleo.ott.utils.SubtitleHelper.fromTagToLanguageName
 import com.stleo.ott.utils.WIDEVINE_DRM_UUID
 import com.stleo.ott.utils.videoskip.VideoSkipStamp
-import com.lagradost.cloudstream4.AppSettings
+import com.stleo.ui.AppSettings
 import kotlinx.coroutines.delay
 import okhttp3.Interceptor
 import org.chromium.net.CronetEngine
