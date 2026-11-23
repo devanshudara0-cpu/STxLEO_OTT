@@ -47,7 +47,7 @@ jobs:
           echo "Found built APK: $BUILD_APK"
           
           # Zipalign
-          zipalign -v -p 4 "$BUILD_APK" LEOVONIX_v1.1_aligned.apk
+          zipalign -v -p 4 "$BUILD_APK" LEOVONIX_v1.2_aligned.apk
           
           # Apksigner with Permanent LEOVONIX Keystore
           apksigner sign --ks app/leovonix_release.p12 \
@@ -57,35 +57,35 @@ jobs:
             --v1-signing-enabled true \
             --v2-signing-enabled true \
             --v3-signing-enabled true \
-            --out LEOVONIX_v1.1.apk \
-            LEOVONIX_v1.1_aligned.apk
+            --out LEOVONIX_v1.2.apk \
+            LEOVONIX_v1.2_aligned.apk
             
           # Verify signature
-          apksigner verify --verbose LEOVONIX_v1.1.apk
+          apksigner verify --verbose LEOVONIX_v1.2.apk
 
       - name: Upload APK to Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: LEOVONIX_v1.1
-          path: LEOVONIX_v1.1.apk
+          name: LEOVONIX_v1.2
+          path: LEOVONIX_v1.2.apk
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/master')
         with:
-          tag_name: v1.1
-          name: "LEOVONIX v1.1 Release (Anti-Decompile Obfuscated)"
+          tag_name: v1.2
+          name: "LEOVONIX v1.2 Official Release"
           body: |
-            ## LEOVONIX v1.1 (Anti-Decompile & ProGuard Obfuscated)
+            ## LEOVONIX v1.2 Official Release
             Official Release by Devanshu (@Dara_OG)
             
-            - ProGuard / R8 Obfuscation & Package Repackaging into com.stleo.ott.internal
-            - Anti-Reverse Engineering & Anti-Decompile Protection
+            - Full Plugin Loading & Provider Engine Fixed
+            - Signed with Permanent Cryptographic Key (Seamless 1-Click Updates)
             - Titanium Streaming Play & Geometric Lion Design
             - Built-in LEOVONIX Official Providers
             - Clean Modern VIP UI
             - High Performance ExoPlayer Engine
             - Multi-Language & 4K Streaming Support
-          files: LEOVONIX_v1.1.apk
+          files: LEOVONIX_v1.2.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
