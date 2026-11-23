@@ -85,7 +85,7 @@ class SubscriptionWorkManager(val context: Context, workerParams: WorkerParamete
             .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setColor(context.colorFromAttribute(R.attr.colorPrimary))
-            .setSmallIcon(R.drawable.ic_launcher_monochrome_big)
+            .setSmallIcon(R.drawable.ic_leovonix_monochrome_big)
 
     private val notificationManager: NotificationManager =
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

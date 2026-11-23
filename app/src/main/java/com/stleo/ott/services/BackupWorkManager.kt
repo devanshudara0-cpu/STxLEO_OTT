@@ -75,7 +75,7 @@ class BackupWorkManager(val context: Context, workerParams: WorkerParameters) :
             .setContentTitle(context.getString(R.string.pref_category_backup))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setColor(context.colorFromAttribute(R.attr.colorPrimary))
-            .setSmallIcon(R.drawable.ic_launcher_monochrome_big)
+            .setSmallIcon(R.drawable.ic_leovonix_monochrome_big)
 
     override suspend fun doWork(): Result {
         context.createNotificationChannel(

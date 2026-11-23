@@ -6,7 +6,7 @@ import android.net.Uri
 import androidx.core.content.ContextCompat.getString
 import androidx.navigation.NavOptions
 import com.stleo.ott.R
-import com.stleo.ott.actions.temp.LEOVONIXPackage
+import com.stleo.ott.actions.temp.LeovonixPackage
 import com.stleo.ott.utils.AppUtils.tryParseJson
 import com.stleo.ott.utils.DataStoreHelper
 import com.stleo.ott.utils.UIHelper.navigate
@@ -35,19 +35,19 @@ object OfflinePlaybackHelper {
         )
     }
 
-    // See LEOVONIXPackage
+    // See LeovonixPackage
     fun playIntent(activity: Activity, intent: Intent?): Boolean {
         if (intent == null) return false
-        val links = intent.getStringArrayExtra(LEOVONIXPackage.LINKS_EXTRA)
-            ?.mapNotNull { tryParseJson<LEOVONIXPackage.MinimalVideoLink>(it) } ?: emptyList()
+        val links = intent.getStringArrayExtra(LeovonixPackage.LINKS_EXTRA)
+            ?.mapNotNull { tryParseJson<LeovonixPackage.MinimalVideoLink>(it) } ?: emptyList()
         if (links.isEmpty()) return false
-        val subs = intent.getStringArrayExtra(LEOVONIXPackage.SUBTITLE_EXTRA)
-            ?.mapNotNull { tryParseJson<LEOVONIXPackage.MinimalSubtitleLink>(it) } ?: emptyList()
+        val subs = intent.getStringArrayExtra(LeovonixPackage.SUBTITLE_EXTRA)
+            ?.mapNotNull { tryParseJson<LeovonixPackage.MinimalSubtitleLink>(it) } ?: emptyList()
 
-        val id = intent.getIntExtra(LEOVONIXPackage.ID_EXTRA, -1)
-        //val title = intent.getStringExtra(LEOVONIXPackage.TITLE_EXTRA) // unused
-        val pos = intent.getLongExtra(LEOVONIXPackage.POSITION_EXTRA, -1L)
-        val dur = intent.getLongExtra(LEOVONIXPackage.DURATION_EXTRA, -1L)
+        val id = intent.getIntExtra(LeovonixPackage.ID_EXTRA, -1)
+        //val title = intent.getStringExtra(LeovonixPackage.TITLE_EXTRA) // unused
+        val pos = intent.getLongExtra(LeovonixPackage.POSITION_EXTRA, -1L)
+        val dur = intent.getLongExtra(LeovonixPackage.DURATION_EXTRA, -1L)
 
         if (id != -1 && pos != -1L) {
             val duration = if (dur != -1L) {
