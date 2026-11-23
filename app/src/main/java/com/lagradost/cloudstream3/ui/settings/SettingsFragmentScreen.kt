@@ -202,7 +202,7 @@ object SettingsFragmentScreen : Screen {
                     Spacer(modifier = Modifier.width(MaterialTheme.padding.medium))
                     Column {
                         Text(
-                            text = "ST×LEO OTT",
+                            text = "LEOVONIX",
                             style = MaterialTheme.typography.titleLarge,
                         )
                         Text(
@@ -406,7 +406,7 @@ object SettingsFragmentScreen : Screen {
                 },
         ) {
             ProvideTextStyle(MaterialTheme.typography.bodyMedium) {
-                Text(text = "ST×LEO OTT v1.0 • Developed by Devanshu (@Dara_OG)")
+                Text(text = "LEOVONIX v1.0 • Developed by Devanshu (@Dara_OG)")
             }
         }
     }

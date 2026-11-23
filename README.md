@@ -1,4 +1,4 @@
-# ST×LEO OTT (Android)
+# LEOVONIX (Android)
 
 <p align="center">
   <b>High Performance, Native Streaming Client for Movies, TV Shows & Anime</b><br>
@@ -9,7 +9,7 @@
 
 ## ✨ Features
 - **Native Android Performance:** Built using modern Kotlin, Jetpack Compose, and Media3/ExoPlayer.
-- **Built-in Official Providers:** Pre-loaded with ST×LEO Official Providers for high-speed 4K Hindi, South Indian, and Global streaming.
+- **Built-in Official Providers:** Pre-loaded with LEOVONIX Official Providers for high-speed 4K Hindi, South Indian, and Global streaming.
 - **Zero Ads & Bloatware:** Clean, distraction-free streaming experience.
 - **Subtitles & Audio Tracks:** Multi-audio language selection, external subtitles, and subtitle customization.
 - **Picture-in-Picture (PiP) & Background Play:** Multi-task without pausing your stream.

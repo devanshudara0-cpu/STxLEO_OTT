@@ -1,4 +1,4 @@
-name: Build ST×LEO OTT Release APK
+name: Build LEOVONIX Release APK
 
 on:
   push:
@@ -38,9 +38,9 @@ jobs:
       - name: Generate Release Keystore
         run: |
           keytool -genkey -v -keystore app/release.keystore \
-            -alias stleo -keyalg RSA -keysize 2048 -validity 10000 \
-            -storepass stleo123 -keypass stleo123 \
-            -dname "CN=Devanshu, O=STxLEO, C=IN"
+            -alias leovonix -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass leovonix123 -keypass leovonix123 \
+            -dname "CN=Devanshu, O=LEOVONIX, C=IN"
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -54,42 +54,43 @@ jobs:
           echo "Found built APK: $BUILD_APK"
           
           # Zipalign
-          zipalign -v -p 4 "$BUILD_APK" STxLEO_OTT_v1.0_aligned.apk
+          zipalign -v -p 4 "$BUILD_APK" LEOVONIX_v1.0_aligned.apk
           
           # Apksigner
           apksigner sign --ks app/release.keystore \
-            --ks-pass pass:stleo123 \
-            --ks-key-alias stleo \
-            --key-pass pass:stleo123 \
+            --ks-pass pass:leovonix123 \
+            --ks-key-alias leovonix \
+            --key-pass pass:leovonix123 \
             --v1-signing-enabled true \
             --v2-signing-enabled true \
             --v3-signing-enabled true \
-            --out STxLEO_OTT_v1.0.apk \
-            STxLEO_OTT_v1.0_aligned.apk
+            --out LEOVONIX_v1.0.apk \
+            LEOVONIX_v1.0_aligned.apk
             
           # Verify signature
-          apksigner verify --verbose STxLEO_OTT_v1.0.apk
+          apksigner verify --verbose LEOVONIX_v1.0.apk
 
       - name: Upload APK to Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: STxLEO_OTT_v1.0
-          path: STxLEO_OTT_v1.0.apk
+          name: LEOVONIX_v1.0
+          path: LEOVONIX_v1.0.apk
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/master')
         with:
           tag_name: v1.0
-          name: "ST×LEO OTT v1.0 Release"
+          name: "LEOVONIX v1.0 Release"
           body: |
-            ## ST×LEO OTT v1.0
+            ## LEOVONIX v1.0
             Official Release by Devanshu (@Dara_OG)
             
-            - Built-in ST×LEO Official Providers
-            - Clean Modern UI
+            - Titanium Streaming Play & Geometric Lion Design
+            - Built-in LEOVONIX Official Providers
+            - Clean Modern VIP UI
             - High Performance ExoPlayer Engine
             - Multi-Language & 4K Streaming Support
-          files: STxLEO_OTT_v1.0.apk
+          files: LEOVONIX_v1.0.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
