@@ -117,7 +117,7 @@ object VideoDownloadManager {
 
     private fun maxConcurrentConnections(context: Context): Int =
         PreferenceManager.getDefaultSharedPreferences(context)
-            ?.getInt(context.getString(R.string.download_concurrent_key), 6) ?: 6
+            ?.getInt(context.getString(R.string.download_concurrent_key), 4) ?: 4
 
     private val _currentDownloads: MutableStateFlow<Set<Int>> = MutableStateFlow(emptySet())
     val currentDownloads: StateFlow<Set<Int>> = _currentDownloads
@@ -887,8 +887,8 @@ object VideoDownloadManager {
         startByte: Long,
         /** how many bytes every connection should be, by default it is 10 MiB */
         chuckSize: Long = (1 shl 20) * 10,
-        /** maximum bytes in the buffer that responds (256 KiB for high-speed throughput) */
-        bufferSize: Int = 256 * 1024,
+        /** maximum bytes in the buffer that responds (32 KiB for fast throughput without heap pressure) */
+        bufferSize: Int = 32 * 1024,
         /** how many bytes bytes it should require to use the parallel downloader instead,
          * if we download a very small file we don't want it parallel */
         maximumSmallSize: Long = chuckSize * 2
@@ -1001,7 +1001,7 @@ object VideoDownloadManager {
         tryResume: Boolean,
         parentId: Int?,
         createNotificationCallback: (CreateNotificationMetadata) -> Unit,
-        parallelConnections: Int = 6,
+        parallelConnections: Int = 4,
         /** how many bytes a valid file must be in bytes,
          * this should be different for subtitles and video */
         minimumSize: Long = 100
@@ -1172,15 +1172,14 @@ object VideoDownloadManager {
                                 || metadata.type == DownloadType.IsFailed
                             ) return@launch
 
-                            // Limit RAM usage by throttling if too much data is downloaded but not yet written to disk
-                            // 150MB limit to sustain fast 5G download speed without stalling
-                            if (metadata.bytesDownloaded - metadata.bytesWritten > 150_000_000) {
+                            // Limit RAM usage to 25MB to prevent OOM while maintaining fast disk throughput
+                            if (metadata.bytesDownloaded - metadata.bytesWritten > 25_000_000) {
                                 isTooFarAhead = true
                             }
                         }
 
                         if (isTooFarAhead) {
-                            delay(50)
+                            delay(20)
                             continue
                         }
 
@@ -1267,7 +1266,7 @@ object VideoDownloadManager {
         parentId: Int?,
         startIndex: Int?,
         createNotificationCallback: (CreateNotificationMetadata) -> Unit,
-        parallelConnections: Int = 6
+        parallelConnections: Int = 4
     ): DownloadStatus = withContext(Dispatchers.IO) {
         if (parallelConnections < 1) return@withContext DOWNLOAD_INVALID_INPUT
 
@@ -1357,15 +1356,14 @@ object VideoDownloadManager {
                                 || metadata.type == DownloadType.IsFailed
                             ) return@launch
 
-                            // Limit RAM usage by throttling if too much data is downloaded but not yet written to disk
-                            // 150MB limit to sustain fast 5G download speed without stalling
-                            if (metadata.bytesDownloaded - metadata.bytesWritten > 150_000_000) {
+                            // Limit RAM usage to 25MB to prevent OOM
+                            if (metadata.bytesDownloaded - metadata.bytesWritten > 25_000_000) {
                                 isTooFarAhead = true
                             }
                         }
 
                         if (isTooFarAhead) {
-                            delay(50)
+                            delay(20)
                             continue
                         }
 

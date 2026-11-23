@@ -1284,22 +1284,22 @@ class CS3IPlayer : IPlayer {
                     DefaultLoadControl.Builder()
                         .setTargetBufferBytes(
                             if (cacheSize <= 0) {
-                                128 * 1024 * 1024 // 128 MB RAM buffer by default for smooth 4K/high-bitrate streaming
+                                DefaultLoadControl.DEFAULT_TARGET_BUFFER_BYTES
                             } else {
-                                if (cacheSize > Int.MAX_VALUE) Int.MAX_VALUE else cacheSize.toInt()
+                                minOf(cacheSize.toInt(), 50 * 1024 * 1024)
                             }
                         )
-                        .setPrioritizeTimeOverSizeThresholds(true)
+                        .setPrioritizeTimeOverSizeThresholds(false)
                         .setBackBuffer(
-                            60000,
+                            30000,
                             true
                         )
                         .setBufferDurationsMs(
-                            60000,
+                            DefaultLoadControl.DEFAULT_MIN_BUFFER_MS,
                             if (videoBufferMs <= 0) {
-                                180000 // 3 minutes buffer by default
+                                DefaultLoadControl.DEFAULT_MAX_BUFFER_MS
                             } else {
-                                maxOf(videoBufferMs.toInt(), 180000)
+                                minOf(videoBufferMs.toInt(), 60000)
                             },
                             1500, // 1.5s start buffer for rapid playback initiation
                             3000  // 3s rebuffer
