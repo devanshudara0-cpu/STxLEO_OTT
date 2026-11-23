@@ -37,10 +37,10 @@
             app:showSeekBarValue="true" />
 
         <SeekBarPreference
-            android:defaultValue="3"
+            android:defaultValue="6"
             android:icon="@drawable/arrow_and_edge_24px"
             android:key="@string/download_concurrent_key"
-            android:max="10"
+            android:max="20"
             android:summary="@string/concurrent_connections_settings_des"
             android:title="@string/concurrent_connections"
             app:adjustable="true"

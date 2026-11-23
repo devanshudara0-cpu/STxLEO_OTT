@@ -770,6 +770,8 @@ class CS3IPlayer : IPlayer {
                 return it
             }
 
+            val effectiveCacheSize = if (diskCacheSize <= 0) 256L * 1024L * 1024L else diskCacheSize
+
             // https://gist.github.com/ShivamKumarJha/3c8398b47053ae05112d2a8f8b5de531
             return try {
                 val cacheDirectory = File(context.cacheDir, "CronetEngine")
@@ -783,7 +785,7 @@ class CS3IPlayer : IPlayer {
                     .enableQuic(true)
                     .setStoragePath(cacheDirectory.absolutePath)
                     .setLibraryLoader(null)
-                    .enableHttpCache(CronetEngine.Builder.HTTP_CACHE_DISK, diskCacheSize)
+                    .enableHttpCache(CronetEngine.Builder.HTTP_CACHE_DISK, effectiveCacheSize)
                     .build().also { buildEngine ->
                         Log.d(
                             TAG,
@@ -813,10 +815,10 @@ class CS3IPlayer : IPlayer {
                     OkHttpDataSource.Factory(app.baseClient).setUserAgent(userAgent)
                 } else {
                     Log.d(TAG, "Using CronetDataSource for $link")
-                    CronetDataSource.Factory(engine, Executors.newSingleThreadExecutor())
+                    CronetDataSource.Factory(engine, Executors.newFixedThreadPool(4))
                         .setUserAgent(userAgent)
-                        .setConnectionTimeoutMs(CRONET_TIMEOUT_MS)
-                        .setReadTimeoutMs(CRONET_TIMEOUT_MS)
+                        .setConnectionTimeoutMs(30_000)
+                        .setReadTimeoutMs(30_000)
                         .setResetTimeoutOnRedirects(true)
                         .setHandleSetCookieRequests(true)
                 }
@@ -850,13 +852,14 @@ class CS3IPlayer : IPlayer {
         }
 
         private fun getCache(context: Context, cacheSize: Long): SimpleCache? {
+            val effectiveCacheSize = if (cacheSize <= 0) 256L * 1024L * 1024L else cacheSize
             return try {
                 val databaseProvider = StandaloneDatabaseProvider(context)
                 SimpleCache(
                     File(
                         context.cacheDir, "exoplayer"
                     ).also { deleteFileOnExit(it) }, // Ensures always fresh file
-                    LeastRecentlyUsedCacheEvictor(cacheSize),
+                    LeastRecentlyUsedCacheEvictor(effectiveCacheSize),
                     databaseProvider
                 )
             } catch (e: Exception) {
@@ -1281,24 +1284,25 @@ class CS3IPlayer : IPlayer {
                     DefaultLoadControl.Builder()
                         .setTargetBufferBytes(
                             if (cacheSize <= 0) {
-                                DefaultLoadControl.DEFAULT_TARGET_BUFFER_BYTES
+                                128 * 1024 * 1024 // 128 MB RAM buffer by default for smooth 4K/high-bitrate streaming
                             } else {
                                 if (cacheSize > Int.MAX_VALUE) Int.MAX_VALUE else cacheSize.toInt()
                             }
                         )
+                        .setPrioritizeTimeOverSizeThresholds(true)
                         .setBackBuffer(
-                            30000,
+                            60000,
                             true
                         )
                         .setBufferDurationsMs(
-                            DefaultLoadControl.DEFAULT_MIN_BUFFER_MS,
+                            60000,
                             if (videoBufferMs <= 0) {
-                                DefaultLoadControl.DEFAULT_MAX_BUFFER_MS
+                                180000 // 3 minutes buffer by default
                             } else {
-                                videoBufferMs.toInt()
+                                maxOf(videoBufferMs.toInt(), 180000)
                             },
-                            DefaultLoadControl.DEFAULT_BUFFER_FOR_PLAYBACK_MS,
-                            DefaultLoadControl.DEFAULT_BUFFER_FOR_PLAYBACK_AFTER_REBUFFER_MS
+                            1500, // 1.5s start buffer for rapid playback initiation
+                            3000  // 3s rebuffer
                         ).build()
                 )
 
@@ -1317,6 +1321,7 @@ class CS3IPlayer : IPlayer {
             val cacheFactory = CacheDataSource.Factory().apply {
                 simpleCache?.let { setCache(it) }
                 setUpstreamDataSourceFactory(onlineSource)
+                setFlags(CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR)
             }
             cacheFactory
         }

@@ -8,12 +8,15 @@ import com.stleo.ott.mvvm.safe
 import com.lagradost.nicehttp.Requests
 import com.lagradost.nicehttp.ignoreAllSSLErrors
 import okhttp3.Cache
+import okhttp3.ConnectionPool
+import okhttp3.Dispatcher
 import okhttp3.Headers
 import okhttp3.Headers.Companion.toHeaders
 import okhttp3.OkHttpClient
 import org.conscrypt.Conscrypt
 import java.io.File
 import java.security.Security
+import java.util.concurrent.TimeUnit
 
 // Backwards compatible constructor, mark as deprecated later
 fun Requests.initClient(context: Context) {
@@ -40,6 +43,14 @@ fun buildDefaultClient(context: Context, ignoreSSL: Boolean = false): OkHttpClie
     val baseClient = OkHttpClient.Builder()
         .followRedirects(true)
         .followSslRedirects(true)
+        .connectionPool(ConnectionPool(32, 5, TimeUnit.MINUTES))
+        .dispatcher(Dispatcher().apply {
+            maxRequests = 256
+            maxRequestsPerHost = 64
+        })
+        .connectTimeout(15, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
         .apply {
             if (ignoreSSL) {
                 ignoreAllSSLErrors()
@@ -50,7 +61,7 @@ fun buildDefaultClient(context: Context, ignoreSSL: Boolean = false): OkHttpClie
             // The server response dictates if and when stuff should be cached.
             Cache(
                 directory = File(context.cacheDir, "http_cache"),
-                maxSize = 50L * 1024L * 1024L // 50 MiB
+                maxSize = 100L * 1024L * 1024L // 100 MiB
             )
         ).apply {
             when (dns) {
