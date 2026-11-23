@@ -290,8 +290,12 @@ class GithubViewModel(
             contentType = remoteContentType
         )
 
-        // If on stable, only check that the display name matches
-        if (!prerelease && release.displayName == versionName) {
+        // If on stable, check that the version matches
+        val cleanReleaseVer = release.tagName.removePrefix("v").trim()
+        val cleanFileVer = release.displayName.replace("LEOVONIX_", "").removePrefix("v").trim()
+        val cleanLocalVer = versionName.removePrefix("v").trim()
+
+        if (!prerelease && (cleanReleaseVer == cleanLocalVer || cleanFileVer == cleanLocalVer || release.displayName == versionName)) {
             updateState {
                 copy(dialog = baseDialog.copy(state = GithubUpdateDialogState.NoUpdateFound))
             }

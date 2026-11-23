@@ -94,10 +94,18 @@ object GithubReleases : GithubRepository {
             throw FileNotFoundException()
         }
 
+        val cleanVersion = latestRelease.tagName.removePrefix("v").trim().ifBlank {
+            foundAsset.name.substringBeforeLast(".")
+                .replace("LEOVONIX_", "")
+                .replace("LEOVONIX", "")
+                .removePrefix("v")
+                .trim()
+        }
+
         return GithubFile(
             digest = foundAsset.digest,
             downloadUrl = foundAsset.browserDownloadUrl,
-            displayName = foundAsset.name.substringBeforeLast("."),
+            displayName = cleanVersion,
             changeLog = latestRelease.body,
             tagName = latestRelease.tagName,
             nodeId = latestRelease.nodeId

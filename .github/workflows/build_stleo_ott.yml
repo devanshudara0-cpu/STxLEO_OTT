@@ -35,13 +35,6 @@ jobs:
       - name: Grant Execute Permission for Gradle Wrapper
         run: chmod +x gradlew
 
-      - name: Generate Release Keystore
-        run: |
-          keytool -genkey -v -keystore app/release.keystore \
-            -alias leovonix -keyalg RSA -keysize 2048 -validity 10000 \
-            -storepass leovonix123 -keypass leovonix123 \
-            -dname "CN=Devanshu, O=LEOVONIX, C=IN"
-
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
@@ -56,8 +49,8 @@ jobs:
           # Zipalign
           zipalign -v -p 4 "$BUILD_APK" LEOVONIX_v1.1_aligned.apk
           
-          # Apksigner
-          apksigner sign --ks app/release.keystore \
+          # Apksigner with Permanent LEOVONIX Keystore
+          apksigner sign --ks app/leovonix_release.p12 \
             --ks-pass pass:leovonix123 \
             --ks-key-alias leovonix \
             --key-pass pass:leovonix123 \

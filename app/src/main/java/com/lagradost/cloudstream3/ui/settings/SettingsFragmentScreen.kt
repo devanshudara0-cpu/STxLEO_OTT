@@ -406,7 +406,7 @@ object SettingsFragmentScreen : Screen {
                 },
         ) {
             ProvideTextStyle(MaterialTheme.typography.bodyMedium) {
-                Text(text = "LEOVONIX v1.0 • Developed by Devanshu (@Dara_OG)")
+                Text(text = "LEOVONIX v${BuildConfig.VERSION_NAME} • Developed by Devanshu (@Dara_OG)")
             }
         }
     }
