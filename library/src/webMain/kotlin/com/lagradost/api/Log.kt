@@ -1,4 +1,4 @@
-package com.lagradost.api
+package com.stleo.api
 
 actual object Log {
     actual fun d(tag: String, message: String) {

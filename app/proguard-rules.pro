@@ -33,12 +33,12 @@
 }
 
 # Preserve custom views inflated from XML layouts
--keep public class com.lagradost.cloudstream3.ui.AutofitRecyclerView { *; }
--keep public class com.lagradost.cloudstream3.ui.MaxRecyclerView { *; }
--keep public class com.lagradost.cloudstream3.widget.FlowLayout { *; }
--keep public class com.lagradost.cloudstream3.utils.PercentageCropImageView { *; }
--keep public class com.lagradost.cloudstream3.ui.download.button.** { *; }
--keep public class com.lagradost.cloudstream3.ui.player.live.LivePreviewTimeBar { *; }
+-keep public class com.stleo.ott.ui.AutofitRecyclerView { *; }
+-keep public class com.stleo.ott.ui.MaxRecyclerView { *; }
+-keep public class com.stleo.ott.widget.FlowLayout { *; }
+-keep public class com.stleo.ott.utils.PercentageCropImageView { *; }
+-keep public class com.stleo.ott.ui.download.button.** { *; }
+-keep public class com.stleo.ott.ui.player.live.LivePreviewTimeBar { *; }
 -keep public class com.discord.panels.** { *; }
 
 # 5. JNI & Native Methods
@@ -66,27 +66,27 @@
 }
 
 # 7. LEOVONIX Plugin Runtime Bridge (CRITICAL: Keeps Movie/Series plugins working)
--keep public class com.lagradost.cloudstream3.MainAPI { *; }
--keep public class com.lagradost.cloudstream3.MainAPIKt { *; }
--keep public class com.lagradost.cloudstream3.LoadResponse** { *; }
--keep public class com.lagradost.cloudstream3.SearchResponse** { *; }
--keep public class com.lagradost.cloudstream3.TvType { *; }
--keep public class com.lagradost.cloudstream3.SubtitleFile { *; }
--keep public class com.lagradost.cloudstream3.Episode { *; }
--keep public class com.lagradost.cloudstream3.AnimeSearchResponse { *; }
--keep public class com.lagradost.cloudstream3.MovieSearchResponse { *; }
--keep public class com.lagradost.cloudstream3.TvSeriesSearchResponse { *; }
--keep public class com.lagradost.cloudstream3.AnimeLoadResponse { *; }
--keep public class com.lagradost.cloudstream3.MovieLoadResponse { *; }
--keep public class com.lagradost.cloudstream3.TvSeriesLoadResponse { *; }
--keep public class com.lagradost.cloudstream3.plugins.** { *; }
--keep public class com.lagradost.cloudstream3.utils.ExtractorApi** { *; }
--keep public class com.lagradost.cloudstream3.utils.ExtractorLink** { *; }
--keep public class com.lagradost.cloudstream3.utils.Qualities** { *; }
--keep public class com.lagradost.cloudstream3.APIHolder { *; }
--keep public class com.lagradost.cloudstream3.AcraApplication { *; }
--keep public class com.lagradost.cloudstream3.MainActivity { *; }
--keep public class com.lagradost.cloudstream3.CommonActivity { *; }
+-keep public class com.stleo.ott.MainAPI { *; }
+-keep public class com.stleo.ott.MainAPIKt { *; }
+-keep public class com.stleo.ott.LoadResponse** { *; }
+-keep public class com.stleo.ott.SearchResponse** { *; }
+-keep public class com.stleo.ott.TvType { *; }
+-keep public class com.stleo.ott.SubtitleFile { *; }
+-keep public class com.stleo.ott.Episode { *; }
+-keep public class com.stleo.ott.AnimeSearchResponse { *; }
+-keep public class com.stleo.ott.MovieSearchResponse { *; }
+-keep public class com.stleo.ott.TvSeriesSearchResponse { *; }
+-keep public class com.stleo.ott.AnimeLoadResponse { *; }
+-keep public class com.stleo.ott.MovieLoadResponse { *; }
+-keep public class com.stleo.ott.TvSeriesLoadResponse { *; }
+-keep public class com.stleo.ott.plugins.** { *; }
+-keep public class com.stleo.ott.utils.ExtractorApi** { *; }
+-keep public class com.stleo.ott.utils.ExtractorLink** { *; }
+-keep public class com.stleo.ott.utils.Qualities** { *; }
+-keep public class com.stleo.ott.APIHolder { *; }
+-keep public class com.stleo.ott.AcraApplication { *; }
+-keep public class com.stleo.ott.MainActivity { *; }
+-keep public class com.stleo.ott.CommonActivity { *; }
 
 # 8. Media3 / ExoPlayer & Cast
 -keep class androidx.media3.** { *; }

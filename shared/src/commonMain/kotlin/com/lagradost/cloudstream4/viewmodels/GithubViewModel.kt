@@ -3,8 +3,8 @@ package com.lagradost.cloudstream4.viewmodels
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lagradost.cloudstream3.mvvm.safe
-import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
+import com.stleo.ott.mvvm.safe
+import com.stleo.ott.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream4.AppSettings
 import com.lagradost.cloudstream4.state.ActionHandler
 import com.lagradost.cloudstream4.state.DefaultStateContainer

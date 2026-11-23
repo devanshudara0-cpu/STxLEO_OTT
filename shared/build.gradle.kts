@@ -27,8 +27,8 @@ kotlin {
     sourceSets {
         all {
             languageSettings {
-                optIn("com.lagradost.cloudstream3.InternalAPI")
-                optIn("com.lagradost.cloudstream3.Prerelease")
+                optIn("com.stleo.ott.InternalAPI")
+                optIn("com.stleo.ott.Prerelease")
             }
         }
 

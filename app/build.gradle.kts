@@ -211,7 +211,7 @@ android {
         }
     }
 
-    namespace = "com.lagradost.cloudstream3"
+    namespace = "com.stleo.ott"
 }
 
 dependencies {
@@ -333,8 +333,8 @@ tasks.withType<KotlinJvmCompile> {
         jvmTarget.set(javaTarget)
         jvmDefault.set(JvmDefaultMode.ENABLE)
         optIn.addAll(
-            "com.lagradost.cloudstream3.InternalAPI",
-            "com.lagradost.cloudstream3.Prerelease",
+            "com.stleo.ott.InternalAPI",
+            "com.stleo.ott.Prerelease",
         )
     }
 }

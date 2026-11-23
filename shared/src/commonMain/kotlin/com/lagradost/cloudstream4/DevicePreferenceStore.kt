@@ -1,10 +1,10 @@
 package com.lagradost.cloudstream4
 
 import androidx.compose.runtime.Composable
-import com.lagradost.cloudstream3.AllLanguagesName
-import com.lagradost.cloudstream3.DubStatus
-import com.lagradost.cloudstream3.SearchQuality
-import com.lagradost.cloudstream3.TvType
+import com.stleo.ott.AllLanguagesName
+import com.stleo.ott.DubStatus
+import com.stleo.ott.SearchQuality
+import com.stleo.ott.TvType
 import com.mihon.common.preference.PreferenceStore
 import com.mihon.common.preference.getEnumSet
 

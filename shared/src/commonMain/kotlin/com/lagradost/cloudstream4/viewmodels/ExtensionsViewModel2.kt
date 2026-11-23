@@ -4,9 +4,9 @@ import androidx.annotation.CheckResult
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lagradost.cloudstream3.InternalAPI
-import com.lagradost.cloudstream3.TvType
-import com.lagradost.cloudstream3.utils.Levenshtein
+import com.stleo.ott.InternalAPI
+import com.stleo.ott.TvType
+import com.stleo.ott.utils.Levenshtein
 import com.lagradost.cloudstream4.AppSettings
 import com.lagradost.cloudstream4.state.ActionHandler
 import com.lagradost.cloudstream4.state.DefaultEffectContainer

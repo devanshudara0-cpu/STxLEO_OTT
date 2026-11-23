@@ -1,4 +1,4 @@
-package com.lagradost.api
+package com.stleo.api
 
 expect object Log {
     fun d(tag: String, message: String)

@@ -23,8 +23,8 @@ kotlin {
     applyDefaultHierarchyTemplate()
 
     android {
-        // If this is the same com.lagradost.cloudstream3.R stops working
-        namespace = "com.lagradost.api"
+        // If this is the same com.stleo.ott.R stops working
+        namespace = "com.stleo.api"
 
         compileSdk = libs.versions.compileSdk.get().toInt()
         minSdk = libs.versions.minSdk.get().toInt()
@@ -47,8 +47,8 @@ kotlin {
     sourceSets {
         all {
             languageSettings {
-                optIn("com.lagradost.cloudstream3.InternalAPI")
-                optIn("com.lagradost.cloudstream3.Prerelease")
+                optIn("com.stleo.ott.InternalAPI")
+                optIn("com.stleo.ott.Prerelease")
             }
         }
 
@@ -90,8 +90,8 @@ kotlin {
     abiValidation {
         filters {
             exclude {
-                annotatedWith.add("com.lagradost.cloudstream3.Prerelease")
-                annotatedWith.add("com.lagradost.cloudstream3.InternalAPI")
+                annotatedWith.add("com.stleo.ott.Prerelease")
+                annotatedWith.add("com.stleo.ott.InternalAPI")
             }
         }
     }
@@ -104,7 +104,7 @@ tasks.withType<KotlinJvmCompile> {
 }
 
 buildkonfig {
-    packageName = "com.lagradost.api"
+    packageName = "com.stleo.api"
     exposeObjectWithName = "BuildConfig"
 
     defaultConfigs {
@@ -126,7 +126,7 @@ buildkonfig {
 publishing {
     publications {
         withType<MavenPublication> {
-            groupId = "com.lagradost.api"
+            groupId = "com.stleo.api"
         }
     }
 }

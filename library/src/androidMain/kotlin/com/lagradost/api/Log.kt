@@ -1,4 +1,4 @@
-package com.lagradost.api
+package com.stleo.api
 
 import android.util.Log
 

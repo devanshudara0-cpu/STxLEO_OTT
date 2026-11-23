@@ -1,4 +1,4 @@
-package com.lagradost.api
+package com.stleo.api
 
 /**
  * Set context for Android-specific code such as webview.

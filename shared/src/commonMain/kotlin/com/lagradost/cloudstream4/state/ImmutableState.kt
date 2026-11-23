@@ -16,7 +16,7 @@ package com.lagradost.cloudstream4.state
 
 import androidx.annotation.CheckResult
 import androidx.compose.runtime.Immutable
-import com.lagradost.cloudstream3.utils.Levenshtein
+import com.stleo.ott.utils.Levenshtein
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.PersistentMap
 import kotlinx.collections.immutable.PersistentSet
