@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -32,7 +30,6 @@ import com.stleo.ott.ui.settings.GithubReleases.APK_PRERELEASE
 import com.stleo.ott.ui.settings.GithubReleases.APK_REPOSITORY
 import com.stleo.ott.ui.settings.GithubReleases.APK_USERNAME
 import com.stleo.ott.utils.GitInfo.currentCommitHash
-import com.stleo.ott.utils.parseMarkdown
 import com.stleo.ui.compose.BlackButton
 import com.stleo.ui.compose.Screen
 import com.stleo.ui.compose.WhiteButton
@@ -96,7 +93,7 @@ object MainActivityScreen : Screen {
         val dialog = updaterState.dialog ?: return
 
         val title: String
-        val body: @Composable () -> Unit
+        val body: (@Composable () -> Unit)?
         val confirmButton: @Composable () -> Unit
         val dismissButton: @Composable () -> Unit
         val cancelable: Boolean
@@ -148,7 +145,7 @@ object MainActivityScreen : Screen {
 
                 cancelable = true
                 title = stringResource(R.string.no_update_found)
-                body = {}
+                body = null
                 confirmButton = {
                     WhiteButton(text = stringResource(R.string.ok), onClick = {
                         onAction(Dismiss)
@@ -164,12 +161,7 @@ object MainActivityScreen : Screen {
                     (state.oldSha ?: BuildConfig.VERSION_NAME),
                     (state.newSha ?: state.file.displayName)
                 )
-                body = {
-                    Text(
-                        text = parseMarkdown(state.file.changeLog),
-                        modifier = Modifier.verticalScroll(rememberScrollState())
-                    )
-                }
+                body = null
                 confirmButton = {
                     WhiteButton(text = stringResource(R.string.update), onClick = {
                         onAction(Update(state.file))

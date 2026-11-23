@@ -197,12 +197,7 @@ object InAppUpdater {
                     )
                 )
 
-                val logRegex = Regex("\\[(.*?)]\\((.*?)\\)")
-                val sanitizedChangelog = update.changelog?.replace(logRegex) { matchResult ->
-                    matchResult.groupValues[1]
-                } // Sanitized because it looks cluttered
 
-                builder.setMessage(sanitizedChangelog)
                 builder.apply {
                     setPositiveButton(R.string.update) { _, _ ->
                         // Forcefully start any delayed installations
