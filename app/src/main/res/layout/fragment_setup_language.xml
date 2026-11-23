@@ -14,7 +14,8 @@
         <ImageView
             android:id="@+id/app_icon_image"
             android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:src="@drawable/stleo_logo" />
 
         <TextView
             android:layout_width="wrap_content"
