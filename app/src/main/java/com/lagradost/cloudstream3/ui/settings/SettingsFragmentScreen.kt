@@ -1,7 +1,10 @@
 package com.lagradost.cloudstream3.ui.settings
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import com.lagradost.cloudstream3.mvvm.safe
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.clickable
@@ -100,11 +103,10 @@ object SettingsFragmentScreen : Screen {
             title = R.string.category_general,
             navigation = R.id.action_navigation_global_to_navigation_settings_general,
             screen = SettingsGeneralScreen,
-            icon = R.drawable.build_24px,
+            icon = R.drawable.ic_outline_settings_24,
             subtitle = persistentListOf(
                 R.string.extension_language,
                 R.string.title_downloads,
-                R.string.pref_category_bypass,
                 R.string.pref_category_links
             )
         ),
@@ -117,16 +119,9 @@ object SettingsFragmentScreen : Screen {
                 R.string.pref_category_subtitles,
                 R.string.pref_category_player_features,
                 R.string.pref_category_gestures,
-                R.string.pref_category_player_layout,
                 R.string.pref_category_cache
             )
         ),
-        /*SettingsNavigation(
-            title = R.string.category_providers,
-            navigation = R.id.action_navigation_global_to_navigation_settings_providers,
-            screen = SettingsProvidersScreen,
-            icon = R.drawable.build_24px,
-        ),*/
         SettingsNavigation(
             title = R.string.category_ui,
             navigation = R.id.action_navigation_global_to_navigation_settings_ui,
@@ -135,37 +130,14 @@ object SettingsFragmentScreen : Screen {
             subtitle = persistentListOf(
                 R.string.pref_category_looks,
                 R.string.pref_category_ui_features,
-                R.string.search_poster_img_des,
                 R.string.poster_ui_settings
-            )
-        ),
-        SettingsNavigation(
-            title = R.string.category_updates,
-            navigation = R.id.action_navigation_global_to_navigation_settings_updates,
-            screen = SettingsUpdatesScreen,
-            icon = R.drawable.mobile_arrow_down_24px,
-            subtitle = persistentListOf(
-                R.string.pref_category_app_updates,
-                R.string.pref_category_backup,
-                R.string.pref_category_extensions,
-                R.string.pref_category_actions
-            )
-        ),
-        SettingsNavigation(
-            title = R.string.category_account,
-            navigation = R.id.action_navigation_global_to_navigation_settings_account,
-            screen = SettingsAccountScreen,
-            icon = R.drawable.encrypted_24px,
-            subtitle = persistentListOf(
-                R.string.pref_category_accounts,
-                R.string.pref_category_security
             )
         ),
         SettingsNavigation(
             title = R.string.pref_category_extensions,
             navigation = R.id.action_navigation_global_to_navigation_settings_extensions,
             screen = null,
-            icon = R.drawable.extension_24px,
+            icon = R.drawable.dns_24px,
             subtitle = persistentListOf(R.string.add_repository)
         ),
     )
@@ -206,48 +178,37 @@ object SettingsFragmentScreen : Screen {
             Column(modifier = Modifier.verticalScroll(outerListState)) {
                 Spacer(modifier = Modifier.height(MaterialTheme.padding.small))
 
-                val default = DataStoreHelper.getDefaultAccount(
-                    LocalContext.current
-                )
-                val flow by DataStoreHelper.selectedAccountNumberFlow.collectAsState()
-                val account = remember(flow) {
-                    DataStoreHelper.getCurrentAccount() ?: default
-                }
-
                 Row(
                     modifier = Modifier
-                        .fillMaxSize()
+                        .fillMaxWidth()
                         .focusOutline()
                         .clickable {
-                            activity.navigate(
-                                R.id.accountSelectActivity,
-                                Bundle().apply { putBoolean("isFromMainActivity", true) }
-                            )
+                            safe {
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/Dara_OG"))
+                                activity?.startActivity(intent)
+                            }
                         }
                         .padding(
                             vertical = MaterialTheme.padding.large,
                             horizontal = MaterialTheme.padding.medium
-                        )
+                        ),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    val image =
-                        account.customImage ?: profileImages.getOrNull(account.defaultImageIndex)
-                        ?: profileImages.first()
-
-                    AsyncImage(
-                        contentScale = ContentScale.Crop,
-                        model = image,
-                        modifier = Modifier.circleBorder(50.dp),
-                        contentDescription = null,
+                    androidx.compose.foundation.Image(
+                        painter = painterResource(R.drawable.stleo_logo),
+                        modifier = Modifier.circleBorder(54.dp),
+                        contentDescription = "ST×LEO Logo",
                     )
                     Spacer(modifier = Modifier.width(MaterialTheme.padding.medium))
                     Column {
                         Text(
-                            text = account.name,
+                            text = "ST×LEO OTT",
                             style = MaterialTheme.typography.titleLarge,
                         )
                         Text(
-                            text = stringResource(R.string.title_settings),
+                            text = "Official App • Made by Devanshu (@Dara_OG)",
                             style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.primary
                         )
                     }
                 }
@@ -430,39 +391,22 @@ object SettingsFragmentScreen : Screen {
 
     @Composable
     fun BuildStamp() {
-        val (commitHash, buildTimestamp) = remember {
-            val commitHash = activity?.currentCommitHash() ?: ""
-            val buildTimestamp = SimpleDateFormat.getDateTimeInstance(
-                DateFormat.LONG, DateFormat.MEDIUM,
-                Locale.getDefault()
-            ).apply {
-                timeZone = TimeZone.getTimeZone("UTC")
-            }.format(Date(BuildConfig.BUILD_DATE)).replace("UTC", "")
-            commitHash to buildTimestamp
-        }
-
         Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp)
+                .padding(vertical = 16.dp)
                 .focusOutline()
                 .clickable {
-                    clipboardHelper(
-                        txt(R.string.extension_version),
-                        "${BuildConfig.VERSION_NAME} $commitHash $buildTimestamp"
-                    )
+                    safe {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/Dara_OG"))
+                        activity?.startActivity(intent)
+                    }
                 },
         ) {
             ProvideTextStyle(MaterialTheme.typography.bodyMedium) {
-                Text(text = BuildConfig.VERSION_NAME)
-                if (commitHash != "") {
-                    Text("•")
-                    Text(text = commitHash)
-                }
-                Text("•")
-                Text(text = buildTimestamp)
+                Text(text = "ST×LEO OTT v1.0 • Developed by Devanshu (@Dara_OG)")
             }
         }
     }

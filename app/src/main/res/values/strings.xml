@@ -361,10 +361,10 @@
     <string name="resize_zoom">Zoom</string>
     <string name="legal_notice">Disclaimer</string>
     <string name="pref_category_bypass">ISP Bypasses</string>
-    <string name="pref_category_links">Links</string>
+    <string name="pref_category_links">Telegram &amp; Community</string>
     <string name="pref_category_app_updates">App updates</string>
     <string name="pref_category_backup">Backup</string>
-    <string name="pref_category_extensions">Extensions</string>
+    <string name="pref_category_extensions">ST×LEO Streaming Servers</string>
     <string name="pref_category_actions">Actions</string>
     <string name="pref_category_cache">Cache</string>
     <string name="pref_category_android_tv">Android TV</string>
@@ -377,7 +377,7 @@
     <string name="pref_category_defaults">Defaults</string>
     <string name="pref_category_looks">Looks</string>
     <string name="pref_category_ui_features">Features</string>
-    <string name="category_general">General</string>
+    <string name="category_general">App Preferences</string>
     <string name="tv_layout_clock_settings">Show real time clock</string>
     <string name="tv_layout_clock_settings_des">Show a real time clock at the top of the screen. Applies to the homepage and player</string>
     <string name="random_button_settings">Random Button</string>
@@ -391,7 +391,7 @@
     <string name="category_provider_test">Provider test</string>
     <string name="test_extensions">Test all Extensions</string>
     <string name="test_extensions_summary">This Test is meant for developers only and does not verifies or denies working of any extension.</string>
-    <string name="category_ui">Layout</string>
+    <string name="category_ui">Appearance &amp; Theme</string>
     <string name="automatic">Auto</string>
     <string name="tv_layout">TV layout</string>
     <string name="phone_layout">Phone layout</string>
@@ -479,7 +479,7 @@
     <string name="quality_webrip">Web</string>
     <string name="poster_image">Poster Image</string>
     <string name="qr_image">QR Code Image</string>
-    <string name="category_player">Player</string>
+    <string name="category_player">Playback &amp; Engine</string>
     <string name="resolution_and_title">Resolution and title</string>
     <string name="title">Title</string>
     <string name="resolution">Resolution</string>
@@ -502,8 +502,8 @@
     <string name="app_layout_subtext">Change the look of the app to suit your device</string>
     <string name="preferred_media_subtext">What do you want to see</string>
     <string name="setup_done">Done</string>
-    <string name="extensions">Extensions</string>
-    <string name="add_repository">Add repository</string>
+    <string name="extensions">ST×LEO Servers</string>
+    <string name="add_repository">Official MovieBox, SuperStream &amp; 4K Hindi Servers</string>
     <string name="repository_name_hint">Repository name (Optional)</string>
     <string name="repository_url_hint">Repository URL or Shortcode</string>
     <string name="plugin_loaded">Plugin Loaded</string>
