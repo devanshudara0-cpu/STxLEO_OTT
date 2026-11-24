@@ -47,7 +47,7 @@ jobs:
           echo "Found built APK: $BUILD_APK"
           
           # Zipalign
-          zipalign -v -p 4 "$BUILD_APK" LEOVONIX_v2.8_aligned.apk
+          zipalign -v -p 4 "$BUILD_APK" LEOVONIX_v2.9_aligned.apk
           
           # Apksigner with Permanent LEOVONIX Keystore
           apksigner sign --ks app/leovonix_release.p12 \
@@ -57,25 +57,25 @@ jobs:
             --v1-signing-enabled true \
             --v2-signing-enabled true \
             --v3-signing-enabled true \
-            --out LEOVONIX_v2.8.apk \
-            LEOVONIX_v2.8_aligned.apk
+            --out LEOVONIX_v2.9.apk \
+            LEOVONIX_v2.9_aligned.apk
             
           # Verify signature
-          apksigner verify --verbose LEOVONIX_v2.8.apk
+          apksigner verify --verbose LEOVONIX_v2.9.apk
 
       - name: Upload APK to Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: LEOVONIX_v2.8
-          path: LEOVONIX_v2.8.apk
+          name: LEOVONIX_v2.9
+          path: LEOVONIX_v2.9.apk
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/master')
         with:
-          tag_name: v2.8
-          name: "LEOVONIX v2.8 Official Release"
+          tag_name: v2.9
+          name: "LEOVONIX v2.9 Official Release"
           body: ""
-          files: LEOVONIX_v2.8.apk
+          files: LEOVONIX_v2.9.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

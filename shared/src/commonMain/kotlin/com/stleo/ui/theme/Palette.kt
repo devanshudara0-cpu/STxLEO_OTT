@@ -3,7 +3,7 @@ package com.stleo.ui.theme
 import androidx.compose.ui.graphics.Color
 
 enum class LeoPrimaryColor(val color: Color) {
-    NORMAL(Color(0xFF3D50FA)),
+    NORMAL(Color(0xFF00E5FF)),
     BLUE(Color(0xFF5664B7)),
     PURPLE(Color(0xFF6200EA)),
     GREEN(Color(0xFF00BFA5)),
@@ -23,24 +23,24 @@ enum class LeoPrimaryColor(val color: Color) {
     DANDELION_YELLOW(Color(0xFFF5BB00)),
     COOL_BLUE(Color(0xFF408CAC)),
     LAVENDER(Color(0xFF6F55AF)),
-    DYNAMIC(Color(0xFF3D50FA)),
-    DYNAMIC_TWO(Color(0xFF3D50FA)),
+    DYNAMIC(Color(0xFF00E5FF)),
+    DYNAMIC_TWO(Color(0xFF00B4D8)),
 }
 
 
 internal object LeoPalette {
     // Default dark (AppTheme / Black)
-    val Primary = Color(0xFF3D50FA)
-    val PrimaryDark = Color(0xFF3700B3)
+    val Primary = Color(0xFF00E5FF)
+    val PrimaryDark = Color(0xFF0077B6)
     val Ongoing = Color(0xFFF53B66)
 
-    val DarkPrimaryGrayBg = Color(0xFF2B2C30)
-    val DarkBlackBg = Color(0xFF111111)
-    val DarkIconGrayBg = Color(0xFF1C1C20)
-    val DarkBoxItemBg = Color(0xFF161616)
-    val DarkText = Color(0xFFE9EAEE)
-    val DarkGrayText = Color(0xFF9BA0A4)
-    val DarkIcon = Color(0xFF9BA0A6)
+    val DarkPrimaryGrayBg = Color(0xFF0F172A)
+    val DarkBlackBg = Color(0xFF060913)
+    val DarkIconGrayBg = Color(0xFF131D35)
+    val DarkBoxItemBg = Color(0xFF162244)
+    val DarkText = Color(0xFFF1F5F9)
+    val DarkGrayText = Color(0xFF94A3B8)
+    val DarkIcon = Color(0xFF94A3B8)
 
     // Amoled
     val AmoledBlack = Color(0xFF000000)

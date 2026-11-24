@@ -34,8 +34,19 @@
             android:layout_height="50dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="0dp">
+            android:paddingHorizontal="4dp">
 
+            <TextView
+                android:id="@+id/home_brand_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="6dp"
+                android:text="LEOVONIX"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.12" />
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/home_search"
