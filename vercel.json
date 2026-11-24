@@ -1,10 +1,21 @@
 {
   "outputDirectory": "website",
   "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/repo/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=60" }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/admin", "destination": "/website/admin.html" },
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/", "destination": "/website/index.html" },
-    { "source": "/assets/(.*)", "destination": "/website/assets/$1" }
+    { "source": "/assets/(.*)", "destination": "/website/assets/$1" },
+    { "source": "/repo/(.*)", "destination": "/website/repo/$1" }
   ]
 }

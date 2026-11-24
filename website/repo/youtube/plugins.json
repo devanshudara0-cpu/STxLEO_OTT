@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://leovonix.vercel.app/repo/youtube/builds/Youtube.leo",
+    "status": 1,
+    "version": 3,
+    "name": "LEOVONIX YouTube & Live Stream",
+    "internalName": "Youtube",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "description": "Ad-Free 4K 60FPS YouTube & 24x7 Live Streams",
+    "fileSize": 12980,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/youtube/plugins.json",
+    "language": "en",
+    "tvTypes": [
+      "Live"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/youtube/icons/Youtube.png",
+    "apiVersion": 1,
+    "fileHash": "sha256-ced12e83b70fab3c61331dc11cb5685364657cadcd005d07f1b450165c162c67"
+  }
+]

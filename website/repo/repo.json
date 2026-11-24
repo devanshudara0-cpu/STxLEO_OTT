@@ -1,0 +1,8 @@
+{
+  "name": "LEOVONIX Official Hub",
+  "description": "All-in-one Movies, Series, YouTube & 24x7 Live Streams by Devanshu (@Dara_OG)",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://leovonix.vercel.app/repo/plugins.json"
+  ]
+}

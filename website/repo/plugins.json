@@ -1,0 +1,238 @@
+[
+  {
+    "url": "https://leovonix.vercel.app/repo/youtube/builds/Youtube.leo",
+    "status": 1,
+    "version": 3,
+    "name": "LEOVONIX YouTube & Live Stream",
+    "internalName": "Youtube",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "description": "Ad-Free 4K 60FPS YouTube & 24x7 Live Streams",
+    "fileSize": 12980,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/plugins.json",
+    "language": "en",
+    "tvTypes": [
+      "Live"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/youtube/icons/Youtube.png",
+    "apiVersion": 1,
+    "fileHash": "sha256-ced12e83b70fab3c61331dc11cb5685364657cadcd005d07f1b450165c162c67"
+  },
+  {
+    "url": "https://leovonix.vercel.app/repo/movies/builds/Fivemovierulz.leo",
+    "status": 1,
+    "version": 10,
+    "name": "LEOVONIX Multi-Audio Server",
+    "internalName": "Fivemovierulz",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "description": "South Indian & Dual Audio Server",
+    "fileSize": 99179,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/plugins.json",
+    "language": "ta",
+    "tvTypes": [
+      "TvSeries",
+      "Movie"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/movies/icons/Fivemovierulz.jpg",
+    "apiVersion": 1,
+    "fileHash": "sha256-6eee9ae2d4101065b352e8be0f5e19335d1933adf7aeea84118733d4f561a507"
+  },
+  {
+    "url": "https://leovonix.vercel.app/repo/movies/builds/FourKHDHub.leo",
+    "status": 1,
+    "version": 41,
+    "name": "LEOVONIX Hindi 4K Server",
+    "internalName": "FourKHDHub",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "description": "Hindi Dubbed & Bollywood 4K Server",
+    "fileSize": 138120,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/plugins.json",
+    "language": "en",
+    "tvTypes": [
+      "Movie",
+      "TvSeries"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/movies/icons/FourKHDHub.png",
+    "apiVersion": 1,
+    "fileHash": "sha256-43d5ce9eaf84601b94a29ef22c6505e53e69b93fe3fa0f2cd815939ab8f27f4c"
+  },
+  {
+    "url": "https://leovonix.vercel.app/repo/movies/builds/HDhub4u.leo",
+    "status": 1,
+    "version": 57,
+    "name": "LEOVONIX Hindi 4K Server",
+    "internalName": "HDhub4u",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "fileSize": 155116,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/plugins.json",
+    "language": "hi",
+    "tvTypes": [
+      "Movie",
+      "TvSeries",
+      "Anime"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/movies/icons/HDhub4u.png",
+    "apiVersion": 1,
+    "fileHash": "sha256-27ab68b918fb29ff23e75da872b1ed09f4ce93950a24a2ed8b22b571f8d0d1b6",
+    "description": "Hindi Dubbed & Bollywood 4K Server"
+  },
+  {
+    "url": "https://leovonix.vercel.app/repo/movies/builds/Hdmovie2.leo",
+    "status": 1,
+    "version": 7,
+    "name": "Hdmovie2",
+    "internalName": "Hdmovie2",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "description": "Hdmovie2",
+    "fileSize": 121018,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/plugins.json",
+    "language": "hi",
+    "tvTypes": [
+      "TvSeries",
+      "Movie"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/movies/icons/Hdmovie2.png",
+    "apiVersion": 1,
+    "fileHash": "sha256-886c342866f3b5916aba972c4f21115deb959f71006848a217694d92e542482f"
+  },
+  {
+    "url": "https://leovonix.vercel.app/repo/movies/builds/Hindmoviez.leo",
+    "status": 1,
+    "version": 17,
+    "name": "Hindmoviez",
+    "internalName": "Hindmoviez",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "description": "Watch Movies & TvSeries (Multi-Lang)",
+    "fileSize": 125930,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/plugins.json",
+    "language": "hi",
+    "tvTypes": [
+      "Movie",
+      "TvSeries"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/movies/icons/Hindmoviez.png",
+    "apiVersion": 1,
+    "fileHash": "sha256-aa14ecb8f1345004ecefe298acb93070f8df017d5426af471f23d4e29ff083e1"
+  },
+  {
+    "url": "https://leovonix.vercel.app/repo/movies/builds/MovieBoxProvider.leo",
+    "status": 1,
+    "version": 43,
+    "name": "LEOVONIX MovieBox Server",
+    "internalName": "MovieBoxProvider",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "description": "Official MovieBox Server for LEOVONIX OTT",
+    "fileSize": 262422,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/plugins.json",
+    "language": "hi",
+    "tvTypes": [
+      "Movie",
+      "TvSeries"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/movies/icons/MovieBoxProvider.png",
+    "apiVersion": 1,
+    "fileHash": "sha256-31ee8f82148137a34d5ca39e717ed239ab4bb7f3de3a71a10dddf81eab0375d9"
+  },
+  {
+    "url": "https://leovonix.vercel.app/repo/movies/builds/Movies4u.leo",
+    "status": 1,
+    "version": 18,
+    "name": "Movies4u",
+    "internalName": "Movies4u",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "description": "Movies4u",
+    "fileSize": 161743,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/plugins.json",
+    "language": "hi",
+    "tvTypes": [
+      "Movie",
+      "TvSeries"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/movies/icons/Movies4u.png",
+    "apiVersion": 1,
+    "fileHash": "sha256-e44f17b31188f367be2a6b3f7ffc7842730020f811347f204b6fe5300756bb65"
+  },
+  {
+    "url": "https://leovonix.vercel.app/repo/movies/builds/MultiMoviesProvider.leo",
+    "status": 1,
+    "version": 55,
+    "name": "MultiMoviesProvider",
+    "internalName": "MultiMoviesProvider",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "description": "Indian Multi-language HD Provider",
+    "fileSize": 183204,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/plugins.json",
+    "language": "hi",
+    "tvTypes": [
+      "Movie",
+      "TvSeries",
+      "Anime"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/movies/icons/MultiMoviesProvider.png",
+    "apiVersion": 1,
+    "fileHash": "sha256-20249ca7a79434d1e815361f07c76763e44900de9019b1f11d2232c55830566d"
+  },
+  {
+    "url": "https://leovonix.vercel.app/repo/movies/builds/SuperStream.leo",
+    "status": 1,
+    "version": 44,
+    "name": "LEOVONIX Ultra 4K Server",
+    "internalName": "SuperStream",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "description": "Netflix, Prime & Hollywood 4K Ultra HD Server",
+    "fileSize": 250664,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/plugins.json",
+    "language": "en",
+    "tvTypes": [
+      "AsianDrama",
+      "TvSeries",
+      "Anime",
+      "Movie",
+      "Cartoon",
+      "AnimeMovie"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/movies/icons/SuperStream.png",
+    "apiVersion": 1,
+    "fileHash": "sha256-78597e689bdd623b2a630e6a52b2bd67c9df818425806dd05818ce42660643c9"
+  },
+  {
+    "url": "https://leovonix.vercel.app/repo/movies/builds/UHDmoviesProvider.leo",
+    "status": 1,
+    "version": 45,
+    "name": "LEOVONIX UHD Movies",
+    "internalName": "UHDmoviesProvider",
+    "authors": [
+      "Devanshu (@Dara_OG)"
+    ],
+    "description": "Direct 4K UHD Movies Server",
+    "fileSize": 126302,
+    "repositoryUrl": "https://leovonix.vercel.app/repo/plugins.json",
+    "language": "en",
+    "tvTypes": [
+      "Movie",
+      "TvSeries"
+    ],
+    "iconUrl": "https://leovonix.vercel.app/repo/movies/icons/UHDmoviesProvider.png",
+    "apiVersion": 1,
+    "fileHash": "sha256-612b58632a82cc961abb5705349ffa0c2ba222396cbb1a696f624727e8898287"
+  }
+]

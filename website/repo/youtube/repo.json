@@ -1,0 +1,8 @@
+{
+  "name": "LEOVONIX YouTube & Live Stream",
+  "description": "Official YouTube, Live Streams & Music Providers for LEOVONIX by Devanshu (@Dara_OG)",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://leovonix.vercel.app/repo/youtube/plugins.json"
+  ]
+}
