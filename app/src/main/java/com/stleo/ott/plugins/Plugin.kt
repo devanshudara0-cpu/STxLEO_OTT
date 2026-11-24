@@ -37,4 +37,9 @@ abstract class Plugin : BasePlugin() {
      * This will add a button in the settings allowing you to add custom settings
      */
     var openSettings: ((context: Context) -> Unit)? = null
+
+    companion object {
+        @JvmField
+        var `$stable`: Int = 0
+    }
 }
