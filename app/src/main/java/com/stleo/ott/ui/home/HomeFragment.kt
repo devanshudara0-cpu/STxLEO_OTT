@@ -489,12 +489,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
                             // Hide pinned NSFW when NSFW not selected. NSFW is distracting when not chosen.
                             if (isPinned && !preSelectedTypes.contains(TvType.NSFW)) {
-                                if (it.supportedTypes.all { type -> type == TvType.NSFW }) return@filter false
+                                if (it.supportedTypes?.filterNotNull()?.all { type -> type == TvType.NSFW } == true) return@filter false
                             }
 
-                            it.hasMainPage && (isPinned || it.supportedTypes.any(
+                            it.hasMainPage && (isPinned || it.supportedTypes?.filterNotNull()?.any(
                                 preSelectedTypes::contains
-                            ))
+                            ) == true)
                         }
                         .sortedBy { it.name.lowercase() }
 
@@ -542,7 +542,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                 bindChips(
                     binding.tvtypesChipsScroll.tvtypesChips,
                     preSelectedTypes,
-                    validAPIs.flatMap { it.supportedTypes }.distinct()
+                    validAPIs.flatMap { it.supportedTypes ?: emptySet() }.filterNotNull().distinct()
                 ) { list ->
                     preSelectedTypes.clear()
                     preSelectedTypes.addAll(list)

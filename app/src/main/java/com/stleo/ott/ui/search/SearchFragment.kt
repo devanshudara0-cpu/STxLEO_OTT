@@ -207,7 +207,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
             bindChips(
                 binding?.tvtypesChipsScroll?.tvtypesChips,
                 selectedSearchTypes,
-                validAPIs.flatMap { api -> api.supportedTypes }.distinct()
+                validAPIs.flatMap { api -> api.supportedTypes ?: emptySet() }.filterNotNull().distinct()
             ) { list ->
                 if (selectedSearchTypes.toSet() != list.toSet()) {
                     DataStoreHelper.searchPreferenceTags = list
@@ -337,9 +337,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
 
                         arrayAdapter.clear()
                         currentValidApis = validAPIs.filter { api ->
-                            api.supportedTypes.any {
+                            api.supportedTypes?.filterNotNull()?.any {
                                 types.contains(it)
-                            }
+                            } ?: false
                         }.sortedBy { it.name.lowercase() }
 
                         val names = currentValidApis.map {
@@ -361,7 +361,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
                     bindChips(
                         selectMainpageBinding.tvtypesChipsScroll.tvtypesChips,
                         selectedSearchTypes,
-                        validAPIs.flatMap { api -> api.supportedTypes }.distinct()
+                        validAPIs.flatMap { api -> api.supportedTypes ?: emptySet() }.filterNotNull().distinct()
                     ) { list ->
                         updateList(list)
 

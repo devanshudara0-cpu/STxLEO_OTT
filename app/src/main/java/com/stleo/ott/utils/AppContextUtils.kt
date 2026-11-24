@@ -475,7 +475,13 @@ object AppContextUtils {
             allApis
         } else {
             // Filter API depending on preferred media type
-            allApis.filter { api -> api.supportedTypes.any { currentPrefMedia.contains(it.ordinal) } }
+            allApis.filter { api ->
+                try {
+                    api.supportedTypes?.filterNotNull()?.any { currentPrefMedia.contains(it.ordinal) } == true
+                } catch (_: Throwable) {
+                    true
+                }
+            }
         }
     }
 
