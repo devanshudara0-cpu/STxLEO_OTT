@@ -208,7 +208,7 @@ fun Preview() {
                             info = RepositoryInfo(
                                 name = "LEOVONIX Official Providers",
                                 description = "Official Providers",
-                                url = "https://leovonix.vercel.app/repo/movies/repo.json",
+                                url = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-repo/main/repo.json",
                                 iconUrl = null
                             ),
                             status = RepositoryStatus.Loading,

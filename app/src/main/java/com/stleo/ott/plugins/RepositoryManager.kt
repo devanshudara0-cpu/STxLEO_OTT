@@ -101,13 +101,13 @@ object RepositoryManager {
         val custom = getKey<Array<RepositoryData>>("PREBUILT_REPOSITORIES") ?: emptyArray()
         val defaultRepo = RepositoryData(
             name = "LEOVONIX Official Providers",
-            url = "https://leovonix.vercel.app/repo/movies/repo.json",
-            iconUrl = "https://leovonix.vercel.app/repo/movies/icon.png"
+            url = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-repo/main/repo.json",
+            iconUrl = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-repo/main/icon.png"
         )
         val youtubeRepo = RepositoryData(
             name = "LEOVONIX YouTube & Live Stream",
-            url = "https://leovonix.vercel.app/repo/youtube/repo.json",
-            iconUrl = "https://leovonix.vercel.app/repo/youtube/icon.png"
+            url = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-youtube-repo/main/repo.json",
+            iconUrl = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-youtube-repo/main/icon.png"
         )
         val prebuilts = arrayOf(defaultRepo, youtubeRepo)
         var result = custom
