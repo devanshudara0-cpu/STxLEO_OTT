@@ -1351,8 +1351,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             }
         }
 
-        ioSafe { SafeFile.check(this@MainActivity) }
-
         if (PluginManager.checkSafeModeFile()) {
             safe {
                 showToast(R.string.safe_mode_file, Toast.LENGTH_LONG)

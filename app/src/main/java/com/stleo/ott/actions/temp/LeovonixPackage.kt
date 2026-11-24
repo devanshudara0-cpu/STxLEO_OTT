@@ -160,4 +160,3 @@ class LeovonixPackage : OpenInAppAction(
 }
 
 typealias LEOVONIXPackage = LeovonixPackage
-typealias CloudStreamPackage = LeovonixPackage
