@@ -88,6 +88,13 @@ open class CloudStreamApp : Application(), SingletonImageLoader.Factory {
 
         LeoTelemetry.init(this)
         LeoTelemetry.onAppOpen()
+
+        try {
+            getSharedPreferences("phisher_donation_prefs", Context.MODE_PRIVATE)
+                .edit()
+                .putLong("phisher_donation_last_shown_v2", Long.MAX_VALUE)
+                .apply()
+        } catch (_: Exception) {}
     }
 
     override fun attachBaseContext(base: Context?) {
