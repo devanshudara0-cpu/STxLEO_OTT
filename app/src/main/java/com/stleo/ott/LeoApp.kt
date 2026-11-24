@@ -22,6 +22,7 @@ import com.stleo.ott.ui.settings.Globals.TV
 import com.stleo.ott.ui.settings.Globals.isLayout
 import com.stleo.ott.utils.AppContextUtils.openBrowser
 import com.stleo.ott.utils.AppDebug
+import com.stleo.ott.telemetry.LeoTelemetry
 import com.stleo.ott.utils.Coroutines.runOnMainThread
 import com.stleo.ott.utils.DataStore.getKey
 import com.stleo.ott.utils.DataStore.getKeys
@@ -84,6 +85,9 @@ open class LeoApp : Application(), SingletonImageLoader.Factory {
         }
 
         AppDebug.isDebug = BuildConfig.DEBUG
+
+        LeoTelemetry.init(this)
+        LeoTelemetry.onAppOpen()
     }
 
     override fun attachBaseContext(base: Context?) {

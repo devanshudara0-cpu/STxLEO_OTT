@@ -3,6 +3,7 @@
 package com.stleo.ott.ui.player
 
 import android.annotation.SuppressLint
+import com.stleo.ott.telemetry.LeoTelemetry
 import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Bitmap
@@ -659,6 +660,7 @@ class CS3IPlayer : IPlayer {
     }
 
     override fun release() {
+        LeoTelemetry.stopWatching()
         imageGenerator.release()
         releasePlayer()
     }
@@ -1655,6 +1657,9 @@ class CS3IPlayer : IPlayer {
                     if (isPlaying) {
                         event(RequestAudioFocusEvent())
                         onRenderFirst()
+                        LeoTelemetry.startWatching(currentLink?.name)
+                    } else {
+                        LeoTelemetry.stopWatching()
                     }
                 }
 
