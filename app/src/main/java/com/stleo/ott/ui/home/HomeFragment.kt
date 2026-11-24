@@ -289,6 +289,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             torrent: Chip?,
             nsfw: Chip?,
             others: Chip?,
+            youtubeMusic: Chip? = null,
+            spotify: Chip? = null,
+            appleMusic: Chip? = null,
         ): List<Pair<Chip?, List<TvType>>> {
             // This list should be same order as home screen to aid navigation
             return listOf(
@@ -299,6 +302,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                 Pair(cartoons, listOf(TvType.Cartoon)),
                 Pair(docs, listOf(TvType.Documentary)),
                 Pair(livestream, listOf(TvType.Live)),
+                Pair(youtubeMusic, listOf(TvType.Music)),
+                Pair(spotify, listOf(TvType.Audio)),
+                Pair(appleMusic, listOf(TvType.Podcast)),
                 Pair(torrent, listOf(TvType.Torrent)),
                 Pair(nsfw, listOf(TvType.NSFW)),
                 Pair(others, listOf(TvType.Others)),
@@ -315,7 +321,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             header.homeSelectLivestreams,
             header.homeSelectTorrents,
             header.homeSelectNsfw,
-            header.homeSelectOthers
+            header.homeSelectOthers,
+            header.homeSelectYoutubeMusic,
+            header.homeSelectSpotify,
+            header.homeSelectAppleMusic
         )
 
         fun validateChips(header: TvtypesChipsBinding?, validTypes: List<TvType>) {
