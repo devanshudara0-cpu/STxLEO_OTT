@@ -68,7 +68,7 @@ class ExceptionHandler(
     }
 }
 
-open class LeoApp : Application(), SingletonImageLoader.Factory {
+open class CloudStreamApp : Application(), SingletonImageLoader.Factory {
 
     override fun onCreate() {
         super.onCreate()
@@ -184,5 +184,38 @@ open class LeoApp : Application(), SingletonImageLoader.Factory {
     }
 }
 
-/** Legacy alias for backwards-compatibility with extensions. */
-open class CloudStreamApp : LeoApp()
+/** LEOVONIX App class with full companion delegation for 100% backwards and forwards compatibility */
+open class LeoApp : CloudStreamApp() {
+    companion object {
+        var exceptionHandler: ExceptionHandler?
+            get() = CloudStreamApp.exceptionHandler
+            set(value) { CloudStreamApp.exceptionHandler = value }
+
+        tailrec fun Context.getActivity(): Activity? {
+            return when (this) {
+                is Activity -> this
+                is ContextWrapper -> baseContext.getActivity()
+                else -> null
+            }
+        }
+
+        var context: Context?
+            get() = CloudStreamApp.context
+            set(value) { /* managed via CloudStreamApp */ }
+
+        fun <T : Any> getKeyClass(path: String, valueType: Class<T>): T? = CloudStreamApp.getKeyClass(path, valueType)
+        fun <T : Any> setKeyClass(path: String, value: T) = CloudStreamApp.setKeyClass(path, value)
+        fun removeKeys(folder: String): Int? = CloudStreamApp.removeKeys(folder)
+        fun <T> setKey(path: String, value: T) = CloudStreamApp.setKey(path, value)
+        fun <T> setKey(folder: String, path: String, value: T) = CloudStreamApp.setKey(folder, path, value)
+        inline fun <reified T : Any> getKey(path: String, defVal: T?): T? = CloudStreamApp.getKey(path, defVal)
+        inline fun <reified T : Any> getKey(path: String): T? = CloudStreamApp.getKey(path)
+        inline fun <reified T : Any> getKey(folder: String, path: String): T? = CloudStreamApp.getKey(folder, path)
+        inline fun <reified T : Any> getKey(folder: String, path: String, defVal: T?): T? = CloudStreamApp.getKey(folder, path, defVal)
+        fun getKeys(folder: String): List<String>? = CloudStreamApp.getKeys(folder)
+        fun removeKey(folder: String, path: String) = CloudStreamApp.removeKey(folder, path)
+        fun removeKey(path: String) = CloudStreamApp.removeKey(path)
+        fun openBrowser(url: String, fallbackWebView: Boolean = false, fragment: Fragment? = null) = CloudStreamApp.openBrowser(url, fallbackWebView, fragment)
+        fun openBrowser(url: String, activity: Activity?) = CloudStreamApp.openBrowser(url, activity)
+    }
+}

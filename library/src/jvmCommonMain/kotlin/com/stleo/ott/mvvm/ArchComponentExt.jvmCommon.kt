@@ -11,7 +11,7 @@ actual fun <T> platformThrowAbleToResource(throwable: Throwable): Resource<T> {
         is NoSuchMethodException, is NoSuchFieldException, is NoSuchMethodError, is NoSuchFieldError, is NoSuchPropertyException -> {
             Resource.Failure(
                 false,
-                "App or extension is outdated, update the app or try pre-release.\n${throwable.message}" // todo add exact version?
+                "Unable to load content from this server.\nPlease retry or select another server from the bottom right."
             )
         }
         is SocketTimeoutException, is InterruptedIOException -> {
@@ -23,13 +23,13 @@ actual fun <T> platformThrowAbleToResource(throwable: Throwable): Resource<T> {
         is UnknownHostException -> {
             Resource.Failure(
                 true,
-                "Cannot connect to server, try again later.\n${throwable.message}"
+                "Cannot connect to server, please check your network or try again later."
             )
         }
         is SSLHandshakeException -> {
             Resource.Failure(
                 true,
-                (throwable.message ?: "SSLHandshakeException") + "\nTry a VPN or DNS."
+                "Secure connection issue\nTry a VPN or DNS."
             )
         }
         else -> safeFail(throwable)

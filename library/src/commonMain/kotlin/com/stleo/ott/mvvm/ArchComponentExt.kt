@@ -143,6 +143,8 @@ fun Throwable.getStackTracePretty(showMessage: Boolean = true): String {
 
 fun <T> safeFail(throwable: Throwable): Resource<T> {
     val stackTraceMsg = throwable.getStackTracePretty()
+        .replace("CloudStream", "LEOVONIX")
+        .replace("cloudstream", "leovonix")
     return Resource.Failure(false, stackTraceMsg)
 }
 
