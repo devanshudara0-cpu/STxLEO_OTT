@@ -104,11 +104,19 @@ object RepositoryManager {
             url = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-repo/main/repo.json",
             iconUrl = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-repo/main/icon.png"
         )
-        if (custom.none { it.url == defaultRepo.url }) {
-            custom + arrayOf(defaultRepo)
-        } else {
-            custom
+        val youtubeRepo = RepositoryData(
+            name = "LEOVONIX YouTube & Live Stream",
+            url = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-youtube-repo/main/repo.json",
+            iconUrl = "https://raw.githubusercontent.com/devanshudara0-cpu/stleo-youtube-repo/main/icon.png"
+        )
+        val prebuilts = arrayOf(defaultRepo, youtubeRepo)
+        var result = custom
+        for (repo in prebuilts) {
+            if (result.none { it.url == repo.url }) {
+                result += arrayOf(repo)
+            }
         }
+        result
     }
     private val GH_REGEX =
         Regex("^https://raw.githubusercontent.com/([A-Za-z0-9-]+)/([A-Za-z0-9_.-]+)/(.*)$")

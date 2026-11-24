@@ -470,7 +470,11 @@ object AppContextUtils {
         val langs = this.getApiProviderLangSettings()
         val hasUniversal = langs.contains(AllLanguagesName)
         val allApis =
-            apis.filter { api -> (hasUniversal || langs.contains(api.lang)) && (api.hasMainPage || !hasHomePageIsRequired) }
+            apis.filter { api ->
+                (hasUniversal || langs.contains(api.lang)) &&
+                (api.hasMainPage || !hasHomePageIsRequired) &&
+                com.stleo.ott.plugins.RepoToggleHelper.isApiEnabled(this, api)
+            }
         return if (currentPrefMedia.isEmpty()) {
             allApis
         } else {

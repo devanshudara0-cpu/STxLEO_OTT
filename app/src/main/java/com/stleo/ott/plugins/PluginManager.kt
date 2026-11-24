@@ -593,6 +593,10 @@ object PluginManager {
     internal suspend fun loadPlugin(context: Context, file: File, data: PluginData): Boolean {
         val fileName = file.nameWithoutExtension
         val filePath = file.absolutePath
+        if (!RepoToggleHelper.isPluginFileEnabled(context, filePath)) {
+            Log.i(TAG, "Skipping plugin from disabled repository: $fileName")
+            return false
+        }
         currentlyLoading = fileName
         Log.i(TAG, "Loading plugin: $data")
 

@@ -2,19 +2,29 @@ package com.stleo.ott.ui.settings.extensions
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import com.stleo.ott.MainActivity.Companion.afterPluginsLoadedEvent
 import com.stleo.ott.R
 import com.stleo.ott.databinding.RepositoryItemBinding
 import com.stleo.ott.databinding.RepositoryItemTvBinding
+import com.stleo.ott.plugins.PLUGIN_VERSION_NOT_SET
+import com.stleo.ott.plugins.PluginData
+import com.stleo.ott.plugins.PluginManager
+import com.stleo.ott.plugins.RepoToggleHelper
+import com.stleo.ott.plugins.RepositoryManager.ONLINE_PLUGINS_FOLDER
 import com.stleo.ott.plugins.RepositoryManager.PREBUILT_REPOSITORIES
 import com.stleo.ott.ui.BaseDiffCallback
 import com.stleo.ott.ui.NoStateAdapter
 import com.stleo.ott.ui.ViewHolderState
 import com.stleo.ott.ui.settings.Globals.TV
 import com.stleo.ott.ui.settings.Globals.isLayout
+import com.stleo.ott.utils.Coroutines.ioSafe
+import com.stleo.ott.utils.Coroutines.main
 import com.stleo.ott.utils.ImageLoader.loadImage
 import com.stleo.ott.utils.UIHelper.clipboardHelper
 import com.stleo.ott.utils.getImageFromDrawable
 import com.stleo.ott.utils.txt
+import java.io.File
 
 class RepoAdapter(
     val isSetup: Boolean,
@@ -53,14 +63,51 @@ class RepoAdapter(
         when (val binding = holder.view) {
             is RepositoryItemTvBinding -> {
                 binding.apply {
-                    // Only shows icon if on setup or if it isn't a prebuilt repo.
-                    // No delete buttons on prebuilt repos.
-                    if (!isPrebuilt || isSetup) {
-                        actionButton.setImageResource(drawable)
+                    val context = root.context
+
+                    // Setup toggle switch
+                    repoSwitch.isVisible = !isSetup
+                    repoSwitch.setOnCheckedChangeListener(null)
+                    repoSwitch.isChecked = RepoToggleHelper.isRepoEnabled(context, item.url)
+                    repoSwitch.setOnCheckedChangeListener { _, isChecked ->
+                        RepoToggleHelper.setRepoEnabled(context, item.url, isChecked)
+                        val folderName = PluginManager.getPluginSanitizedFileName(item.url)
+                        ioSafe {
+                            val online = PluginManager.getPluginsOnline()
+                            val matching = online.filter { it.filePath.contains("/$folderName/") }
+                            if (!isChecked) {
+                                matching.forEach { PluginManager.unloadPlugin(it.filePath) }
+                            } else {
+                                matching.forEach { PluginManager.loadPlugin(context, File(it.filePath), it) }
+                                val repoDir = File("${context.filesDir}/${ONLINE_PLUGINS_FOLDER}/$folderName")
+                                if (repoDir.exists() && repoDir.isDirectory) {
+                                    repoDir.listFiles()?.forEach { file ->
+                                        if ((file.extension == "leo" || file.extension == "cs3" || file.extension == "zip") && matching.none { it.filePath == file.absolutePath }) {
+                                            PluginManager.loadPlugin(
+                                                context,
+                                                file,
+                                                PluginData(file.name, null, true, file.absolutePath, PLUGIN_VERSION_NOT_SET)
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                            main {
+                                afterPluginsLoadedEvent.invoke(false)
+                            }
+                        }
                     }
 
-                    actionButton.setOnClickListener {
-                        imageClickCallback(item)
+                    // Only shows icon if on setup or if it isn't a prebuilt repo.
+                    // No delete buttons on prebuilt repos.
+                    actionButton.isVisible = !isPrebuilt || isSetup
+                    if (!isPrebuilt || isSetup) {
+                        actionButton.setImageResource(drawable)
+                        actionButton.setOnClickListener {
+                            imageClickCallback(item)
+                        }
+                    } else {
+                        actionButton.setOnClickListener(null)
                     }
 
                     repositoryItemRoot.setOnClickListener {
@@ -85,14 +132,51 @@ class RepoAdapter(
 
             is RepositoryItemBinding -> {
                 binding.apply {
-                    // Only shows icon if on setup or if it isn't a prebuilt repo.
-                    // No delete buttons on prebuilt repos.
-                    if (!isPrebuilt || isSetup) {
-                        actionButton.setImageResource(drawable)
+                    val context = root.context
+
+                    // Setup toggle switch
+                    repoSwitch.isVisible = !isSetup
+                    repoSwitch.setOnCheckedChangeListener(null)
+                    repoSwitch.isChecked = RepoToggleHelper.isRepoEnabled(context, item.url)
+                    repoSwitch.setOnCheckedChangeListener { _, isChecked ->
+                        RepoToggleHelper.setRepoEnabled(context, item.url, isChecked)
+                        val folderName = PluginManager.getPluginSanitizedFileName(item.url)
+                        ioSafe {
+                            val online = PluginManager.getPluginsOnline()
+                            val matching = online.filter { it.filePath.contains("/$folderName/") }
+                            if (!isChecked) {
+                                matching.forEach { PluginManager.unloadPlugin(it.filePath) }
+                            } else {
+                                matching.forEach { PluginManager.loadPlugin(context, File(it.filePath), it) }
+                                val repoDir = File("${context.filesDir}/${ONLINE_PLUGINS_FOLDER}/$folderName")
+                                if (repoDir.exists() && repoDir.isDirectory) {
+                                    repoDir.listFiles()?.forEach { file ->
+                                        if ((file.extension == "leo" || file.extension == "cs3" || file.extension == "zip") && matching.none { it.filePath == file.absolutePath }) {
+                                            PluginManager.loadPlugin(
+                                                context,
+                                                file,
+                                                PluginData(file.name, null, true, file.absolutePath, PLUGIN_VERSION_NOT_SET)
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                            main {
+                                afterPluginsLoadedEvent.invoke(false)
+                            }
+                        }
                     }
 
-                    actionButton.setOnClickListener {
-                        imageClickCallback(item)
+                    // Only shows icon if on setup or if it isn't a prebuilt repo.
+                    // No delete buttons on prebuilt repos.
+                    actionButton.isVisible = !isPrebuilt || isSetup
+                    if (!isPrebuilt || isSetup) {
+                        actionButton.setImageResource(drawable)
+                        actionButton.setOnClickListener {
+                            imageClickCallback(item)
+                        }
+                    } else {
+                        actionButton.setOnClickListener(null)
                     }
 
                     repositoryItemRoot.setOnClickListener {

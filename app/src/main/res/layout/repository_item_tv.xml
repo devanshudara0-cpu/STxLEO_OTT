@@ -130,6 +130,19 @@
         app:srcCompat="@drawable/ic_baseline_tune_24"
         tools:visibility="visible" />
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/repo_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:checked="true"
+        android:focusable="true"
+        android:nextFocusLeft="@id/repository_item_root"
+        android:nextFocusRight="@id/action_button"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
     <ImageView
         android:id="@+id/action_button"
         android:layout_width="wrap_content"
@@ -140,7 +153,7 @@
         android:clickable="true"
         android:contentDescription="@string/download"
         android:focusable="true"
-        android:nextFocusLeft="@id/action_settings"
+        android:nextFocusLeft="@id/repo_switch"
         android:nextFocusRight="@id/add_repo_button_imageview"
         android:padding="12dp"
         tools:src="@drawable/ic_baseline_add_24" />
