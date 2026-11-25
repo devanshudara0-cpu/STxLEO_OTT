@@ -1,9 +1,17 @@
+import com.android.build.api.artifact.ScopedArtifact
+import com.android.build.api.variant.ScopedArtifacts
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+import java.io.File
+import java.nio.file.Files
+import java.util.jar.JarEntry
+import java.util.jar.JarFile
+import java.util.jar.JarOutputStream
+import javax.tools.ToolProvider
 
 plugins {
     alias(libs.plugins.android.application)
@@ -14,6 +22,149 @@ plugins {
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
+
+abstract class StripNonYoutubeNewPipeTask : DefaultTask() {
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.NONE)
+    abstract val allJars: ListProperty<RegularFile>
+
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.NONE)
+    abstract val allDirectories: ListProperty<Directory>
+
+    @get:OutputFile
+    abstract val output: RegularFileProperty
+
+    @TaskAction
+    fun taskAction() {
+        val tempDir = Files.createTempDirectory("newpipe-strip").toFile()
+        try {
+            val srcDir = File(tempDir, "src/org/schabi/newpipe/extractor").apply { mkdirs() }
+            val clsDir = File(tempDir, "cls").apply { mkdirs() }
+            val serviceListJava = File(srcDir, "ServiceList.java")
+            serviceListJava.writeText(
+                """
+                package org.schabi.newpipe.extractor;
+
+                import org.schabi.newpipe.extractor.services.youtube.YoutubeService;
+                import java.util.List;
+
+                public final class ServiceList {
+                    private ServiceList() {}
+                    public static final YoutubeService YouTube = new YoutubeService(0);
+                    private static final List<StreamingService> SERVICES = List.of(YouTube);
+                    public static List<StreamingService> all() {
+                        return SERVICES;
+                    }
+                }
+                """.trimIndent()
+            )
+
+            val jarFiles = allJars.get().map { it.asFile }
+            val cp = jarFiles.joinToString(File.pathSeparator) { it.absolutePath }
+            val compiler = ToolProvider.getSystemJavaCompiler()
+                ?: error("System Java compiler is required to build YouTube-only ServiceList")
+            val compileExit = compiler.run(
+                null,
+                null,
+                null,
+                "-source", libsTargetJava(),
+                "-target", libsTargetJava(),
+                "-cp", cp,
+                "-d", clsDir.absolutePath,
+                serviceListJava.absolutePath
+            )
+            if (compileExit != 0) {
+                error("Failed to compile YouTube-only ServiceList.java (exit $compileExit)")
+            }
+
+            val customServiceListBytes = File(clsDir, "org/schabi/newpipe/extractor/ServiceList.class").readBytes()
+            val excludedPrefixes = listOf(
+                "org/schabi/newpipe/extractor/services/soundcloud/",
+                "org/schabi/newpipe/extractor/services/bandcamp/",
+                "org/schabi/newpipe/extractor/services/peertube/",
+                "org/schabi/newpipe/extractor/services/media_ccc/",
+            )
+
+            val outFile = output.get().asFile
+            outFile.parentFile?.mkdirs()
+
+            val seenEntries = HashSet<String>()
+            val mergedServices = LinkedHashMap<String, LinkedHashSet<String>>()
+
+            JarOutputStream(outFile.outputStream().buffered()).use { jos ->
+                fun shouldExclude(name: String): Boolean {
+                    if (name == "org/schabi/newpipe/extractor/ServiceList.class") return true
+                    if (excludedPrefixes.any { name.startsWith(it) }) return true
+                    if (name.startsWith("META-INF/") && (name.endsWith(".SF") || name.endsWith(".RSA") || name.endsWith(".DSA"))) {
+                        return true
+                    }
+                    return false
+                }
+
+                for (dir in allDirectories.get().map { it.asFile }) {
+                    if (!dir.exists()) continue
+                    val rootPath = dir.toPath()
+                    dir.walkTopDown().filter { it.isFile }.forEach { f ->
+                        val entryName = rootPath.relativize(f.toPath()).toString().replace(File.separatorChar, '/')
+                        if (shouldExclude(entryName)) return@forEach
+                        if (entryName.startsWith("META-INF/services/")) {
+                            val lines = f.readLines().map { it.trim() }.filter { it.isNotEmpty() }
+                            mergedServices.getOrPut(entryName) { LinkedHashSet() }.addAll(lines)
+                            return@forEach
+                        }
+                        if (seenEntries.add(entryName)) {
+                            jos.putNextEntry(JarEntry(entryName))
+                            f.inputStream().use { it.copyTo(jos) }
+                            jos.closeEntry()
+                        }
+                    }
+                }
+
+                for (jarFile in jarFiles) {
+                    if (!jarFile.exists()) continue
+                    JarFile(jarFile).use { jf ->
+                        val entries = jf.entries()
+                        while (entries.hasMoreElements()) {
+                            val entry = entries.nextElement()
+                            if (entry.isDirectory) continue
+                            val entryName = entry.name
+                            if (shouldExclude(entryName)) continue
+                            if (entryName.startsWith("META-INF/services/")) {
+                                jf.getInputStream(entry).bufferedReader().useLines { seq ->
+                                    val set = mergedServices.getOrPut(entryName) { LinkedHashSet() }
+                                    seq.map { it.trim() }.filter { it.isNotEmpty() }.forEach { set.add(it) }
+                                }
+                                continue
+                            }
+                            if (seenEntries.add(entryName)) {
+                                jos.putNextEntry(JarEntry(entryName))
+                                jf.getInputStream(entry).use { it.copyTo(jos) }
+                                jos.closeEntry()
+                            }
+                        }
+                    }
+                }
+
+                for ((svcName, impls) in mergedServices) {
+                    if (seenEntries.add(svcName)) {
+                        jos.putNextEntry(JarEntry(svcName))
+                        jos.write((impls.joinToString("\n") + "\n").toByteArray(Charsets.UTF_8))
+                        jos.closeEntry()
+                    }
+                }
+
+                jos.putNextEntry(JarEntry("org/schabi/newpipe/extractor/ServiceList.class"))
+                jos.write(customServiceListBytes)
+                jos.closeEntry()
+            }
+        } finally {
+            tempDir.deleteRecursively()
+        }
+    }
+
+    private fun libsTargetJava(): String = "11"
+}
 
 abstract class GenerateGitHashTask : DefaultTask() {
 
@@ -81,6 +232,17 @@ android {
                 generateGitHash,
                 GenerateGitHashTask::outputDir
             )
+            val stripTask = tasks.register<StripNonYoutubeNewPipeTask>(
+                "stripNonYoutubeNewPipe${variant.name.replaceFirstChar { it.uppercase() }}"
+            )
+            variant.artifacts.forScope(ScopedArtifacts.Scope.ALL)
+                .use(stripTask)
+                .toTransform(
+                    ScopedArtifact.CLASSES,
+                    StripNonYoutubeNewPipeTask::allJars,
+                    StripNonYoutubeNewPipeTask::allDirectories,
+                    StripNonYoutubeNewPipeTask::output
+                )
         }
     }
 
@@ -272,7 +434,7 @@ dependencies {
     implementation(libs.jsoup) // HTML Parser
     implementation(libs.ksoup) // HTML Parser
     implementation(libs.rhino) // Run JavaScript
-    implementation(libs.safefile) // To Prevent the URI File Fu*kery
+    implementation(libs.androidx.documentfile) // Scoped storage & SAF files
     coreLibraryDesugaring(libs.desugar.jdk.libs.nio) // NIO Flavor Needed for NewPipeExtractor
     implementation(libs.conscrypt.android) // To Fix SSL Fu*kery on Android 9
     implementation(libs.jackson.module.kotlin) // JSON Parser
@@ -282,9 +444,6 @@ dependencies {
     implementation("com.google.code.gson:gson:2.11.0")
     // Deprecated; will be removed once extensions have time to migrate from using it
     implementation("me.xdrop:fuzzywuzzy:1.4.0")
-
-    // Torrent Support
-    implementation(libs.torrentserver)
 
     // Downloading & Networking
     implementation(libs.work.runtime.ktx)

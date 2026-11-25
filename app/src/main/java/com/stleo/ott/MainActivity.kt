@@ -181,7 +181,6 @@ import com.stleo.ott.utils.setTextHtml
 import com.stleo.ott.utils.txt
 import com.stleo.ui.compose.LeoThemeAppSettings
 import com.stleo.ui.theme.LeoTheme
-import com.lagradost.safefile.SafeFile
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.sync.Mutex
@@ -1350,27 +1349,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                 }
             }
         }
-
-        // Neutralize third-party extension donation dialogs (Phisher Repo / BuyMeACoffee)
-        safe {
-            getSharedPreferences("phisher_donation_prefs", Context.MODE_PRIVATE)
-                .edit()
-                .putLong("phisher_donation_last_shown_v2", Long.MAX_VALUE)
-                .apply()
-        }
-
-        supportFragmentManager.registerFragmentLifecycleCallbacks(object : androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks() {
-            override fun onFragmentAttached(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment, context: Context) {
-                if (f.tag == "phisher_donation_floating_dialog" || f.javaClass.name.contains("Donation")) {
-                    (f as? androidx.fragment.app.DialogFragment)?.dismissAllowingStateLoss()
-                }
-            }
-            override fun onFragmentStarted(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment) {
-                if (f.tag == "phisher_donation_floating_dialog" || f.javaClass.name.contains("Donation")) {
-                    (f as? androidx.fragment.app.DialogFragment)?.dismissAllowingStateLoss()
-                }
-            }
-        }, true)
 
         if (PluginManager.checkSafeModeFile()) {
             safe {

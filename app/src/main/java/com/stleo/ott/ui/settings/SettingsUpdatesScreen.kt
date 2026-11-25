@@ -27,7 +27,7 @@ import com.stleo.ott.utils.UIHelper.navigate
 import com.stleo.ui.AppSettings
 import com.stleo.ui.rememberAppSettings
 import com.stleo.ui.viewmodels.GithubAction
-import com.lagradost.safefile.SafeFile
+import com.stleo.ott.utils.SafeFile
 import com.mihon.presentation.settings.Preference
 import com.mihon.presentation.settings.SearchableSettings
 import com.mihon.presentation.settings.collectAsState

@@ -11,7 +11,6 @@ import com.stleo.ott.utils.ExtractorLinkType
 import com.stleo.ott.utils.newExtractorLink
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import torrServer.TorrServer
 import java.io.File
 import java.net.ConnectException
 import java.net.URLEncoder
@@ -197,19 +196,9 @@ object Torrent {
         ).parsed<TorrentStatus>()
     }
 
-    /** Spins up the torrent server. */
+    /** Spins up the torrent server (disabled in LEOVONIX; use external torrent client). */
     private suspend fun setup(dir: String): Boolean {
-        go.Seq.load()
-        if (echo()) {
-            return true
-        }
-        val port = TorrServer.startTorrentServer(dir, 0)
-        if (port < 0) {
-            return false
-        }
-        TORRENT_SERVER_URL = "http://127.0.0.1:$port"
-        TorrServer.addTrackers(trackers.joinToString(separator = ",\n"))
-        return echo()
+        return false
     }
 
     /** Transforms a torrent link into a streamable link via the server */

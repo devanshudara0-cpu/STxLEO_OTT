@@ -12,7 +12,7 @@ import com.stleo.ott.ui.result.ResultEpisode
 import com.stleo.ott.utils.ExtractorLink
 import com.stleo.ott.utils.serializers.UriSerializer
 import com.stleo.ott.utils.serializers.WriteOnlySerializer
-import com.lagradost.safefile.SafeFile
+import com.stleo.ott.utils.SafeFile
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KeepGeneratedSerializer
 import kotlinx.serialization.SerialName

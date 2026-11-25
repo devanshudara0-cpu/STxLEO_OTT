@@ -10,7 +10,7 @@ import com.stleo.ott.actions.temp.LeovonixPackage
 import com.stleo.ott.utils.AppUtils.tryParseJson
 import com.stleo.ott.utils.DataStoreHelper
 import com.stleo.ott.utils.UIHelper.navigate
-import com.lagradost.safefile.SafeFile
+import com.stleo.ott.utils.SafeFile
 
 object OfflinePlaybackHelper {
     /**

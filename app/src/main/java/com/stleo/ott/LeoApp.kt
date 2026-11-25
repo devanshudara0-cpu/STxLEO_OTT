@@ -6,37 +6,29 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Build
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import coil3.ImageLoader
 import coil3.PlatformContext
 import coil3.SingletonImageLoader
 import com.stleo.api.setContext
-import com.stleo.ott.BuildConfig
-import com.stleo.ott.mvvm.safe
-import com.stleo.ott.mvvm.safeAsync
 import com.stleo.ott.plugins.PluginManager
+import com.stleo.ott.telemetry.LeoTelemetry
 import com.stleo.ott.ui.settings.Globals.EMULATOR
 import com.stleo.ott.ui.settings.Globals.TV
 import com.stleo.ott.ui.settings.Globals.isLayout
 import com.stleo.ott.utils.AppContextUtils.openBrowser
 import com.stleo.ott.utils.AppDebug
-import com.stleo.ott.telemetry.LeoTelemetry
-import com.stleo.ott.utils.Coroutines.runOnMainThread
 import com.stleo.ott.utils.DataStore.getKey
 import com.stleo.ott.utils.DataStore.getKeys
 import com.stleo.ott.utils.DataStore.removeKey
 import com.stleo.ott.utils.DataStore.removeKeys
 import com.stleo.ott.utils.DataStore.setKey
 import com.stleo.ott.utils.ImageLoader.buildImageLoader
-import kotlinx.coroutines.runBlocking
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.PrintStream
 import java.lang.ref.WeakReference
-import java.util.Locale
-import kotlin.concurrent.thread
 import kotlin.system.exitProcess
 
 class ExceptionHandler(
@@ -68,13 +60,10 @@ class ExceptionHandler(
     }
 }
 
-open class CloudStreamApp : Application(), SingletonImageLoader.Factory {
+open class LeoApp : Application(), SingletonImageLoader.Factory {
 
     override fun onCreate() {
         super.onCreate()
-        // If we want to initialize Coil as early as possible, maybe when
-        // loading an image or GIF in a splash screen activity.
-        // buildImageLoader(applicationContext)
 
         ExceptionHandler(filesDir.resolve("last_error")) {
             val intent = context!!.packageManager.getLaunchIntentForPackage(context!!.packageName)
@@ -88,13 +77,6 @@ open class CloudStreamApp : Application(), SingletonImageLoader.Factory {
 
         LeoTelemetry.init(this)
         LeoTelemetry.onAppOpen()
-
-        try {
-            getSharedPreferences("phisher_donation_prefs", Context.MODE_PRIVATE)
-                .edit()
-                .putLong("phisher_donation_last_shown_v2", Long.MAX_VALUE)
-                .apply()
-        } catch (_: Exception) {}
     }
 
     override fun attachBaseContext(base: Context?) {
@@ -103,7 +85,6 @@ open class CloudStreamApp : Application(), SingletonImageLoader.Factory {
     }
 
     override fun newImageLoader(context: PlatformContext): ImageLoader {
-        // Coil module will be initialized globally when first loadImage() is invoked.
         return buildImageLoader(applicationContext)
     }
 
@@ -188,41 +169,5 @@ open class CloudStreamApp : Application(), SingletonImageLoader.Factory {
                 (activity as? FragmentActivity)?.supportFragmentManager?.fragments?.lastOrNull()
             )
         }
-    }
-}
-
-/** LEOVONIX App class with full companion delegation for 100% backwards and forwards compatibility */
-open class LeoApp : CloudStreamApp() {
-    companion object {
-        var exceptionHandler: ExceptionHandler?
-            get() = CloudStreamApp.exceptionHandler
-            set(value) { CloudStreamApp.exceptionHandler = value }
-
-        tailrec fun Context.getActivity(): Activity? {
-            return when (this) {
-                is Activity -> this
-                is ContextWrapper -> baseContext.getActivity()
-                else -> null
-            }
-        }
-
-        var context: Context?
-            get() = CloudStreamApp.context
-            set(value) { /* managed via CloudStreamApp */ }
-
-        fun <T : Any> getKeyClass(path: String, valueType: Class<T>): T? = CloudStreamApp.getKeyClass(path, valueType)
-        fun <T : Any> setKeyClass(path: String, value: T) = CloudStreamApp.setKeyClass(path, value)
-        fun removeKeys(folder: String): Int? = CloudStreamApp.removeKeys(folder)
-        fun <T> setKey(path: String, value: T) = CloudStreamApp.setKey(path, value)
-        fun <T> setKey(folder: String, path: String, value: T) = CloudStreamApp.setKey(folder, path, value)
-        inline fun <reified T : Any> getKey(path: String, defVal: T?): T? = CloudStreamApp.getKey(path, defVal)
-        inline fun <reified T : Any> getKey(path: String): T? = CloudStreamApp.getKey(path)
-        inline fun <reified T : Any> getKey(folder: String, path: String): T? = CloudStreamApp.getKey(folder, path)
-        inline fun <reified T : Any> getKey(folder: String, path: String, defVal: T?): T? = CloudStreamApp.getKey(folder, path, defVal)
-        fun getKeys(folder: String): List<String>? = CloudStreamApp.getKeys(folder)
-        fun removeKey(folder: String, path: String) = CloudStreamApp.removeKey(folder, path)
-        fun removeKey(path: String) = CloudStreamApp.removeKey(path)
-        fun openBrowser(url: String, fallbackWebView: Boolean = false, fragment: Fragment? = null) = CloudStreamApp.openBrowser(url, fallbackWebView, fragment)
-        fun openBrowser(url: String, activity: Activity?) = CloudStreamApp.openBrowser(url, activity)
     }
 }

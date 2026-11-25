@@ -38,7 +38,7 @@ import com.stleo.ui.compose.PHONE
 import com.stleo.ui.compose.isLayout
 import com.stleo.ui.rememberAppSettings
 import com.stleo.ui.theme.LeoPreviewTheme
-import com.lagradost.safefile.SafeFile
+import com.stleo.ott.utils.SafeFile
 import com.mihon.presentation.settings.Preference
 import com.mihon.presentation.settings.SearchableSettings
 import com.mihon.presentation.settings.collectAsState

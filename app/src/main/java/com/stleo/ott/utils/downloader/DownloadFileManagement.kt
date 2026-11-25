@@ -8,8 +8,8 @@ import com.stleo.ott.R
 import com.stleo.ott.TvType
 import com.stleo.ott.getFolderPrefix
 import com.stleo.ott.isEpisodeBased
-import com.lagradost.safefile.MediaFileContentType
-import com.lagradost.safefile.SafeFile
+import com.stleo.ott.utils.MediaFileContentType
+import com.stleo.ott.utils.SafeFile
 
 object DownloadFileManagement {
     private const val RESERVED_CHARS = "|\\?*<\":>+[]/\'"

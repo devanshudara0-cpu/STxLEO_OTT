@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.annotation.WorkerThread
 import com.stleo.ott.utils.AppUtils.toJson
 import com.stleo.ott.utils.Coroutines.ioSafe
-import com.lagradost.safefile.closeQuietly
+import com.stleo.ott.utils.closeQuietly
 import java.io.DataOutputStream
 import java.net.Socket
 import kotlin.jvm.Throws

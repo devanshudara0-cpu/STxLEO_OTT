@@ -129,7 +129,7 @@ import com.stleo.ott.utils.downloader.DownloadUtils.getImageBitmapFromUrl
 import com.stleo.ott.utils.setText
 import com.stleo.ott.utils.txt
 import com.stleo.ott.utils.videoskip.VideoSkipStamp
-import com.lagradost.safefile.SafeFile
+import com.stleo.ott.utils.SafeFile
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive

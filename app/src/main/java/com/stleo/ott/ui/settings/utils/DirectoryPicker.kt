@@ -6,7 +6,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.stleo.ott.LeoApp
 import com.stleo.ott.mvvm.logError
-import com.lagradost.safefile.SafeFile
+import com.stleo.ott.utils.SafeFile
 
 fun Fragment.getChooseFolderLauncher(dirSelected: (uri: Uri?, path: String?) -> Unit) =
     registerForActivityResult(ActivityResultContracts.OpenDocumentTree()) { uri ->

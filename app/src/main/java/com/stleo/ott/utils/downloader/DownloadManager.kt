@@ -84,8 +84,8 @@ import com.stleo.ott.utils.downloader.DownloadUtils.getEstimatedTimeLeft
 import com.stleo.ott.utils.downloader.DownloadUtils.getImageBitmapFromUrl
 import com.stleo.ott.utils.downloader.DownloadUtils.join
 import com.stleo.ott.utils.txt
-import com.lagradost.safefile.SafeFile
-import com.lagradost.safefile.closeQuietly
+import com.stleo.ott.utils.SafeFile
+import com.stleo.ott.utils.closeQuietly
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

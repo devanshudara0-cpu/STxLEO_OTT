@@ -41,6 +41,16 @@ jobs:
       - name: Build Stable Release APK
         run: ./gradlew assembleStableRelease --stacktrace
 
+      - name: Export Plugin SDK JAR
+        run: |
+          SDK_JAR=$(find app/build/intermediates -path "*stripNonYoutubeNewPipeStableRelease*" -name "*.jar" | head -n 1)
+          if [ -z "$SDK_JAR" ]; then
+            SDK_JAR=$(find app/build -name "*output*.jar" | head -n 1)
+          fi
+          echo "Found SDK JAR: $SDK_JAR"
+          cp "$SDK_JAR" leovonix-plugin-sdk.jar
+          ls -lh leovonix-plugin-sdk.jar
+
       - name: Sign & Align APK
         run: |
           BUILD_APK=$(find app/build/outputs/apk/ -name "*.apk" | head -n 1)
@@ -76,6 +86,8 @@ jobs:
           tag_name: v1.0
           name: "LEOVONIX v1.0 Official Stable Release"
           body: "Official Public Launch of LEOVONIX v1.0 OTT Cinema App\n- Brand new Cyberpunk Cinema Neon UI\n- 1-Tap Movie & YouTube Servers Install\n- 4K 60FPS ad-free streaming"
-          files: LEOVONIX_v1.0.apk
+          files: |
+            LEOVONIX_v1.0.apk
+            leovonix-plugin-sdk.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

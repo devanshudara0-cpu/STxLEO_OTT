@@ -15,6 +15,7 @@ constraintlayout = "2.2.1"
 coreKtx = "1.18.0"
 cryptography = "0.6.0"
 desugar_jdk_libs_nio = "2.1.5"
+documentfile = "1.0.1"
 dokkaGradlePlugin = "2.2.0"
 espressoCore = "3.7.0"
 fragmentKtx = "1.8.9"
@@ -48,9 +49,7 @@ preferenceKtx = "1.2.1"
 previewseekbarMedia3 = "1.1.1.0"
 qrcodeKotlin = "4.5.0"
 rhino = { strictly = "1.8.1" } # Requires minSdk 26 or later beginning at version 1.9.0
-safefile = "0.0.8"
 shimmer = "0.5.0"
-torrentserver = "7861970"
 tvprovider = "1.1.0"
 video = "1.0.0"
 workRuntimeKtx = "2.11.2"
@@ -68,7 +67,7 @@ minSdk = "23"
 compileSdk = "37"
 targetSdk = "36"
 
-versionCode = "17"
+versionCode = "18"
 versionName = "1.0"
 
 [libraries]
@@ -139,10 +138,9 @@ palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "paletteK
 preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
 previewseekbar-media3 = { module = "com.github.rubensousa:previewseekbar-media3", version.ref = "previewseekbarMedia3" }
 qrcode-kotlin = { module = "io.github.g0dkar:qrcode-kotlin", version.ref = "qrcodeKotlin" }
+androidx-documentfile = { module = "androidx.documentfile:documentfile", version.ref = "documentfile" }
 rhino = { module = "org.mozilla:rhino", version.ref = "rhino" }
-safefile = { module = "com.github.LagradOst:SafeFile", version.ref = "safefile" }
 shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
-torrentserver = { module = "com.github.recloudstream:torrentserver", version.ref = "torrentserver" }
 tvprovider = { module = "androidx.tvprovider:tvprovider", version.ref = "tvprovider" }
 video = { module = "com.google.android.mediahome:video", version.ref = "video" }
 work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
