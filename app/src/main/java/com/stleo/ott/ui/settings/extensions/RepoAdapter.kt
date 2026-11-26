@@ -183,12 +183,7 @@ class RepoAdapter(
                         clickCallback(item)
                     }
 
-                    repositoryItemRoot.setOnLongClickListener {
-                        val shareableRepoData =
-                            "${item.name}$SHAREABLE_REPO_SEPARATOR\n ${item.url}"
-                        clipboardHelper(txt(R.string.repo_copy_label), shareableRepoData)
-                        true
-                    }
+                    repositoryItemRoot.setOnLongClickListener(null)
 
                     mainText.text = item.name
                     subText.text = item.url

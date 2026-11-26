@@ -1896,17 +1896,7 @@ object ExtensionsScreen : Screen {
             onClick = {
                 onAction(SelectRepository(repository.uuid))
             },
-            onLongClick = {
-                val shareableRepoData =
-                    "${repository.info.name}$SHAREABLE_REPO_SEPARATOR\n ${repository.info.url}"
-
-                scope.launch {
-                    clipboard.setPlainText(
-                        label = copyTextLabel,
-                        text = shareableRepoData
-                    )
-                }
-            },
+            onLongClick = null,
             widget = {
                 when (val reason = repository.status) {
                     is RepositoryStatus.Failure -> {
