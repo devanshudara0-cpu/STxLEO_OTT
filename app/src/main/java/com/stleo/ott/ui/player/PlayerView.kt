@@ -659,6 +659,19 @@ class PlayerView @JvmOverloads constructor(
 
     @MainThread
     fun playerError(exception: Throwable) {
+        fun httpStatus(t: Throwable): String {
+            var cur: Throwable? = t
+            while (cur != null) {
+                val match = Regex(
+                    """(?:response code|status code|http\s*status)\D*(\d{3})""",
+                    RegexOption.IGNORE_CASE
+                ).find(cur.message ?: "")
+                if (match != null) return match.groupValues[1]
+                cur = cur.cause
+            }
+            return ""
+        }
+
         fun showErrorToast(message: String) {
             if (callbacks?.hasNextMirror() == true) {
                 showToast(message, Toast.LENGTH_SHORT)
@@ -675,6 +688,8 @@ class PlayerView @JvmOverloads constructor(
         when (exception) {
             is PlaybackException -> {
                 val msg = exception.message ?: ""
+                val status = httpStatus(exception)
+                val statusLine = if (status.isNotBlank()) "HTTP $status\n" else ""
                 val errorName = exception.errorCodeName
                 when (val code = exception.errorCode) {
                     PlaybackException.ERROR_CODE_IO_FILE_NOT_FOUND,
@@ -682,7 +697,7 @@ class PlayerView @JvmOverloads constructor(
                     PlaybackException.ERROR_CODE_IO_READ_POSITION_OUT_OF_RANGE,
                     PlaybackException.ERROR_CODE_IO_UNSPECIFIED,
                     PlaybackException.ERROR_CODE_PARSING_CONTAINER_UNSUPPORTED ->
-                        showErrorToast("${context.getString(R.string.source_error)}\n$errorName ($code)\n$msg")
+                        showErrorToast("${context.getString(R.string.source_error)}\n$errorName ($code)\n$statusLine$msg")
 
                     PlaybackException.ERROR_CODE_REMOTE_ERROR,
                     PlaybackException.ERROR_CODE_IO_BAD_HTTP_STATUS,
@@ -690,7 +705,7 @@ class PlayerView @JvmOverloads constructor(
                     PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_FAILED,
                     PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT,
                     PlaybackException.ERROR_CODE_IO_INVALID_HTTP_CONTENT_TYPE ->
-                        showErrorToast("${context.getString(R.string.remote_error)}\n$errorName ($code)\n$msg")
+                        showErrorToast("${context.getString(R.string.remote_error)}\n$errorName ($code)\n$statusLine$msg")
 
                     PlaybackErrorEvent.ERROR_AUDIO_TRACK_INIT_FAILED,
                     PlaybackErrorEvent.ERROR_AUDIO_TRACK_OTHER,
@@ -698,18 +713,18 @@ class PlayerView @JvmOverloads constructor(
                     PlaybackException.ERROR_CODE_AUDIO_TRACK_WRITE_FAILED,
                     PlaybackException.ERROR_CODE_DECODER_INIT_FAILED,
                     PlaybackException.ERROR_CODE_DECODER_QUERY_FAILED ->
-                        showErrorToast("${context.getString(R.string.render_error)}\n$errorName ($code)\n$msg")
+                        showErrorToast("${context.getString(R.string.render_error)}\n$errorName ($code)\n$statusLine$msg")
 
                     PlaybackException.ERROR_CODE_DECODING_FORMAT_UNSUPPORTED,
                     PlaybackException.ERROR_CODE_DECODING_FORMAT_EXCEEDS_CAPABILITIES ->
-                        showErrorToast("${context.getString(R.string.unsupported_error)}\n$errorName ($code)\n$msg")
+                        showErrorToast("${context.getString(R.string.unsupported_error)}\n$errorName ($code)\n$statusLine$msg")
 
                     PlaybackException.ERROR_CODE_PARSING_CONTAINER_MALFORMED,
                     PlaybackException.ERROR_CODE_PARSING_MANIFEST_MALFORMED ->
-                        showErrorToast("${context.getString(R.string.encoding_error)}\n$errorName ($code)\n$msg")
+                        showErrorToast("${context.getString(R.string.encoding_error)}\n$errorName ($code)\n$statusLine$msg")
 
                     else ->
-                        showErrorToast("${context.getString(R.string.unexpected_error)}\n$errorName ($code)\n$msg")
+                        showErrorToast("${context.getString(R.string.unexpected_error)}\n$errorName ($code)\n$statusLine$msg")
                 }
             }
 

@@ -1571,11 +1571,15 @@ class GeneratorPlayer : FullScreenPlayer() {
             currentSelectedLink?.let { it.first?.url ?: it.second?.uri?.toString() } ?: "unknown"
         val headers = currentSelectedLink?.first?.headers?.toString() ?: "none"
         val referer = currentSelectedLink?.first?.referer ?: "none"
+        val httpStatus = generateSequence(exception) { it.cause }.mapNotNull {
+            Regex("""(?:response code|status code|http\s*status)\D*(\d{3})""", RegexOption.IGNORE_CASE)
+                .find(it.message ?: "")?.groupValues?.get(1)
+        }.firstOrNull().orEmpty()
         Log.e(
             TAG,
             "playerError: $currentSelectedLink, " +
                     "type=${exception::class.qualifiedName}, " +
-                    "message=${exception.message}, url=$currentUrl, headers=$headers, " +
+                    "message=${exception.message}, httpStatus=$httpStatus, url=$currentUrl, headers=$headers, " +
                     "referer=$referer, position=${player.getPosition() ?: "unknown"}, " +
                     "duration=${player.getDuration() ?: "unknown"}, " +
                     "isPlaying=${player.getIsPlaying()}", exception
