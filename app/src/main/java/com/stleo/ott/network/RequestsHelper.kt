@@ -43,10 +43,10 @@ fun buildDefaultClient(context: Context, ignoreSSL: Boolean = false): OkHttpClie
     val baseClient = OkHttpClient.Builder()
         .followRedirects(true)
         .followSslRedirects(true)
-        .connectionPool(ConnectionPool(4, 1, TimeUnit.MINUTES))
+        .connectionPool(ConnectionPool(8, 2, TimeUnit.MINUTES))
         .dispatcher(Dispatcher().apply {
-            maxRequests = 16
-            maxRequestsPerHost = 4
+            maxRequests = 48
+            maxRequestsPerHost = 12
         })
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
