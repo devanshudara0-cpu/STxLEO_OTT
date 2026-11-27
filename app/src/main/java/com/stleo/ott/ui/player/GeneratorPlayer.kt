@@ -186,6 +186,9 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     private var isPlayerActive: AtomicBoolean = AtomicBoolean(false)
     private var isNextEpisode: Boolean = false // this is used to reset the watch time
+    private var autoStartJob: Job? = null
+    private var isWaitingForMoreLinks: Boolean = false
+    private var hasTriedServerFallback: Boolean = false
 
     private var preferredAutoSelectSubtitles: String? = null // null means do nothing, "" means none
     private val allMeta: List<ResultEpisode>?
@@ -1592,6 +1595,34 @@ class GeneratorPlayer : FullScreenPlayer() {
     }
 
     private fun noLinksFound() {
+        autoStartJob?.cancel()
+        val failedEp = currentMeta as? ResultEpisode
+        if (!hasTriedServerFallback && failedEp != null && !failedEp.tvType.isLiveStream()) {
+            hasTriedServerFallback = true
+            isWaitingForMoreLinks = false
+            isPlayerActive.set(false)
+            binding?.playerLoadingOverlay?.isVisible = true
+            showToast("Switching to backup server...", Toast.LENGTH_SHORT)
+            val failedResp = viewModel.state.generatorState?.response
+            viewModel.viewModelScope.launch {
+                val fallback = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+                    ServerFallbackHelper.findFallbackEpisode(failedEp, failedResp)
+                }
+                if (fallback != null && isAdded) {
+                    showToast("Auto-switched to ${fallback.providerName}", Toast.LENGTH_SHORT)
+                    val newGen = RepoLinkGenerator(listOf(fallback.episode), page = fallback.response)
+                    viewModel.attachGenerator(newGen, 0)
+                    viewModel.loadLinks()
+                } else if (isAdded) {
+                    finishNoLinksFound()
+                }
+            }
+            return
+        }
+        finishNoLinksFound()
+    }
+
+    private fun finishNoLinksFound() {
         viewModel.forceClearCache = true
         val hiddenLinks = viewModel.state.sortLinks(currentQualityProfile).count { !it.shouldUseLink }
 
@@ -1618,10 +1649,15 @@ class GeneratorPlayer : FullScreenPlayer() {
             return
         }
 
+        val errored = viewModel.state.erroredLinks
         val links = viewModel.state.sortLinks(currentQualityProfile)
 
-        val firstAvailableLink = links.firstOrNull { it.shouldUseLink }?.link
+        val firstAvailableLink = links.firstOrNull { it.shouldUseLink && it.link !in errored }?.link
         if (firstAvailableLink == null) {
+            if (viewModel.state.loading is Resource.Loading) {
+                isWaitingForMoreLinks = true
+                return
+            }
             noLinksFound()
             return
         }
@@ -1629,6 +1665,8 @@ class GeneratorPlayer : FullScreenPlayer() {
         if (!isPlayerActive.compareAndSet(false, true)) {
             return
         }
+        isWaitingForMoreLinks = false
+        autoStartJob?.cancel()
         loadLink(firstAvailableLink, false)
         showPlayerMetadata()
     }
@@ -1683,6 +1721,7 @@ class GeneratorPlayer : FullScreenPlayer() {
     override fun nextEpisode() {
         if (viewModel.hasNextEpisode() == true) {
             isNextEpisode = true
+            hasTriedServerFallback = false
             releasePlayer()
             viewModel.loadLinksNext()
         }
@@ -1691,6 +1730,7 @@ class GeneratorPlayer : FullScreenPlayer() {
     override fun prevEpisode() {
         if (viewModel.hasPrevEpisode() == true) {
             isNextEpisode = true
+            hasTriedServerFallback = false
             releasePlayer()
             viewModel.loadLinksPrev()
         }
@@ -1698,19 +1738,28 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     private fun getNextLink(): DisplayLink? {
         val links = viewModel.state.sortLinks(currentQualityProfile)
-        val currentIndex = links.indexOfFirst { it.link == currentSelectedLink }
-        val nextPotentialLink =
-            links.withIndex().firstOrNull { it.index > currentIndex && it.value.shouldUseLink }
-        return nextPotentialLink?.value
+        val errored = viewModel.state.erroredLinks
+        return links.firstOrNull {
+            it.shouldUseLink && it.link !in errored && it.link != currentSelectedLink
+        }
     }
 
     override fun hasNextMirror(): Boolean {
-        return getNextLink() != null
+        return getNextLink() != null ||
+            viewModel.state.loading is Resource.Loading ||
+            (!hasTriedServerFallback && (currentMeta as? ResultEpisode)?.tvType?.isLiveStream() == false)
     }
 
     override fun nextMirror() {
         val nextLink = getNextLink()
         if (nextLink == null) {
+            if (viewModel.state.loading is Resource.Loading) {
+                isWaitingForMoreLinks = true
+                isPlayerActive.set(false)
+                player.release()
+                binding?.playerLoadingOverlay?.isVisible = true
+                return
+            }
             noLinksFound()
             return
         }
@@ -1720,6 +1769,7 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     override fun onDestroy() {
         ResultFragment.updateUI()
+        autoStartJob?.cancel()
         currentVerifyLink?.cancel()
         super.onDestroy()
     }
@@ -2216,6 +2266,8 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     @MainThread
     fun releasePlayer() {
+        autoStartJob?.cancel()
+        isWaitingForMoreLinks = false
         player.release()
         currentSelectedSubtitles = null
         currentSelectedLink = null
@@ -2383,12 +2435,28 @@ class GeneratorPlayer : FullScreenPlayer() {
             }
 
             safe {
-                if (!isPlayerActive.get() && viewModel.state.links.any { link ->
-                        getLinkPriority(currentQualityProfile, link.first) >=
+                if (!isPlayerActive.get()) {
+                    val errored = viewModel.state.erroredLinks
+                    val readyLinks = sortedLinks.filter { it.shouldUseLink && it.link !in errored }
+                    val hasPriorityAutoSkip = viewModel.state.links.any { link ->
+                        link !in errored &&
+                            getLinkPriority(currentQualityProfile, link.first) >=
                                 QualityDataHelper.AUTO_SKIP_PRIORITY
                     }
-                ) {
-                    startPlayer()
+                    if (isWaitingForMoreLinks && readyLinks.isNotEmpty()) {
+                        isWaitingForMoreLinks = false
+                        startPlayer()
+                    } else if (hasPriorityAutoSkip || readyLinks.size >= 2) {
+                        autoStartJob?.cancel()
+                        startPlayer()
+                    } else if (readyLinks.isNotEmpty() && autoStartJob?.isActive != true) {
+                        autoStartJob = viewModel.viewModelScope.launch {
+                            delay(550L)
+                            if (isAdded && !isPlayerActive.get() && viewModel.state.instance == instance) {
+                                startPlayer()
+                            }
+                        }
+                    }
                 }
             }
 

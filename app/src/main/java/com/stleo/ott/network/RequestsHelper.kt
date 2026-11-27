@@ -66,6 +66,7 @@ fun buildDefaultClient(context: Context, ignoreSSL: Boolean = false): OkHttpClie
             )
         ).apply {
             when (dns) {
+                0 -> addResilientSystemWithDohFallback()
                 1 -> addGoogleDns()
                 2 -> addCloudFlareDns()
 //                3 -> addOpenDns()

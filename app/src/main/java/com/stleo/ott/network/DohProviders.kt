@@ -1,9 +1,11 @@
 package com.stleo.ott.network
 
+import okhttp3.Dns
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.dnsoverhttps.DnsOverHttps
 import java.net.InetAddress
+import java.net.UnknownHostException
 
 /**
  * Based on https://github.com/tachiyomiorg/tachiyomi/blob/master/app/src/main/java/eu/kanade/tachiyomi/network/DohProviders.kt
@@ -19,6 +21,51 @@ fun OkHttpClient.Builder.addGenericDns(url: String, ips: List<String>) = dns(
         )
         .build()
 )
+
+fun OkHttpClient.Builder.addResilientSystemWithDohFallback(): OkHttpClient.Builder {
+    val bootstrapClient = build()
+    val cloudflareDoh = DnsOverHttps.Builder()
+        .client(bootstrapClient)
+        .url("https://cloudflare-dns.com/dns-query".toHttpUrl())
+        .bootstrapDnsHosts(
+            listOf(
+                InetAddress.getByName("1.1.1.1"),
+                InetAddress.getByName("1.0.0.1"),
+            )
+        )
+        .build()
+    val googleDoh = DnsOverHttps.Builder()
+        .client(bootstrapClient)
+        .url("https://dns.google/dns-query".toHttpUrl())
+        .bootstrapDnsHosts(
+            listOf(
+                InetAddress.getByName("8.8.8.8"),
+                InetAddress.getByName("8.8.4.4"),
+            )
+        )
+        .build()
+
+    return dns(object : Dns {
+        override fun lookup(hostname: String): List<InetAddress> {
+            val sysResult = runCatching { Dns.SYSTEM.lookup(hostname) }.getOrNull()
+            val isLocalHost = hostname.equals("localhost", ignoreCase = true) ||
+                hostname.startsWith("127.") || hostname.startsWith("192.168.") || hostname.startsWith("10.")
+            val isSinkhole = sysResult == null || sysResult.isEmpty() || (!isLocalHost && sysResult.all { addr ->
+                addr.isAnyLocalAddress || addr.isLoopbackAddress
+            })
+            if (!isSinkhole) return sysResult!!
+
+            val cfResult = runCatching { cloudflareDoh.lookup(hostname) }.getOrNull()
+            if (!cfResult.isNullOrEmpty()) return cfResult
+
+            val gResult = runCatching { googleDoh.lookup(hostname) }.getOrNull()
+            if (!gResult.isNullOrEmpty()) return gResult
+
+            if (!sysResult.isNullOrEmpty()) return sysResult
+            throw UnknownHostException("Failed to resolve $hostname via system DNS and DoH fallback")
+        }
+    })
+}
 
 fun OkHttpClient.Builder.addGoogleDns() = (
         addGenericDns(

@@ -142,6 +142,10 @@ object RepositoryManager {
     /* Convert raw.githubusercontent.com urls to cdn.jsdelivr.net if enabled in settings */
     fun convertRawGitUrl(url: String): String {
         if (getKey<Boolean>(context!!.getString(R.string.jsdelivr_proxy_key)) != true) return url
+        return convertRawGitUrlForced(url)
+    }
+
+    private fun convertRawGitUrlForced(url: String): String {
         val match = GH_REGEX.find(url) ?: return url
         val (user, repo, rest) = match.destructured
         return "https://cdn.jsdelivr.net/gh/$user/$repo@$rest"
@@ -178,18 +182,29 @@ object RepositoryManager {
 
     suspend fun parseRepository(url: String): Repository? {
         return safeAsync {
-            // Take manifestVersion and such into account later
-            app.get(convertRawGitUrl(url), cacheTime = 15, cacheUnit = TimeUnit.MINUTES)
+            val primary = convertRawGitUrl(url)
+            app.get(primary, cacheTime = 15, cacheUnit = TimeUnit.MINUTES)
                 .parsedSafe<Repository>()
+                ?: convertRawGitUrlForced(url).takeIf { it != primary }?.let { cdnUrl ->
+                    app.get(cdnUrl, cacheTime = 15, cacheUnit = TimeUnit.MINUTES).parsedSafe<Repository>()
+                }
         }
     }
 
     private suspend fun parsePlugins(pluginUrls: String): List<SitePlugin> {
-        // Take manifestVersion and such into account later
+        val primary = convertRawGitUrl(pluginUrls)
         return try {
-            app.get(convertRawGitUrl(pluginUrls), cacheTime = 15, cacheUnit = TimeUnit.MINUTES)
+            app.get(primary, cacheTime = 15, cacheUnit = TimeUnit.MINUTES)
                 .parsed<Array<SitePlugin>>().toList()
         } catch (t: Throwable) {
+            val cdnUrl = convertRawGitUrlForced(pluginUrls)
+            if (cdnUrl != primary) {
+                try {
+                    return app.get(cdnUrl, cacheTime = 15, cacheUnit = TimeUnit.MINUTES)
+                        .parsed<Array<SitePlugin>>().toList()
+                } catch (_: Throwable) {
+                }
+            }
             logError(t)
             emptyList()
         }
@@ -221,11 +236,21 @@ object RepositoryManager {
             // Prevent corrupting the plugin file if the operation fails
             val tempFile = File.createTempFile(file.name, ".tmp", context.cacheDir)
 
-            val body = app.get(convertRawGitUrl(pluginUrl)).okhttpResponse.body
+            val primary = convertRawGitUrl(pluginUrl)
+            val body = try {
+                app.get(primary).okhttpResponse.body
+            } catch (t: Throwable) {
+                val cdnUrl = convertRawGitUrlForced(pluginUrl)
+                if (cdnUrl != primary) {
+                    app.get(cdnUrl).okhttpResponse.body
+                } else {
+                    throw t
+                }
+            }
 
-            body.byteStream().use { body ->
+            body.byteStream().use { stream ->
                 tempFile.outputStream().use { fileSteam ->
-                    body.copyTo(fileSteam)
+                    stream.copyTo(fileSteam)
                 }
             }
 
