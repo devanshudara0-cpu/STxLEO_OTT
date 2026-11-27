@@ -145,7 +145,7 @@ object RepositoryManager {
         return convertRawGitUrlForced(url)
     }
 
-    private fun convertRawGitUrlForced(url: String): String {
+    fun convertRawGitUrlForced(url: String): String {
         val match = GH_REGEX.find(url) ?: return url
         val (user, repo, rest) = match.destructured
         return "https://cdn.jsdelivr.net/gh/$user/$repo@$rest"
