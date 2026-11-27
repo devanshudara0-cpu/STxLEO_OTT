@@ -51,6 +51,7 @@ fun buildDefaultClient(context: Context, ignoreSSL: Boolean = false): OkHttpClie
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
+        .callTimeout(30, TimeUnit.SECONDS)
         .apply {
             if (ignoreSSL) {
                 ignoreAllSSLErrors()
@@ -79,6 +80,10 @@ fun buildDefaultClient(context: Context, ignoreSSL: Boolean = false): OkHttpClie
         .build()
     return baseClient
 }
+
+fun OkHttpClient.asPlaybackClient(): OkHttpClient =
+    if (callTimeoutMillis == 0L) this
+    else newBuilder().callTimeout(0, TimeUnit.MILLISECONDS).build()
 
 private val DEFAULT_HEADERS = mapOf("user-agent" to USER_AGENT)
 

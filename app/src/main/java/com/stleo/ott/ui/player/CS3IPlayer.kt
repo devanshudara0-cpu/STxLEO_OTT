@@ -3,6 +3,7 @@
 package com.stleo.ott.ui.player
 
 import android.annotation.SuppressLint
+import com.stleo.ott.network.asPlaybackClient
 import com.stleo.ott.telemetry.LeoTelemetry
 import android.content.Context
 import android.content.DialogInterface
@@ -752,9 +753,9 @@ class CS3IPlayer : IPlayer {
             interceptor: Interceptor?
         ): HttpDataSource.Factory {
             val client = if (interceptor == null) {
-                app.baseClient
+                app.baseClient.asPlaybackClient()
             } else {
-                app.baseClient.newBuilder()
+                app.baseClient.asPlaybackClient().newBuilder()
                     .addInterceptor(interceptor)
                     .build()
             }
@@ -814,7 +815,7 @@ class CS3IPlayer : IPlayer {
             val source = if (interceptor == null) {
                 if (engine == null) {
                     Log.d(TAG, "Using DefaultHttpDataSource for $link")
-                    OkHttpDataSource.Factory(app.baseClient).setUserAgent(userAgent)
+                    OkHttpDataSource.Factory(app.baseClient.asPlaybackClient()).setUserAgent(userAgent)
                 } else {
                     Log.d(TAG, "Using CronetDataSource for $link")
                     CronetDataSource.Factory(engine, Executors.newFixedThreadPool(4))
@@ -826,7 +827,7 @@ class CS3IPlayer : IPlayer {
                 }
             } else {
                 Log.d(TAG, "Using OkHttpDataSource for $link")
-                val client = app.baseClient.newBuilder()
+                val client = app.baseClient.asPlaybackClient().newBuilder()
                     .addInterceptor(interceptor)
                     .build()
                 OkHttpDataSource.Factory(client).setUserAgent(userAgent)
