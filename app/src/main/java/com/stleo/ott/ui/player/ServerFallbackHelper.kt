@@ -9,6 +9,7 @@ import com.stleo.ott.MovieLoadResponse
 import com.stleo.ott.SearchResponse
 import com.stleo.ott.TvSeriesLoadResponse
 import com.stleo.ott.TvType
+import com.stleo.ott.isMovieType
 import com.stleo.ott.mvvm.Resource
 import com.stleo.ott.ui.APIRepository
 import com.stleo.ott.ui.result.ResultEpisode
@@ -81,13 +82,13 @@ object ServerFallbackHelper {
             ?: Regex("""\b(19\d\d|20[0-3]\d)\b""").find(rawTitle)?.groupValues?.get(1)?.toIntOrNull()
         val isSeries = !failedEpisode.tvType.isMovieType()
 
-        val providers = APIHolder.allProviders.withLock {
-            allProviders.toList()
-        }.filter { api ->
+        val providers: List<MainAPI> = APIHolder.allProviders.withLock {
+            APIHolder.allProviders.toList()
+        }.filter { api: MainAPI ->
             api.name != failedEpisode.apiName &&
                 !api.name.contains("youtube", ignoreCase = true) &&
                 api.hasMainPage
-        }.sortedBy { api ->
+        }.sortedBy { api: MainAPI ->
             val idx = PREFERRED_ORDER.indexOfFirst { it.equals(api.name, ignoreCase = true) }
             if (idx == -1) 999 else idx
         }
