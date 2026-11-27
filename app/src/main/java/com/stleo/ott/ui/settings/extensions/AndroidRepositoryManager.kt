@@ -17,6 +17,7 @@ import com.stleo.ott.plugins.PluginManager.unloadPlugin
 import com.stleo.ott.plugins.RepositoryManager.PREBUILT_REPOSITORIES
 import com.stleo.ott.plugins.RepositoryManager.addRepository
 import com.stleo.ott.plugins.RepositoryManager.convertRawGitUrl
+import com.stleo.ott.plugins.RepositoryManager.convertRawGitUrlForced
 import com.stleo.ott.plugins.RepositoryManager.parseRepoUrl
 import com.stleo.ott.plugins.RepositoryManager.removeRepository
 import com.stleo.ott.plugins.SitePlugin
@@ -181,14 +182,43 @@ object AndroidRepositoryManager : RepositoryManager {
          * Because if the file digest is correct, then why do we need to do a network connection?
          * */
         if (isFileDigest(file, source.digest)) {
+            if (!PluginManager.plugins.containsKey(file.absolutePath)) {
+                val loaded = PluginManager.loadPlugin(
+                    context = context,
+                    file = file,
+                    data = PluginData(
+                        internalName = source.internalName,
+                        url = source.pluginUrl,
+                        isOnline = true,
+                        filePath = file.absolutePath,
+                        version = PLUGIN_VERSION_NOT_SET
+                    )
+                )
+                if (!loaded) {
+                    throw ErrorLoadingException("Unable to load plugin ${source.internalName}")
+                }
+            }
             return@withContext file.absolutePath
         }
 
         val tempFile = File.createTempFile(file.name, ".tmp", context.cacheDir)
 
+        val primary = convertRawGitUrl(source.pluginUrl)
+        val body = try {
+            app.get(primary).body
+        } catch (t: Throwable) {
+            val cdnUrl = convertRawGitUrlForced(source.pluginUrl)
+            if (cdnUrl != primary) {
+                app.get(cdnUrl).body
+            } else {
+                tempFile.delete()
+                throw t
+            }
+        }
+
         tempFile.outputStream().use { writeStream ->
-            app.get(convertRawGitUrl(source.pluginUrl)).body.use { body ->
-                val readStream = body.byteStream()
+            body.use { b ->
+                val readStream = b.byteStream()
                 ApkUpdater.transfer(
                     writeStream = writeStream,
                     readStream = readStream,
