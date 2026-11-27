@@ -82,7 +82,7 @@ fun buildDefaultClient(context: Context, ignoreSSL: Boolean = false): OkHttpClie
 }
 
 fun OkHttpClient.asPlaybackClient(): OkHttpClient =
-    if (callTimeoutMillis == 0L) this
+    if (callTimeoutMillis == 0) this
     else newBuilder().callTimeout(0, TimeUnit.MILLISECONDS).build()
 
 private val DEFAULT_HEADERS = mapOf("user-agent" to USER_AGENT)
